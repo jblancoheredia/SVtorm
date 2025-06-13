@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-## Heavily modified from ARRIBA's original script DrawFus.R
+## Heavily modified from ARRIBA's original script draw_fusions.R
 ## By blancoj@mskcc.org
 
 # Print warnings as they happen instead of collecting them for after a loop ends

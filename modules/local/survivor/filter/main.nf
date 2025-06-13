@@ -4,8 +4,8 @@ process SURVIVOR_FILTER {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/survivor_filter:1.0.7':
-        'blancojmskcc/survivor_filter:1.0.7' }"
+        'docker://blancojmskcc/survivor_filter_svtorm:2.0':
+        'blancojmskcc/survivor_filter_svtorm:2.0' }"
 
     input:
     tuple val(meta), 
