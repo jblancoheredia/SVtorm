@@ -31,16 +31,10 @@ process DELLY {
     def bcf_output = suffix == "bcf" ? "--outfile ${prefix}.bcf" : ""
     def bcf_filter = suffix == "bcf" ? "--outfile ${prefix}.filtered.bcf" : ""
     """
-    cp ${tumour_bam} tumour_modified.bam
-    cp ${normal_bam} normal_modified.bam
+    normal_name=\$(samtools view -H ${normal_bam} | grep '^@RG' | sed -n 's/.*SM:\\([^[:space:]]*\\).*/\\1/p' | head -n1)
+    tumour_name=\$(samtools view -H ${tumour_bam} | grep '^@RG' | sed -n 's/.*SM:\\([^[:space:]]*\\).*/\\1/p' | head -n1)
 
-    samtools view -H ${tumour_bam} | sed 's/SM:[^[:space:]]*/SM:${meta.id}/' > tumour_header.sam
-    samtools view -H ${normal_bam} | sed 's/SM:[^[:space:]]*/SM:NORMAL/'     > normal_header.sam
-
-    samtools reheader tumour_header.sam tumour_modified.bam > tumour_final.bam
-    samtools reheader normal_header.sam normal_modified.bam > normal_final.bam
-
-    echo -e "${meta.id}\\ttumor\\nNORMAL\\tcontrol" > sample_file.tsv
+    echo -e "\${tumour_name}\\ttumor\\n\${normal_name}\\tcontrol" > sample_file.tsv
 
     delly \\
         call \\

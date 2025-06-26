@@ -120,19 +120,23 @@ process SERACARE_CHECKUP {
     echo "  \\"all_events_passed\\": \$all_passed" >> \$summary_file
     echo "}" >> \$summary_file
 
-    # Create versions file
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         bash: \$(bash --version | head -n1 | cut -d' ' -f4)
         grep: \$(grep --version | head -n1 | cut -d' ' -f4)
     END_VERSIONS
     """
-
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.checkup_report.txt
     touch ${prefix}.checkup_summary.json
     touch versions.yml
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        bash: \$(bash --version | head -n1 | cut -d' ' -f4)
+        grep: \$(grep --version | head -n1 | cut -d' ' -f4)
+    END_VERSIONS
     """
 }
