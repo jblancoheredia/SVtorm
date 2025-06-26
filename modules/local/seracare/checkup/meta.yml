@@ -1,0 +1,48 @@
+name: "seracare_checkup"
+description: Quality control check for SeraCare control samples by verifying expected fusion events
+keywords:
+  - quality control
+  - fusion detection
+  - structural variants
+  - seracare
+  - clinical genomics
+tools:
+  - "bash":
+      description: "Unix shell and command language"
+      homepage: "https://www.gnu.org/software/bash/"
+      documentation: "https://www.gnu.org/software/bash/manual/"
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - sv_file:
+      type: file
+      description: Structural variant output file (TSV format)
+      pattern: "*.{tsv,txt}"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - report:
+      type: file
+      description: Human-readable quality control report
+      pattern: "*.checkup_report.txt"
+  - summary:
+      type: file
+      description: Machine-readable JSON summary of QC results
+      pattern: "*.checkup_summary.json"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@jblancoheredia"
+maintainers:
+  - "@jblancoheredia"

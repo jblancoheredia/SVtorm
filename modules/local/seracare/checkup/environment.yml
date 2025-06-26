@@ -1,0 +1,7 @@
+name: seracare_checkup
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - coreutils=9.1
+  - grep=3.7

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1456.8 522.4">
+  <!-- Generator: Adobe Illustrator 29.6.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 207)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #89f6f0;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5, .st6, .st7, .st8 {
+        isolation: isolate;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5, .st7, .st8 {
+        font-family: MavenPro-Bold, 'Maven Pro';
+        font-size: 209.9px;
+        font-weight: 700;
+      }
+
+      .st1 {
+        fill: #367d7f;
+      }
+
+      .st2 {
+        fill: #63d4d6;
+      }
+
+      .st3 {
+        fill: #b3f0d6;
+      }
+
+      .st9 {
+        fill: url(#linear-gradient);
+      }
+
+      .st4 {
+        fill: #429698;
+      }
+
+      .st5 {
+        fill: #a5f3df;
+      }
+
+      .st8 {
+        fill: #51b1b4;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="2526.2" y1="542.3" x2="2529.1" y2="542.3" gradientTransform="translate(101040.7 -73081) rotate(156) scale(48.1 -48.1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#daf8eb"/>
+      <stop offset=".5" stop-color="#429698"/>
+      <stop offset=".7" stop-color="#3a8486"/>
+      <stop offset=".9" stop-color="#367d7f"/>
+      <stop offset="1" stop-color="#000f31"/>
+    </linearGradient>
+  </defs>
+  <g class="st6">
+    <g class="st6">
+      <g class="st6">
+        <g class="st6">
+          <text class="st7" transform="translate(141.6 325.3)"><tspan x="0" y="0">CTI</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g class="st6">
+      <g class="st6">
+        <g class="st6">
+          <text class="st8" transform="translate(459.3 325.3)"><tspan x="0" y="0">/</tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g class="st6">
+    <g class="st6">
+      <g class="st6">
+        <g class="st6">
+          <text class="st1" transform="translate(552.7 325.3)"><tspan x="0" y="0">S</tspan></text>
+          <text class="st4" transform="translate(673.8 325.3)"><tspan x="0" y="0">V</tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g class="st6">
+    <g class="st6">
+      <g class="st6">
+        <g class="st6">
+          <text class="st2" transform="translate(822.6 325.3)"><tspan x="0" y="0">t</tspan></text>
+          <text class="st0" transform="translate(909.3 325.3)"><tspan x="0" y="0">o</tspan></text>
+          <text class="st5" transform="translate(1033.1 325.3)"><tspan x="0" y="0">r</tspan></text>
+          <text class="st3" transform="translate(1122.9 325.3)"><tspan x="0" y="0">m</tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+  <path id="path67" class="st9" d="M478.8,345.6l54.8-179.2-77,179.2h22.2,0Z"/>
+</svg>
