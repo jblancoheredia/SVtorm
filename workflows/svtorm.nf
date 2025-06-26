@@ -141,7 +141,7 @@ workflow SVTORM {
     //
     // MODULE: Run Gridds (Extract overlapping fragments & calling)
     //
-    GRIDSS(ch_bam_pairs, ch_fasta, ch_fai, params.intervals, params.blocklist_bed, params.bwa, params.kraken2db)
+    GRIDSS(ch_bam_pairs, ch_fai, ch_fasta, params.intervals, params.blocklist_bed, params.bwa, params.kraken2db)
     ch_versions = ch_versions.mix(GRIDSS.out.versions)
     ch_gridss_vcf = GRIDSS.out.vcf
     ch_gridss_vcf = ch_gridss_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
@@ -188,100 +188,100 @@ workflow SVTORM {
     ch_versions = ch_versions.mix(SURVIVOR_MERGE.out.versions)
     ch_merged_bed = SURVIVOR_MERGE.out.bed
     ch_merged_vcf = SURVIVOR_MERGE.out.vcf
-//
-//    //
-//    // MODULE: Run GATK4 to Convert BED into Interval List
-//    //
-//    GATK4_BEDTOINTERVALLIST(ch_merged_bed, ch_dict)
-//    ch_versions = ch_versions.mix(GATK4_BEDTOINTERVALLIST.out.versions)
-//    ch_merged_int_list = GATK4_BEDTOINTERVALLIST.out.interval_list
-//    ch_merged_int_list = ch_merged_int_list.map { meta, interval_list -> tuple(meta.patient, meta, interval_list) }
-//
-//    //
-//    // Join interval lists with BAM pairs based on patient_id
-//    //
-//    ch_recall_input = ch_bam_pairs
-//        .join(ch_merged_int_list)
-//        .map { patient_id, meta_t, bam_t, bai_t, meta_n, bam_n, bai_n, meta_i, interval_list ->
-//            tuple(
-//                meta_t, 
-//                meta_t, bam_t, bai_t, 
-//                meta_n, bam_n, bai_n, 
-//                meta_i, interval_list
-//            )
-//        }
-//
-//    //
-//    // MODULE: Run Gridds in ReCall mode
-//    //
-//    RECALL_SV(ch_recall_input, ch_fasta, ch_fai, ch_known_sites, ch_known_sites_tbi, params.refflat, params.intervals, params.blocklist_bed, params.bwa, params.kraken2db, params.pon_directory)
-//    ch_versions = ch_versions.mix(RECALL_SV.out.versions)
-//    ch_recall_vcf = RECALL_SV.out.vcf
-//    ch_recall_vcf = ch_recall_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
-//
-//    //
-//    // Combine the vcf by patient_id
-//    //
-//    ch_vcfs_merged = ch_delly_vcf
-//        .join(ch_gridss_vcf)
-//        .join(ch_manta_vcf)
-//        .join(ch_recall_vcf)
-//        .join(ch_svaba_vcf)
-//        .map { patient_id, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_recall, recall_vcf, meta_svaba, svaba_vcf ->
-//            tuple(
-//                meta_delly, 
-//                meta_delly , delly_vcf,
-//                meta_gridss, gridss_vcf,
-//                meta_manta , manta_vcf,
-//                meta_recall, recall_vcf,
-//                meta_svaba , svaba_vcf
-//            )
-//        }
-//
-//    //
-//    // MODULE: Run Survivor to filter Unfiltered VCFs
-//    //
-//    SURVIVOR_FILTER(ch_vcfs_merged, 10000, 3, 1, 1, 0, 50)
-//    ch_versions = ch_versions.mix(SURVIVOR_FILTER.out.versions)
-//    ch_filtered_vcf = SURVIVOR_FILTER.out.filtered_vcf
-//    ch_filtered_tsv = SURVIVOR_FILTER.out.filtered_tsv
-//    ch_annote_input = SURVIVOR_FILTER.out.annote_input
-//
-//    //
-//    // MODULE: Run Survivor Stats
-//    //
-//    SURVIVOR_STATS(ch_filtered_vcf, -1, -1, -1)
-//    ch_versions = ch_versions.mix(SURVIVOR_STATS.out.versions)
-//    ch_reports  = ch_reports.mix(SURVIVOR_STATS.out.stats.collect{it[1]}.ifEmpty([]))
-//
-//    //
-//    // MODULE: Run iAnnotateSV 
-//    //
-//    IANNOTATESV(ch_filtered_vcf, ch_filtered_tsv, ch_annote_input)
-//    ch_versions = ch_versions.mix(IANNOTATESV.out.versions)
-//    ch_annotated_tsv = IANNOTATESV.out.tsv
-//    ch_annotated_ann = IANNOTATESV.out.ann
-//
-//    //
-//    // MODULE: Run DrawSV
-//    //
-//    DRAWSV(ch_bam_pairs, ch_annotated_ann, params.annotations, params.genome, params.cytobands, params.protein_domains)
-//    ch_versions = ch_versions.mix(DRAWSV.out.versions)
-//    ch_drawsv_pdf = DRAWSV.out.pdf
-//
-//    //
-//    // Check-Up for SeraCare samples only
-//    //
-//    ch_seracare_sample = ch_annotated_tsv
-//        .filter { meta, file -> 
-//            meta.id.contains("SeraCare") 
-//        }
-//
-//    //
-//    // MODULE: Run SeraCare Check-Up
-//    //
-//    SERACARE_CHECKUP(ch_seracare_sample)
-//    ch_versions = ch_versions.mix(SERACARE_CHECKUP.out.versions)
+
+    //
+    // MODULE: Run GATK4 to Convert BED into Interval List
+    //
+    GATK4_BEDTOINTERVALLIST(ch_merged_bed, ch_dict)
+    ch_versions = ch_versions.mix(GATK4_BEDTOINTERVALLIST.out.versions)
+    ch_merged_int_list = GATK4_BEDTOINTERVALLIST.out.interval_list
+    ch_merged_int_list = ch_merged_int_list.map { meta, interval_list -> tuple(meta.patient, meta, interval_list) }
+
+    //
+    // Join interval lists with BAM pairs based on patient_id
+    //
+    ch_recall_input = ch_bam_pairs
+        .join(ch_merged_int_list)
+        .map { patient_id, meta_t, bam_t, bai_t, meta_n, bam_n, bai_n, meta_i, interval_list ->
+            tuple(
+                meta_t, 
+                meta_t, bam_t, bai_t, 
+                meta_n, bam_n, bai_n, 
+                meta_i, interval_list
+            )
+        }
+
+    //
+    // MODULE: Run Gridds in ReCall mode
+    //
+    RECALL_SV(ch_recall_input, ch_fasta, ch_fai, ch_known_sites, ch_known_sites_tbi, params.refflat, params.intervals, params.blocklist_bed, params.bwa, params.kraken2db, params.pon_directory)
+    ch_versions = ch_versions.mix(RECALL_SV.out.versions)
+    ch_recall_vcf = RECALL_SV.out.vcf
+    ch_recall_vcf = ch_recall_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
+
+    //
+    // Combine the vcf by patient_id
+    //
+    ch_vcfs_merged = ch_delly_vcf
+        .join(ch_gridss_vcf)
+        .join(ch_manta_vcf)
+        .join(ch_recall_vcf)
+        .join(ch_svaba_vcf)
+        .map { patient_id, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_recall, recall_vcf, meta_svaba, svaba_vcf ->
+            tuple(
+                meta_delly, 
+                meta_delly , delly_vcf,
+                meta_gridss, gridss_vcf,
+                meta_manta , manta_vcf,
+                meta_recall, recall_vcf,
+                meta_svaba , svaba_vcf
+            )
+        }
+
+    //
+    // MODULE: Run Survivor to filter Unfiltered VCFs
+    //
+    SURVIVOR_FILTER(ch_vcfs_merged, 10000, 3, 1, 1, 0, 50)
+    ch_versions = ch_versions.mix(SURVIVOR_FILTER.out.versions)
+    ch_filtered_vcf = SURVIVOR_FILTER.out.filtered_vcf
+    ch_filtered_tsv = SURVIVOR_FILTER.out.filtered_tsv
+    ch_annote_input = SURVIVOR_FILTER.out.annote_input
+
+    //
+    // MODULE: Run Survivor Stats
+    //
+    SURVIVOR_STATS(ch_filtered_vcf, -1, -1, -1)
+    ch_versions = ch_versions.mix(SURVIVOR_STATS.out.versions)
+    ch_reports  = ch_reports.mix(SURVIVOR_STATS.out.stats.collect{it[1]}.ifEmpty([]))
+
+    //
+    // MODULE: Run iAnnotateSV 
+    //
+    IANNOTATESV(ch_filtered_vcf, ch_filtered_tsv, ch_annote_input)
+    ch_versions = ch_versions.mix(IANNOTATESV.out.versions)
+    ch_annotated_tsv = IANNOTATESV.out.tsv
+    ch_annotated_ann = IANNOTATESV.out.ann
+
+    //
+    // MODULE: Run DrawSV
+    //
+    DRAWSV(ch_bam_pairs, ch_annotated_ann, params.annotations, params.genome, params.cytobands, params.protein_domains)
+    ch_versions = ch_versions.mix(DRAWSV.out.versions)
+    ch_drawsv_pdf = DRAWSV.out.pdf
+
+    //
+    // Check-Up for SeraCare samples only
+    //
+    ch_seracare_sample = ch_annotated_tsv
+        .filter { meta, file -> 
+            meta.id.contains("SeraCare") 
+        }
+
+    //
+    // MODULE: Run SeraCare Check-Up
+    //
+    SERACARE_CHECKUP(ch_seracare_sample)
+    ch_versions = ch_versions.mix(SERACARE_CHECKUP.out.versions)
 
     //
     // Collate and save software versions
