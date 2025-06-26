@@ -1,33 +1,52 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://raw.githubusercontent.com/jblancoheredia/svtorm/main/assets/schema_input.json",
-    "title": "jblancoheredia/svtorm pipeline - params.input schema",
+    "title": "svtorm pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {
         "type": "object",
         "properties": {
+            "patient": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Patient ID must be provided and cannot contain spaces",
+                "meta": ["patient"]
+            },
             "sample": {
                 "type": "string",
                 "pattern": "^\\S+$",
                 "errorMessage": "Sample name must be provided and cannot contain spaces",
                 "meta": ["id"]
             },
-            "fastq_1": {
+            "bam": {
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^\\S+\\.bam$",
+                "errorMessage": "BAM file cannot contain spaces and must have extension '.bam'"
             },
-            "fastq_2": {
+            "bai": {
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^\\S+\\.bai$",
+                "errorMessage": "BAI file cannot contain spaces and must have extension '.bai'"
+            },
+            "tumour": {
+                "type": "boolean",
+                "meta": ["tumour"],
+                "default": "true",
+                "errorMessage": "Is the sample a tumour? Defaults to true, normal sample being false"
+            },
+            "matched": {
+                "type": "boolean",
+                "errorMessage": "Is the sample part of a tumour-normal match or tumour-only? Defaults to false (tumour only).",
+                "meta": ["matched"],
+                "default": "false"
             }
         },
-        "required": ["sample", "fastq_1"]
+        "required": ["patient", "sample", "bam", "bai"]
     }
 }
+
