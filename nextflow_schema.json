@@ -295,6 +295,118 @@
                     "fa_icon": "fas fa-ban",
                     "hidden": true
                 },
+                "refflat": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "The base path to the refflat reference files",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "cytobands": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "DRAWSV Cytobands file path.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "intervals": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "The base path to the intervals reference files",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "kraken2db": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The base path to the Kraken DB reference files",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "chromosomes": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to the file containing the Lenght of the chomosomes in the reference file",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "annotations": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "DRAWSV Annotations file path.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "protein_domains": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "DRAWSV Protein Domains file path.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "exclude_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to the file containing the regions to exclude from the reference",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "known_sites": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "VCF file of the problematic known sites",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "known_sites_tbi": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Index of the VCF file of the problematic known sites",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "blocklist_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Similar to the exclude but with a different format",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "pon_directory": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "Similar to the exclude but with a different format",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "intervals_bed_gunzip": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Similar to the exclude but with a different format",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "intervals_bed_gunzip_index": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Similar to the exclude but with a different format",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "normal_uncollapsed_bam": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "BAM to use in the case of unmatched samples",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "normal_uncollapsed_bai": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Index of the BAM to use in the case of unmatched samples",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
                 "trace_report_suffix": {
                     "type": "string",
                     "fa_icon": "far calendar",
