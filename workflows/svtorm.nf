@@ -14,9 +14,13 @@ include { paramsSummaryMap                                                      
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { FASTQC                                                                        } from '../modules/nf-core/fastqc/main'
+include { DELLY                                                                         } from '../modules/local/delly/main'
+include { SVABA                                                                         } from '../modules/local/svaba/main'
+include { GRIDSS                                                                        } from '../modules/local/gridss/main'
 include { MULTIQC                                                                       } from '../modules/nf-core/multiqc/main'
 include { BAM_PAIRED                                                                    } from '../modules/local/bampaired/main'
+include { MANTA_SOMATIC                                                                 } from '../modules/local/manta/somatic/main'
+include { PICARD_COLLECTMULTIPLEMETRICS                                                 } from '../modules/nf-core/picard/collectmultiplemetrics/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -35,6 +39,13 @@ include { methodsDescriptionText                                                
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+ch_fai                                          = Channel.fromPath(params.fai).map                              { it -> [[id:it.Name], it] }.collect()
+ch_dict                                         = Channel.fromPath(params.dict).map                             { it -> [[id:it.Name], it] }.collect()
+ch_fasta                                        = Channel.fromPath(params.fasta).map                            { it -> [[id:it.Name], it] }.collect()
+ch_known_sites                                  = Channel.fromPath(params.known_sites).map                      { it -> [[id:it.Name], it] }.collect()
+ch_targets_bed                                  = Channel.fromPath(params.intervals_bed_gunzip).map             { it -> [[id:it.Name], it] }.collect()
+ch_known_sites_tbi                              = Channel.fromPath(params.known_sites_tbi).map                  { it -> [[id:it.Name], it] }.collect()
+ch_targets_bed_tbi                              = Channel.fromPath(params.intervals_bed_gunzip_index).map       { it -> [[id:it.Name], it] }.collect()
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46,8 +57,9 @@ workflow SVTORM {
 
     take:
     ch_samplesheet // channel: samplesheet read in from --input
-    main:
 
+    main:
+    ch_reports  = Channel.empty()
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
 
@@ -56,19 +68,93 @@ workflow SVTORM {
     //
     BAM_PAIRED(ch_samplesheet)
     ch_versions = ch_versions.mix(BAM_PAIRED.out.versions)
-    ch_bam_with_pairedness = BAM_PAIRED.out.reads.map { meta, bam_tuple, single_end ->
+    ch_bam_with_pairedness = BAM_PAIRED.out.bam_bai_issingleend.map { meta, bam, bai, single_end ->
         meta["single_end"] = single_end.text.trim().toBoolean()
-        [meta, *bam_tuple]
+        [meta, bam, bai]
     }
 
+    //
+    // MODULE: Run Picard Collect Multiple Metrics
+    //
+    PICARD_COLLECTMULTIPLEMETRICS(ch_bam_with_pairedness, ch_fasta, ch_fai)
+    ch_versions = ch_versions.mix(PICARD_COLLECTMULTIPLEMETRICS.out.versions)
+    ch_reports  = ch_reports.mix(PICARD_COLLECTMULTIPLEMETRICS.out.metrics.collect{it[1]}.ifEmpty([]))
+
+    //
+    // Pair tumour samples with normal samples by patient meta key if only tumour use backup normal
+    //
+    def control_normal_bam = file(params.normal_uncollapsed_bam)
+    def control_normal_bai = file(params.normal_uncollapsed_bai)
+
+    ch_bam_with_pairedness
+        .map { meta, bam, bai -> [meta.patient, meta, bam, bai] }
+        .groupTuple(by: 0)
+        .map { patient, meta_list, bam_list, bai_list -> 
+            def samples = []
+            meta_list.eachWithIndex { meta, i ->
+                samples << [meta, bam_list[i], bai_list[i]]
+            }
+
+            def tumour = samples.find { it[0].tumour == true  }
+            def normal = samples.find { it[0].tumour == false }
+
+            if (tumour && normal) {
+                return [tumour, normal]
+            } else if (tumour && tumour[0].matched == false) {
+                return [tumour, null]
+            } else {
+                return null
+            }
+        }
+        .filter { it != null }
+        .map { tumour, normal ->
+            def meta_t = tumour[0]
+            def bam_t  = tumour[1]
+            def bai_t  = tumour[2]
+
+            if (normal) {
+                def bam_n = normal[1]
+                def bai_n = normal[2]
+                return [meta_t, bam_t, bai_t, bam_n, bai_n]
+            } else {
+                return [meta_t, bam_t, bai_t, control_normal_bam, control_normal_bai]
+            }
+        }
+        .set { ch_bam_pairs }
+
+    //
+    // MODULE: Run Delly Call
+    //
+    DELLY(ch_bam_pairs, ch_fasta, ch_fai, params.exclude_bed)
+    ch_versions = ch_versions.mix(DELLY.out.versions)
+    ch_delly_vcf = DELLY.out.vcf
+    ch_delly_vcf = ch_delly_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
+
+    //
+    // MODULE: Run Gridds (Extract overlapping fragments & calling)
+    //
+    GRIDSS(ch_bam_pairs, ch_fasta, ch_fai, params.intervals, params.blocklist_bed, params.bwa, params.kraken2db)
+    ch_versions = ch_versions.mix(GRIDSS.out.versions)
+    ch_gridss_vcf = GRIDSS.out.vcf
+    ch_gridss_vcf = ch_gridss_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
+
 //    //
-//    // MODULE: Run FastQC
+//    // MODULE: Run Manta in Somatic Mode
 //    //
-//    FASTQC (
-//        ch_samplesheet
-//    )
-//    ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]})
-//    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+//    MANTA_SOMATIC(ch_bam_pairs, ch_targets_bed, ch_targets_bed_tbi, ch_fasta, ch_fai, [])
+//    ch_versions = ch_versions.mix(MANTA_SOMATIC.out.versions)
+//    ch_manta_vcf = MANTA_SOMATIC.out.vcf
+//    ch_manta_candidate_small_indels_vcf = MANTA_SOMATIC.out.candidate_small_indels_vcf
+//    ch_manta_candidate_small_indels_vcf_tbi = MANTA_SOMATIC.out.candidate_small_indels_vcf_tbi
+//    ch_manta_vcf = ch_manta_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
+//
+//    //
+//    // MODULE: Run SvABA Note: version 1.2.0
+//    //
+//    SVABA(ch_bam_pairs, ch_fasta, ch_fai, params.known_sites_tbi, params.known_sites, params.intervals, params.bwa)
+//    ch_versions = ch_versions.mix(SVABA.out.versions)
+//    ch_svaba_vcf = SVABA.out.vcf
+//    ch_svaba_vcf = ch_svaba_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
 
     //
     // Collate and save software versions
@@ -80,7 +166,6 @@ workflow SVTORM {
             sort: true,
             newLine: true
         ).set { ch_collated_versions }
-
 
     //
     // MODULE: MultiQC

@@ -219,6 +219,82 @@
                     "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
                     "hidden": true
                 },
+                "refs_dir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "fa_icon": "fas fa-folder-open",
+                    "description": "Directory where the references are stored. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "hidden": true
+                },
+                "seq_center": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Where the data comes from?",
+                    "hidden": true
+                },
+                "read_length": {
+                    "type": "integer",
+                    "fa_icon": "fas fa-folder-open",
+                    "description": "Lenght of the sequenced reads.",
+                    "hidden": true
+                },
+                "seq_library": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "MSKCC panel for the sequencing e.g. Av1, Av2, IM3, IM5, IM6, IM7",
+                    "hidden": true
+                },
+                "seq_platform": {
+                    "type": "string",
+                    "fa_icon": "far calendar",
+                    "description": "Self descripting, defaults to ILLUMINA",
+                    "hidden": true
+                },
+                "skip_multiqc": {
+                    "type": "boolean",
+                    "description": "Skip MultiQC reports",
+                    "help_text": "This parameter disable all QC reports"
+                },
+                "save_reference": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-folder-open",
+                    "description": "To save or not the intermediate files for the reference.",
+                    "hidden": true
+                },
+                "genome_base": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "fa_icon": "fas fa-folder-open",
+                    "description": "Reference directory for the specified reference genome.",
+                    "hidden": true
+                },
+                "ensembl_version": {
+                    "type": "integer",
+                    "fa_icon": "fas fa-folder-open",
+                    "description": "Self descripting, defaults to ILLUMINA",
+                    "hidden": true
+                },
+                "bwa": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "BWAMEM2 index directory path.",
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
+                },
+                "fai": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "The base path to the index of the genome reference file",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "dict": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Dict file from the genome reference",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
                 "trace_report_suffix": {
                     "type": "string",
                     "fa_icon": "far calendar",

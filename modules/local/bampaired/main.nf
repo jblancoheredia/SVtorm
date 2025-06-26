@@ -18,11 +18,12 @@ process BAM_PAIRED {
     task.ext.when == null || task.ext.when
 
     script:
+    def prefix = "${meta.id}"
     def bam = files.find { it.name.endsWith('.bam') }
     def bai = files.find { it.name.endsWith('.bai') }
     """
-    ln -s ${bam} output.bam
-    ln -s ${bai} output.bai
+    ln -s ${bam} ${prefix}_output.bam
+    ln -s ${bai} ${prefix}_output.bai
 
     if [ \$(samtools view ${bam} -@ ${task.cpus} | head -n 1000 | awk '{ if(and(\$2, 1)) count++ } END { print count+0 }') -gt 0 ]; then
         echo false > is_singleend.txt
