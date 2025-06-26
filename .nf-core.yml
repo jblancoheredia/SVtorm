@@ -34,8 +34,8 @@ lint:
 template:
   org: jblancoheredia
   name: svtorm
-  description: 'SVtorm: Structural Variant for Target Panels Optimized by Recalling
-    & Merging.'
+  description: "SVtorm: Structural Variant for Target Panels Optimized by Recalling
+    & Merging."
   author: Juan Blanco Heredia <blancoj@mskcc.org> <jblancoheredia>
   version: 1.0.0dev
   force: true
