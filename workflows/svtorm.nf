@@ -16,7 +16,7 @@ include { paramsSummaryMap                                                      
 
 include { DELLY                                                                         } from '../modules/local/delly/main'
 include { SVABA                                                                         } from '../modules/local/svaba/main'
-include { DRAWSV                                                                        } from '../modules/local/drawsv/main'
+include { FUSVIZ                                                                        } from '../modules/local/fusviz/main'
 include { GRIDSS                                                                        } from '../modules/local/gridss/main'
 include { MULTIQC                                                                       } from '../modules/nf-core/multiqc/main'
 include { RECALL_SV                                                                     } from '../modules/local/recallsv/main'
@@ -165,13 +165,13 @@ workflow SVTORM {
     ch_svaba_vcf = ch_svaba_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
 
     //
-    // Combine the vcf by patient_id
+    // Combine the vcf by patient
     //
     ch_vcf_merged = ch_delly_vcf
         .join(ch_gridss_vcf)
         .join(ch_manta_vcf)
         .join(ch_svaba_vcf)
-        .map { patient_id, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_svaba, svaba_vcf ->
+        .map { patient, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_svaba, svaba_vcf ->
             tuple(
                 meta_delly, 
                 meta_delly,  delly_vcf,
@@ -198,15 +198,16 @@ workflow SVTORM {
     ch_merged_int_list = ch_merged_int_list.map { meta, interval_list -> tuple(meta.patient, meta, interval_list) }
 
     //
-    // Join interval lists with BAM pairs based on patient_id
+    // Join interval lists with BAM pairs based on patient
     //
-    ch_recall_input = ch_bam_pairs
+    ch_bam_pairs_by_patient = ch_bam_pairs.map {meta, bam_t, bai_t, bam_n, bai_n -> tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) }
+    ch_recall_input = ch_bam_pairs_by_patient
         .join(ch_merged_int_list)
-        .map { patient_id, meta_t, bam_t, bai_t, meta_n, bam_n, bai_n, meta_i, interval_list ->
+        .map { patient, meta_b, bam_t, bai_t, bam_n, bai_n, meta_i, interval_list ->
             tuple(
-                meta_t, 
-                meta_t, bam_t, bai_t, 
-                meta_n, bam_n, bai_n, 
+                meta_b, 
+                meta_b, bam_t, bai_t, 
+                meta_b, bam_n, bai_n, 
                 meta_i, interval_list
             )
         }
@@ -220,14 +221,14 @@ workflow SVTORM {
     ch_recall_vcf = ch_recall_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
 
     //
-    // Combine the vcf by patient_id
+    // Combine the vcf by patient
     //
     ch_vcfs_merged = ch_delly_vcf
         .join(ch_gridss_vcf)
         .join(ch_manta_vcf)
         .join(ch_recall_vcf)
         .join(ch_svaba_vcf)
-        .map { patient_id, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_recall, recall_vcf, meta_svaba, svaba_vcf ->
+        .map { patient, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_recall, recall_vcf, meta_svaba, svaba_vcf ->
             tuple(
                 meta_delly, 
                 meta_delly , delly_vcf,
@@ -263,11 +264,11 @@ workflow SVTORM {
     ch_annotated_ann = IANNOTATESV.out.ann
 
     //
-    // MODULE: Run DrawSV
+    // MODULE: Run FUSviz
     //
-    DRAWSV(ch_bam_pairs, ch_annotated_ann, params.annotations, params.genome, params.cytobands, params.protein_domains)
-    ch_versions = ch_versions.mix(DRAWSV.out.versions)
-    ch_drawsv_pdf = DRAWSV.out.pdf
+    FUSVIZ(ch_bam_pairs, ch_annotated_ann, params.annotations, params.genome, params.cytobands, params.protein_domains)
+    ch_versions = ch_versions.mix(FUSVIZ.out.versions)
+    ch_fusviz_pdf = FUSVIZ.out.pdf
 
     //
     // Check-Up for SeraCare samples only

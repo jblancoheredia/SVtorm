@@ -1,17 +1,15 @@
-process DRAWSV {
+process FUSVIZ {
     tag "$meta.patient"
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/drawsv:1.0.1':
-        'blancojmskcc/drawsv:1.0.1' }"
+        'docker://blancojmskcc/fusviz:1.0.2':
+        'blancojmskcc/fusviz:1.0.2' }"
 
     input:
-    tuple val(patient_id), 
-          val(meta_tumour), path(tumour_bam), path(tumour_bai),
-          val(meta_normal), path(normal_bam), path(normal_bai)
-    tuple val(meta), path(tsv)
+    tuple val(meta) , path(tumour_bam), path(tumour_bai), path(normal_bam), path(normal_bai)
+    tuple val(meta2), path(tsv)
     path(gtf)
     val(genome)
     path(cytobands)
@@ -29,39 +27,36 @@ process DRAWSV {
     def prefix = task.ext.prefix ?: "${meta.patient}"
     def bam = "${tumour_bam}"
     """
-    cp "${workflow.projectDir}/bin/PRE_DRAWSVs.py" .
-    cp "${workflow.projectDir}/bin/DrawSVs.R" .
-
-    python3 PRE_DRAWSVs.py \\
+    python3 /usr/local/bin/preFusViz.py \\
         --sample ${prefix} \\
         --input ${tsv} \\
         --genome ${genome} \\
         --annotations ${gtf} \\
         ${args}
 
-    Rscript DrawSVs.R \\
-        --SVs=${prefix}_DrawSVs.tsv \\
+    Rscript /usr/local/bin/FusViz.R \\
+        --SVs=${prefix}_FusViz.tsv \\
         --alignments=${bam} \\
         --annotation=${gtf}   \\
         --cytobands=${cytobands} \\
-        --output=${prefix}_DrawSVs.pdf \\
+        --output=${prefix}_FusViz.pdf \\
         --transcriptSelection=canonical \\
         --minConfidenceForCircosPlot=High \\
         --proteinDomains=${protein_domains} \\
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        drawsv: "1.0.1"
+        fusviz: "1.0.2"
     END_VERSIONS
     """
     stub:
     def prefix = task.ext.prefix ?: "${meta.patient}"
     """
-    touch ${prefix}_DrawSVs.pdf
+    touch ${prefix}_FusViz.pdf
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        drawsv: "1.0.1"
+        fusviz: "1.0.2"
     END_VERSIONS
     """
 }

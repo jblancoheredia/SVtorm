@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   id="Layer_1"
    version="1.1"
    viewBox="0 0 600 250"
+   id="svg77"
    sodipodi:docname="SVtorm_metro_light.svg"
    inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <!-- Generator: Adobe Illustrator 29.4.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 152)  -->
-  <path
-     id="path19-9"
-     class="st13"
-     d="M 211.99448,99.523313 467.5,99.5 H 490 c 0,0.1 42.9,0.2 42.9,0.2"
-     sodipodi:nodetypes="cccc" />
+  <!-- Generator: Adobe Illustrator 29.6.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 207)  -->
   <defs
-     id="defs28">
+     id="defs12">
     <style
        id="style1">
       .st0 {
@@ -46,23 +42,7 @@
       }
 
       .st11 {
-        fill: url(#linear-gradient7);
-      }
-
-      .st12 {
         fill: gray;
-      }
-
-      .st13 {
-        stroke-width: 1px;
-      }
-
-      .st13, .st14, .st15, .st16, .st17, .st18, .st19, .st20, .st21 {
-        fill: none;
-      }
-
-      .st13, .st20 {
-        stroke: #c563a5;
       }
 
       .st2 {
@@ -73,56 +53,36 @@
         fill: #a5f3df;
       }
 
-      .st22, .st23, .st24, .st6 {
-        fill: #fff;
-      }
-
-      .st22, .st25, .st26 {
+      .st12, .st13, .st14 {
         stroke: #000;
       }
 
-      .st14 {
-        stroke: url(#linear-gradient2);
-      }
-
-      .st14, .st15, .st16, .st17, .st18, .st24, .st21 {
-        stroke-miterlimit: 10;
-      }
-
-      .st14, .st15, .st16, .st17, .st18, .st21 {
-        stroke-width: 6px;
-      }
-
-      .st15 {
-        stroke: url(#linear-gradient3);
-      }
-
-      .st16 {
-        stroke: url(#linear-gradient5);
-      }
-
-      .st17 {
-        stroke: url(#linear-gradient4);
-      }
-
-      .st18 {
-        stroke: url(#linear-gradient6);
+      .st12, .st15, .st6 {
+        fill: #fff;
       }
 
       .st5 {
         fill: #224c4e;
       }
 
-      .st19 {
-        stroke: #c364a6;
+      .st16 {
+        fill: none;
+        stroke: url(#linear-gradient);
+        stroke-linejoin: round;
+        stroke-width: 6px;
       }
 
-      .st25 {
+      .st17 {
+        fill: #00ff17;
+      }
+
+      .st13 {
         fill: #39383a;
       }
 
-      .st24 {
+      .st15 {
         stroke: #1e1c1c;
+        stroke-miterlimit: 10;
       }
 
       .st6 {
@@ -133,7 +93,7 @@
         fill: #b3f0d6;
       }
 
-      .st26 {
+      .st14 {
         fill: #1e1c1c;
       }
 
@@ -145,1268 +105,1199 @@
       .st9 {
         fill: #63d4d6;
       }
-
-      .st21 {
-        stroke: url(#linear-gradient);
-      }
-
-      .st27 {
-        fill: #b59292;
-      }
     </style>
     <linearGradient
        id="linear-gradient"
-       x1="-291.1"
-       y1="488.7"
-       x2="-202.7"
-       y2="488.7"
-       gradientTransform="translate(-76.5 586.8) rotate(-180)"
+       x1="45.8"
+       y1="153.4"
+       x2="557.1"
+       y2="153.4"
        gradientUnits="userSpaceOnUse">
       <stop
          offset="0"
-         stop-color="#51b1b4"
+         stop-color="#224c4e"
          id="stop1" />
       <stop
-         offset=".5"
+         offset=".2"
          stop-color="#429698"
          id="stop2" />
       <stop
-         offset="1"
-         stop-color="#3a8486"
+         offset=".4"
+         stop-color="#63d4d6"
          id="stop3" />
+      <stop
+         offset=".6"
+         stop-color="#89f6f0"
+         id="stop4" />
+      <stop
+         offset=".8"
+         stop-color="#a5f3df"
+         id="stop5" />
+      <stop
+         offset="1"
+         stop-color="#b3f0d6"
+         id="stop6" />
     </linearGradient>
     <linearGradient
        id="linear-gradient1"
-       x1="867.6"
-       y1="-583.3"
-       x2="867.6"
-       y2="-510"
-       gradientTransform="translate(-456.1 966.5) rotate(-90) scale(1 -1)"
+       x1="571.2"
+       y1="15.5"
+       x2="597.3"
+       y2="41.6"
        gradientUnits="userSpaceOnUse">
       <stop
          offset="0"
-         stop-color="#3a8486"
-         id="stop4" />
-      <stop
-         offset=".3"
-         stop-color="#367d7f"
-         id="stop5" />
-      <stop
-         offset=".6"
-         stop-color="#2e686a"
-         id="stop6" />
-      <stop
-         offset="1"
          stop-color="#224c4e"
          id="stop7" />
-    </linearGradient>
-    <linearGradient
-       id="linear-gradient2"
-       x1="-291.1"
-       y1="529.9"
-       x2="-202.7"
-       y2="529.9"
-       gradientTransform="translate(-76.5 586.8) rotate(-180)"
-       gradientUnits="userSpaceOnUse">
-      <stop
-         offset="0"
-         stop-color="#51b1b4"
-         id="stop8" />
-      <stop
-         offset=".5"
-         stop-color="#429698"
-         id="stop9" />
-      <stop
-         offset="1"
-         stop-color="#3a8486"
-         id="stop10" />
-    </linearGradient>
-    <linearGradient
-       id="linear-gradient3"
-       x1="-291.1"
-       y1="448.2"
-       x2="-202.7"
-       y2="448.2"
-       gradientTransform="translate(-76.5 586.8) rotate(-180)"
-       gradientUnits="userSpaceOnUse">
-      <stop
-         offset="0"
-         stop-color="#51b1b4"
-         id="stop11" />
-      <stop
-         offset=".5"
-         stop-color="#429698"
-         id="stop12" />
-      <stop
-         offset="1"
-         stop-color="#3a8486"
-         id="stop13" />
-    </linearGradient>
-    <linearGradient
-       id="linear-gradient4"
-       x1="-291.1"
-       y1="1673.7"
-       x2="-202.7"
-       y2="1673.7"
-       gradientTransform="translate(-76.5 -1532.2) rotate(-180) scale(1 -1)"
-       gradientUnits="userSpaceOnUse">
-      <stop
-         offset="0"
-         stop-color="#51b1b4"
-         id="stop14" />
-      <stop
-         offset=".5"
-         stop-color="#429698"
-         id="stop15" />
-      <stop
-         offset="1"
-         stop-color="#3a8486"
-         id="stop16" />
-    </linearGradient>
-    <linearGradient
-       id="linear-gradient5"
-       x1="475.1"
-       y1="-212.1"
-       x2="529.4"
-       y2="-212.1"
-       gradientTransform="translate(0 -134.2) scale(1 -1)"
-       gradientUnits="userSpaceOnUse">
-      <stop
-         offset="0"
-         stop-color="#a5f3df"
-         id="stop17" />
-      <stop
-         offset=".5"
-         stop-color="#b3f0d6"
-         id="stop18" />
-      <stop
-         offset="1"
-         stop-color="#daf8eb"
-         id="stop19" />
-    </linearGradient>
-    <linearGradient
-       id="linear-gradient6"
-       x1="475.1"
-       y1="-212.1"
-       x2="529.5"
-       y2="-212.1"
-       gradientTransform="translate(0 -92.1) scale(1 -1)"
-       gradientUnits="userSpaceOnUse">
-      <stop
-         offset="0"
-         stop-color="#a5f3df"
-         id="stop20" />
-      <stop
-         offset=".5"
-         stop-color="#b3f0d6"
-         id="stop21" />
-      <stop
-         offset="1"
-         stop-color="#daf8eb"
-         id="stop22" />
-    </linearGradient>
-    <linearGradient
-       id="linear-gradient7"
-       x1="867.6"
-       y1="-928.4"
-       x2="867.6"
-       y2="-668.5"
-       gradientTransform="translate(-456 966.5) rotate(-90) scale(1 -1)"
-       gradientUnits="userSpaceOnUse">
-      <stop
-         offset="0"
-         stop-color="#a5f3df"
-         id="stop23" />
       <stop
          offset=".2"
-         stop-color="#97f4e8"
-         id="stop24" />
+         stop-color="#429698"
+         id="stop8" />
       <stop
          offset=".4"
-         stop-color="#89f6f0"
-         id="stop25" />
+         stop-color="#63d4d6"
+         id="stop9" />
       <stop
          offset=".6"
-         stop-color="#7cf9f7"
-         id="stop26" />
+         stop-color="#89f6f0"
+         id="stop10" />
       <stop
          offset=".8"
-         stop-color="#63d4d6"
-         id="stop27" />
+         stop-color="#a5f3df"
+         id="stop11" />
       <stop
          offset="1"
-         stop-color="#51b1b4"
-         id="stop28" />
+         stop-color="#b3f0d6"
+         id="stop12" />
     </linearGradient>
   </defs>
-  <path
-     id="path19"
-     class="st20"
-     d="M252.7,99.2l226.3-.5v-41.5c0,0,59.7-.1,59.7-.1"
-     sodipodi:nodetypes="cccc" />
-  <path
-     id="path56-92"
-     class="st19"
-     d="M247.8,99.5h-35.7c-.3,0-.4-.3-.4,0v-19.8h-82.5q0,0,0,0v19.4s-.2.6-.5.6H52.3"
-     inkscape:label="path57"
-     sodipodi:nodetypes="cccccccccc" />
-  <path
-     id="path56-91"
-     class="st19"
-     d="M247.6,99.4h-35.3c-.3,0-.6.5-.6.6v18.9s.1,1-.1,1h-82.2c-.3,0-.2,0-.2,0v-20s-.2-.6-.5-.6H52.3"
-     inkscape:label="path57"
-     sodipodi:nodetypes="cccccccccc" />
-  <path
-     id="path56-93"
-     class="st19"
-     d="M247.6,99.5h-35.3c-.3,0-.5-.9-.5-1.2l-.2-60.4h0l-82.3.4h0v60.1c0,.3-.2,1-.5,1H52.2"
-     inkscape:label="path57"
-     sodipodi:nodetypes="cccccccccc" />
-  <path
-     id="path56-9"
-     class="st19"
-     d="M247.6,99.4h-35.4c-.3,0-.5.3-.5.6v60.6c0,.3-.2.8-.4.8h-81.5c-.3,0-.5-.6-.5-.8v-60.6c-.1-.3-.4-.5-.6-.5H30.4"
-     inkscape:label="path57"
-     sodipodi:nodetypes="cccccccccc" />
-  <path
-     id="path20"
-     class="st20"
-     d="M252.7,99.5l225.7-.5v41.5h59.7"
-     sodipodi:nodetypes="cccc" />
-  <sodipodi:namedview
-     id="namedview56"
-     bordercolor="#cccccc"
-     borderopacity="1"
-     inkscape:current-layer="Layer_1"
-     inkscape:cx="248.53927"
-     inkscape:cy="95.764184"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:pagecheckerboard="0"
-     inkscape:pageopacity="1"
-     inkscape:showpageshadow="0"
-     inkscape:window-height="1283"
-     inkscape:window-maximized="0"
-     inkscape:window-width="3184"
-     inkscape:window-x="1196"
-     inkscape:window-y="25"
-     inkscape:zoom="16.979208"
-     pagecolor="#ffffff" />
   <g
-     id="g2"
-     class="st4">
+     id="Paths">
+    <path
+       class="st16"
+       d="M141.8,132.9h82.5M141.8,173.9h82.5M224.3,214.9h-82.5v-123h82.5v123ZM45.2,153.4h96.6M223.8,153.4h333.3M557.1,195.3h-66.4v-84.3h66.4"
+       id="path12" />
+  </g>
+  <g
+     id="Ball">
+    <path
+       id="rect1552"
+       class="st17"
+       d="M45.2,157.3h0c1.6,0,3-1.4,3-3h0c0-1.6-1.4-3-3-3h0c-1.6,0-3,1.4-3,3h0c0,1.6,1.4,3,3,3Z" />
     <g
-       id="text1"
-       class="st4">
-      <g
-         id="g24"
-         class="st4">
-        <g
-           id="text23"
-           class="st4">
-          <g
-             id="text25"
-             class="st4">
-            <text
-               class="st5"
-               transform="translate(44.7 237.4)"
-               id="text28"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan28">S</tspan></text>
-          </g>
-        </g>
-        <g
-           id="text24"
-           class="st4">
-          <g
-             id="text26"
-             class="st4">
-            <text
-               class="st2"
-               transform="translate(73.5 237.4)"
-               id="text29"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan29">V</tspan></text>
-          </g>
-        </g>
-      </g>
+       id="_R_G_L_0_G">
+      <path
+         id="_R_G_L_0_G_D_0_P_0"
+         fill="#000000"
+         fill-opacity="1"
+         fill-rule="nonzero"
+         d=" M3.25 6.25 C3.25,6.25 3.25,6.25 3.25,6.25 C4.89,6.25 6.25,4.89 6.25,3.25 C6.25,1.61 4.89,0.25 3.25,0.25 C1.61,0.25 0.25,1.61 0.25,3.25 C0.25,4.89 1.61,6.25 3.25,6.25z " />
     </g>
     <g
-       id="text2"
-       class="st4">
-      <g
-         id="g34"
-         class="st4">
-        <g
-           id="g27"
-           class="st4">
-          <g
-             id="text27"
-             class="st4">
-            <text
-               class="st9"
-               transform="translate(109 237.4)"
-               id="text30"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan30">t</tspan></text>
-          </g>
-        </g>
-        <g
-           id="g28"
-           class="st4">
-          <g
-             id="g31"
-             class="st4">
-            <text
-               class="st0"
-               transform="translate(129.6 237.4)"
-               id="text31"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan31">o</tspan></text>
-          </g>
-        </g>
-        <g
-           id="g29"
-           class="st4">
-          <g
-             id="g32"
-             class="st4">
-            <text
-               class="st3"
-               transform="translate(159.1 237.4)"
-               id="text32"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan32">r</tspan></text>
-          </g>
-        </g>
-        <g
-           id="g30"
-           class="st4">
-          <g
-             id="g33"
-             class="st4">
-            <text
-               class="st7"
-               transform="translate(180.5 237.4)"
-               id="text33"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan33">m</tspan></text>
-          </g>
-        </g>
-      </g>
+       id="_R_G_L_1_G">
+      <path
+         id="_R_G_L_1_G_D_0_P_0"
+         fill="#000000"
+         fill-opacity="1"
+         fill-rule="nonzero"
+         d=" M3.25 6.25 C3.25,6.25 3.25,6.25 3.25,6.25 C4.89,6.25 6.25,4.89 6.25,3.25 C6.25,1.61 4.89,0.25 3.25,0.25 C1.61,0.25 0.25,1.61 0.25,3.25 C0.25,4.89 1.61,6.25 3.25,6.25z " />
+    </g>
+    <g
+       id="_R_G_L_2_G">
+      <path
+         id="_R_G_L_2_G_D_0_P_0"
+         fill="#000000"
+         fill-opacity="1"
+         fill-rule="nonzero"
+         d=" M3.25 6.25 C3.25,6.25 3.25,6.25 3.25,6.25 C4.89,6.25 6.25,4.89 6.25,3.25 C6.25,1.61 4.89,0.25 3.25,0.25 C1.61,0.25 0.25,1.61 0.25,3.25 C0.25,4.89 1.61,6.25 3.25,6.25z " />
+    </g>
+    <g
+       id="_R_G_L_3_G">
+      <path
+         id="_R_G_L_3_G_D_0_P_0"
+         fill="#000000"
+         fill-opacity="1"
+         fill-rule="nonzero"
+         d=" M3.25 6.25 C3.25,6.25 3.25,6.25 3.25,6.25 C4.89,6.25 6.25,4.89 6.25,3.25 C6.25,1.61 4.89,0.25 3.25,0.25 C1.61,0.25 0.25,1.61 0.25,3.25 C0.25,4.89 1.61,6.25 3.25,6.25z " />
     </g>
   </g>
   <g
-     id="text155"
-     class="st4">
+     id="Stops">
+    <sodipodi:namedview
+       id="namedview56"
+       bordercolor="#cccccc"
+       borderopacity="1"
+       inkscape:current-layer="Ball"
+       inkscape:cx="248.53927"
+       inkscape:cy="95.764184"
+       inkscape:deskcolor="#d1d1d1"
+       inkscape:pagecheckerboard="0"
+       inkscape:pageopacity="1"
+       inkscape:showpageshadow="0"
+       inkscape:window-height="1283"
+       inkscape:window-maximized="0"
+       inkscape:window-width="3184"
+       inkscape:window-x="1196"
+       inkscape:window-y="25"
+       inkscape:zoom="16.979208"
+       pagecolor="#ffffff" />
     <g
-       id="text242"
-       class="st4">
+       id="g17">
       <g
-         id="g37"
+         id="g2"
          class="st4">
         <g
-           id="g36"
+           id="text1"
            class="st4">
           <g
-             id="g35"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(228.4 131.3)"
-               id="text34"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan34">Survivor</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-    <g
-       id="text243"
-       class="st4">
-      <g
-         id="g40"
-         class="st4">
-        <g
-           id="g39"
-           class="st4">
-          <g
-             id="g38"
-             class="st4">
-            <text
-               class="st1"
-               transform="translate(235.8 145.6)"
-               id="text37"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan37">Merge</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
-     id="text173"
-     class="st4">
-    <g
-       id="text247"
-       class="st4">
-      <g
-         id="g42"
-         class="st4">
-        <g
-           id="g41"
-           class="st4">
-          <g
-             id="text35"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(156.7 20.6)"
-               id="text40"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan40">Delly</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
-     id="text173-7"
-     class="st4">
-    <g
-       id="text247-9"
-       class="st4">
-      <g
-         id="g31-3"
-         class="st4">
-        <g
-           id="text31-8"
-           class="st4">
-          <g
-             id="g43"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(453 178.3)"
-               id="text42"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan42">DrawSVs</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
-     id="text174"
-     class="st4">
-    <g
-       id="text248"
-       class="st4">
-      <g
-         id="g45"
-         class="st4">
-        <g
-           id="g44"
-           class="st4">
-          <g
-             id="text38"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(153.3 62.3)"
-               id="text43"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan43">Gridss</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
-     id="text175"
-     class="st4">
-    <g
-       id="text249"
-       class="st4">
-      <g
-         id="g47"
-         class="st4">
-        <g
-           id="g46"
-           class="st4">
-          <g
-             id="text39"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(153.6 186.8)"
-               id="text45"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan45">Svaba</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
-     id="text176"
-     class="st4">
-    <g
-       id="text250"
-       class="st4">
-      <g
-         id="g50"
-         class="st4">
-        <g
-           id="g49"
-           class="st4">
-          <g
-             id="g48"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(153.1 145.5)"
-               id="text47"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan47">Manta</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
-     id="text180"
-     class="st4">
-    <g
-       id="text251"
-       class="st4">
-      <g
-         id="g52"
-         class="st4">
-        <g
-           id="g51"
-           class="st4">
-          <g
-             id="text41"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(294.3 64.4)"
-               id="text50"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan50">ReCall</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-    <g
-       id="text252"
-       class="st4">
-      <g
-         id="g54"
-         class="st4">
-        <g
-           id="text36"
-           class="st4">
-          <g
-             id="g53"
-             class="st4">
-            <text
-               class="st1"
-               transform="translate(295.4 78.8)"
-               id="text52"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan52">Gridss</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
-     id="text184"
-     class="st4">
-    <g
-       id="text253"
-       class="st4">
-      <g
-         id="g56"
-         class="st4">
-        <g
-           id="g55"
-           class="st4">
-          <g
-             id="text44"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(347.5 131.3)"
-               id="text54"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan54">Survivor</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-    <g
-       id="text254"
-       class="st4">
-      <g
-         id="g58"
-         class="st4">
-        <g
-           id="g57"
-           class="st4">
-          <g
-             id="text46"
-             class="st4">
-            <text
-               class="st1"
-               transform="translate(349.8 145.6)"
-               id="text56"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan56">Filtering</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
-     id="g259"
-     class="st4">
-    <g
-       id="text258"
-       class="st4">
-      <g
-         id="g61"
-         class="st4">
-        <g
-           id="g60"
-           class="st4">
-          <g
-             id="g59"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(442.6 30.4)"
-               id="text58"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan58">iAnnotateSV</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <path
-     id="path186-6"
-     class="st21"
-     d="M129.2,120.2v-40.5c0-.4.7-.8,1.5-.8h79.5c.8,0,1.5.3,1.5.8v40.5"
-     inkscape:label="path186-6" />
-  <rect
-     id="rect4-51"
-     class="st10"
-     x="53.9"
-     y="95.9"
-     width="73.3"
-     height="6" />
-  <path
-     id="path186-61"
-     class="st14"
-     d="M129.2,79v-40.5c0-.4.7-.8,1.5-.8h79.5c.8,0,1.5.3,1.5.8v40.5"
-     inkscape:label="path186-6" />
-  <path
-     id="path186-62"
-     class="st15"
-     d="M129.2,160.7v-40.5c0-.4.7-.8,1.5-.8h79.5c.8,0,1.5.3,1.5.8v40.5"
-     inkscape:label="path186-6" />
-  <path
-     id="path186-63"
-     class="st17"
-     d="M129.2,119.4v40.5c0,.4.7.8,1.5.8h79.5c.8,0,1.5-.3,1.5-.8v-40.5"
-     inkscape:label="path186-6" />
-  <path
-     id="path45"
-     class="st12"
-     d="M234.6,226.6h-1l-3.1,10.8c.3,0,.8.1,1-.2l3.1-10.5h0Z" />
-  <path
-     id="path46"
-     class="st12"
-     d="M274.4,226.6c-.4,0-.9-.2-1.1.2l-3.1,10.5h1l3.2-10.8h0Z" />
-  <path
-     id="path47"
-     class="st12"
-     d="M243.3,229.9v4.4c0,1,2,1.7,2.9,1.2v-.9c-.3.2-1.6-.2-1.6-.6v-4.1h1.7v-1h-1.7v-1.3h-1.3v1.3h-.8v1h.8Z" />
-  <path
-     id="path48"
-     class="st12"
-     d="M240.6,229c-1.4-.4-4-.3-3.9,1.7s3.1,1.9,3.2,3.1c0,1.4-2.4.9-3.2.4-.2,1.3.4,1.4,1.5,1.5,1.3.1,2.9-.4,2.9-2s-3-2-3.2-3c-.2-1.4,1.9-.9,2.7-.6v-1.1h0Z" />
-  <path
-     id="path49"
-     class="st12"
-     d="M251.3,229.7c-1.1-1.1-2.9-1.1-4.2-.5-.1.3-.2.8.1,1,2.5-1.3,4.2.8,3.4,3.2-.6,1.6-2.1,1.3-3.4,1v1.1c1.3.1,2.5.4,3.7-.4,1.7-1.1,1.7-4.1.4-5.4h0Z" />
-  <path
-     id="path50"
-     class="st12"
-     d="M258.8,229v6.6h1.3v-4.4c0-.3,1.3-1.2,1.7-1.3.4,0,1,.2,1,.6v5.1h1.3v-4.3c0-.4,1.4-1.3,1.8-1.4.4,0,1,.4,1,.7v5h1.3v-5.2c0-.2-.4-.9-.5-1-.9-.9-3-.4-3.4.8-.3-.2-.4-.6-.6-.8-.9-.9-2.8-.4-3.4.7v-1h-1.5Z" />
-  <polygon
-     id="polygon50"
-     class="st12"
-     points="256.5 229 253.9 229 255.2 231.6 256.5 229" />
-  <polygon
-     id="polygon51"
-     class="st12"
-     points="256.5 235.6 255.2 232.9 253.9 235.6 256.5 235.6" />
-  <path
-     id="path144-8"
-     class="st16"
-     d="M529.5,99h-50.3c-.5,0-1-.3-1-.8v-40.5c0-.4.4-.8,1-.8h50.3" />
-  <path
-     id="path144"
-     class="st18"
-     d="M529.5,141h-50.4c-.5,0-1-.3-1-.8v-40.5c0-.4.4-.8,1-.8h50.4" />
-  <circle
-     id="circle19-9"
-     class="st27"
-     cy="-.6"
-     r="3.1">
-    <animateMotion
-       accumulate="none"
-       additive="replace"
-       begin="3s"
-       calcMode="paced"
-       dur="3s"
-       fill="remove"
-       keyPoints="0;1;1;1;1"
-       keyTimes="0;0.8;1;1;1"
-       repeatCount="indefinite"
-       restart="always">
-      <mpath
-         href="#path19-9" />
-    </animateMotion>
-  </circle>
-  <rect
-     id="rect4-5"
-     class="st11"
-     x="214.5"
-     y="95.9"
-     width="260.7"
-     height="6" />
-  <path
-     id="path51"
-     class="st12"
-     d="M258.8,229h1.3v1c.7-1.1,2.5-1.6,3.4-.7.3.3.3.7.6.8.4-1.2,2.5-1.7,3.4-.8.1.2.5.9.5,1v5.2h-1.3v-5c0-.3-.6-.8-1-.7-.5,0-1.8,1-1.8,1.4v4.3h-1.3v-5.1c0-.4-.6-.6-1-.6s-1.7.9-1.7,1.3v4.4h-1.3v-6.6h.2Z" />
-  <path
-     id="path52"
-     class="st12"
-     d="M240.6,229v1.1c-.8-.3-2.8-.7-2.6.6.1.9,3.1.9,3.2,3,0,1.6-1.6,2.1-2.9,2-1.1-.1-1.7-.2-1.5-1.5.7.5,3.2,1.1,3.2-.4s-3-1-3.2-3.1,2.5-2.1,3.9-1.7h0Z" />
-  <path
-     id="path53"
-     class="st12"
-     d="M251.6,229.7c1.3,1.4,1.3,4.4-.4,5.4-1.2.8-2.4.5-3.7.4v-1.1c1.4.4,2.8.6,3.4-1,.9-2.4-.9-4.6-3.4-3.2-.3-.2-.3-.7-.1-1,1.3-.6,3.2-.7,4.2.5h0Z" />
-  <path
-     id="path54"
-     class="st12"
-     d="M243.3,229.9h-.8v-1h.8v-1.3h1.2v1.3h1.8v1h-1.7v4.1c0,.4,1.3.8,1.7.6v.9c-.9.5-2.9-.2-2.9-1.2v-4.4h-.1Z" />
-  <path
-     id="path55"
-     class="st12"
-     d="M274.4,226.6l-3.2,10.7h-1l3.1-10.4c.2-.4.7-.2,1.1-.2h0Z" />
-  <path
-     id="path56"
-     class="st12"
-     d="M234.6,226.6l-3.1,10.5c-.2.4-.6.2-1,.2l3.1-10.7h1Z" />
-  <polygon
-     id="polygon56"
-     class="st12"
-     points="256.5 229 255.2 231.6 253.9 229 256.5 229" />
-  <polygon
-     id="polygon57"
-     class="st12"
-     points="256.5 235.6 253.9 235.6 255.2 232.9 256.5 235.6" />
-  <g
-     id="g2571"
-     class="st4">
-    <g
-       id="text2561"
-       class="st4">
-      <g
-         id="g401"
-         class="st4">
-        <g
-           id="text401"
-           class="st4">
-          <g
-             id="text55"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(72.5 64.4)"
-               id="text61"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan61">Picard</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-    <g
-       id="text2571"
-       class="st4">
-      <g
-         id="g411"
-         class="st4">
-        <g
-           id="text411"
-           class="st4">
-          <g
-             id="g62"
-             class="st4">
-            <text
-               class="st1"
-               transform="translate(70.9 78.8)"
-               id="text62"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan62">Metrics</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <g
-     id="text1841"
-     class="st4">
-    <g
-       id="text2531"
-       class="st4">
-      <g
-         id="g371"
-         class="st4">
-        <g
-           id="text371"
-           class="st4">
-          <g
-             id="text60"
-             class="st4">
-            <text
-               class="st8"
-               transform="translate(405.5 64.4)"
-               id="text63"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan63">Survivor</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-    <g
-       id="text2541"
-       class="st4">
-      <g
-         id="g381"
-         class="st4">
-        <g
-           id="text381"
-           class="st4">
-          <g
-             id="g64"
-             class="st4">
-            <text
-               class="st1"
-               transform="translate(418.4 78.8)"
-               id="text64"><tspan
-                 x="0"
-                 y="0"
-                 id="tspan64">Stats</tspan></text>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-  <circle
-     id="circle56-93"
-     class="st27"
-     cy="-.6"
-     r="3.1">
-    <animateMotion
-       accumulate="none"
-       additive="replace"
-       begin="0s"
-       calcMode="paced"
-       dur="3s"
-       fill="remove"
-       keyPoints="1;0"
-       keyTimes="0;1"
-       repeatCount="indefinite"
-       restart="always">
-      <mpath
-         href="#path56-93" />
-    </animateMotion>
-  </circle>
-  <circle
-     id="circle56-92"
-     class="st27"
-     cy="-.6"
-     r="3.1">
-    <animateMotion
-       accumulate="none"
-       additive="replace"
-       begin="0s"
-       calcMode="paced"
-       dur="3s"
-       fill="remove"
-       keyPoints="1;0"
-       keyTimes="0;1"
-       repeatCount="indefinite"
-       restart="always">
-      <mpath
-         href="#path56-92" />
-    </animateMotion>
-  </circle>
-  <circle
-     id="circle56-91"
-     class="st27"
-     cy="-.6"
-     r="3.1">
-    <animateMotion
-       accumulate="none"
-       additive="replace"
-       begin="0s"
-       calcMode="paced"
-       dur="3s"
-       fill="remove"
-       keyPoints="1;0"
-       keyTimes="0;1"
-       repeatCount="indefinite"
-       restart="always">
-      <mpath
-         href="#path56-91" />
-    </animateMotion>
-  </circle>
-  <circle
-     id="circle56-9"
-     class="st27"
-     cy="-.6"
-     r="3.1">
-    <animateMotion
-       accumulate="none"
-       additive="replace"
-       begin="0s"
-       calcMode="paced"
-       dur="3s"
-       fill="remove"
-       keyPoints="1;0"
-       keyTimes="0;1"
-       repeatCount="indefinite"
-       restart="always">
-      <mpath
-         href="#path56-9" />
-    </animateMotion>
-  </circle>
-  <circle
-     id="circle19"
-     class="st27"
-     cy="-.6"
-     r="3.1">
-    <animateMotion
-       accumulate="none"
-       additive="replace"
-       begin="3s"
-       calcMode="paced"
-       dur="3s"
-       fill="remove"
-       keyPoints="0;1"
-       keyTimes="0;1"
-       repeatCount="indefinite"
-       restart="always">
-      <mpath
-         href="#path19" />
-    </animateMotion>
-  </circle>
-  <circle
-     id="circle20"
-     class="st27"
-     cy="-.6"
-     r="3.1">
-    <animateMotion
-       accumulate="none"
-       additive="replace"
-       begin="3s"
-       calcMode="paced"
-       dur="3s"
-       fill="remove"
-       keyPoints="0;1"
-       keyTimes="0;1"
-       repeatCount="indefinite"
-       restart="always">
-      <mpath
-         href="#path20" />
-    </animateMotion>
-  </circle>
-  <path
-     id="rect1552"
-     class="st23"
-     d="M0,7.5h0C4.1,7.5,7.5,4.1,7.5,0h0c0-4.1-3.4-7.5-7.5-7.5h0C-4.1-7.5-7.5-4.1-7.5,0h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <g
-     id="g171">
-    <g
-       id="g170">
-      <rect
-         id="rect167"
-         class="st22"
-         x="11.3"
-         y="73.8"
-         width="38.1"
-         height="47.6" />
-      <rect
-         id="rect168"
-         class="st25"
-         x="8.9"
-         y="92.9"
-         width="42.9"
-         height="19" />
-      <rect
-         id="rect169"
-         class="st22"
-         x="13.6"
-         y="76.2"
-         width="38.1"
-         height="47.6" />
-      <rect
-         id="rect170"
-         class="st26"
-         x="11.3"
-         y="95.2"
-         width="42.9"
-         height="19" />
-    </g>
-    <g
-       id="text170"
-       class="st4">
-      <g
-         id="text316"
-         class="st4">
-        <g
-           id="g66"
-           class="st4">
-          <g
-             id="g65"
+             id="g24"
              class="st4">
             <g
-               id="text53"
+               id="text23"
                class="st4">
-              <text
-                 class="st6"
-                 transform="translate(21.1 108.3)"
-                 id="text65"><tspan
-                   x="0"
-                   y="0"
-                   id="tspan65">bam</tspan></text>
+              <g
+                 id="text25"
+                 class="st4">
+                <g
+                   id="text28"
+                   class="st4">
+                  <text
+                     class="st5"
+                     transform="translate(2.8 43.5)"
+                     id="text12"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan12">S</tspan></text>
+                </g>
+              </g>
+            </g>
+            <g
+               id="text24"
+               class="st4">
+              <g
+                 id="text26"
+                 class="st4">
+                <g
+                   id="text29"
+                   class="st4">
+                  <text
+                     class="st2"
+                     transform="translate(31.6 43.5)"
+                     id="text13"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan13">V</tspan></text>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g
+           id="text2"
+           class="st4">
+          <g
+             id="g34"
+             class="st4">
+            <g
+               id="g27"
+               class="st4">
+              <g
+                 id="text27"
+                 class="st4">
+                <g
+                   id="text30"
+                   class="st4">
+                  <text
+                     class="st9"
+                     transform="translate(67.1 43.5)"
+                     id="text14"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan14">t</tspan></text>
+                </g>
+              </g>
+            </g>
+            <g
+               id="g28"
+               class="st4">
+              <g
+                 id="g31"
+                 class="st4">
+                <g
+                   id="text31"
+                   class="st4">
+                  <text
+                     class="st0"
+                     transform="translate(87.7 43.5)"
+                     id="text15"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan15">o</tspan></text>
+                </g>
+              </g>
+            </g>
+            <g
+               id="g29"
+               class="st4">
+              <g
+                 id="g32"
+                 class="st4">
+                <g
+                   id="text32"
+                   class="st4">
+                  <text
+                     class="st3"
+                     transform="translate(117.2 43.5)"
+                     id="text16"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan16">r</tspan></text>
+                </g>
+              </g>
+            </g>
+            <g
+               id="g30"
+               class="st4">
+              <g
+                 id="g33"
+                 class="st4">
+                <g
+                   id="text33"
+                   class="st4">
+                  <text
+                     class="st7"
+                     transform="translate(138.6 43.5)"
+                     id="text17"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan17">m</tspan></text>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <path
+         id="path45"
+         class="st11"
+         d="M192.7,32.7h-1l-3.1,10.8c.3,0,.8.1,1-.2l3.1-10.5h0Z" />
+      <path
+         id="path46"
+         class="st11"
+         d="M232.5,32.7c-.4,0-.9-.2-1.1.2l-3.1,10.5h1l3.2-10.8h0Z" />
+      <path
+         id="path47"
+         class="st11"
+         d="M201.4,36v4.4c0,1,2,1.7,2.9,1.2v-.9c-.3.2-1.6-.2-1.6-.6v-4.1h1.7v-1h-1.7v-1.3h-1.3v1.3h-.8v1h.8Z" />
+      <path
+         id="path48"
+         class="st11"
+         d="M198.7,35.1c-1.4-.4-4-.3-3.9,1.7s3.1,1.9,3.2,3.1c0,1.4-2.4.9-3.2.4-.2,1.3.4,1.4,1.5,1.5,1.3.1,2.9-.4,2.9-2s-3-2-3.2-3c-.2-1.4,1.9-.9,2.7-.6v-1.1h0Z" />
+      <path
+         id="path49"
+         class="st11"
+         d="M209.4,35.8c-1.1-1.1-2.9-1.1-4.2-.5-.1.3-.2.8.1,1,2.5-1.3,4.2.8,3.4,3.2-.6,1.6-2.1,1.3-3.4,1v1.1c1.3.1,2.5.4,3.7-.4,1.7-1.1,1.7-4.1.4-5.4h0Z" />
+      <path
+         id="path50"
+         class="st11"
+         d="M216.9,35.1v6.6h1.3v-4.4c0-.3,1.3-1.2,1.7-1.3.4,0,1,.2,1,.6v5.1h1.3v-4.3c0-.4,1.4-1.3,1.8-1.4.4,0,1,.4,1,.7v5h1.3v-5.2c0-.2-.4-.9-.5-1-.9-.9-3-.4-3.4.8-.3-.2-.4-.6-.6-.8-.9-.9-2.8-.4-3.4.7v-1h-1.5,0Z" />
+      <polygon
+         id="polygon50"
+         class="st11"
+         points="214.6 35.1 212 35.1 213.3 37.7 214.6 35.1" />
+      <polygon
+         id="polygon51"
+         class="st11"
+         points="214.6 41.7 213.3 39 212 41.7 214.6 41.7" />
+      <path
+         id="path51"
+         class="st11"
+         d="M216.9,35.1h1.3v1c.7-1.1,2.5-1.6,3.4-.7.3.3.3.7.6.8.4-1.2,2.5-1.7,3.4-.8.1.2.5.9.5,1v5.2h-1.3v-5c0-.3-.6-.8-1-.7-.5,0-1.8,1-1.8,1.4v4.3h-1.3v-5.1c0-.4-.6-.6-1-.6s-1.7.9-1.7,1.3v4.4h-1.3v-6.6h.2,0Z" />
+      <path
+         id="path52"
+         class="st11"
+         d="M198.7,35.1v1.1c-.8-.3-2.8-.7-2.6.6.1.9,3.1.9,3.2,3,0,1.6-1.6,2.1-2.9,2-1.1-.1-1.7-.2-1.5-1.5.7.5,3.2,1.1,3.2-.4s-3-1-3.2-3.1,2.5-2.1,3.9-1.7h0Z" />
+      <path
+         id="path53"
+         class="st11"
+         d="M209.7,35.8c1.3,1.4,1.3,4.4-.4,5.4-1.2.8-2.4.5-3.7.4v-1.1c1.4.4,2.8.6,3.4-1,.9-2.4-.9-4.6-3.4-3.2-.3-.2-.3-.7-.1-1,1.3-.6,3.2-.7,4.2.5h0Z" />
+      <path
+         id="path54"
+         class="st11"
+         d="M201.4,36h-.8v-1h.8v-1.3h1.2v1.3h1.8v1h-1.7v4.1c0,.4,1.3.8,1.7.6v.9c-.9.5-2.9-.2-2.9-1.2v-4.4h-.1Z" />
+      <path
+         id="path55"
+         class="st11"
+         d="M232.5,32.7l-3.2,10.7h-1l3.1-10.4c.2-.4.7-.2,1.1-.2h0Z" />
+      <path
+         id="path56"
+         class="st11"
+         d="M192.7,32.7l-3.1,10.5c-.2.4-.6.2-1,.2l3.1-10.7h1Z" />
+      <polygon
+         id="polygon56"
+         class="st11"
+         points="214.6 35.1 213.3 37.7 212 35.1 214.6 35.1" />
+      <polygon
+         id="polygon57"
+         class="st11"
+         points="214.6 41.7 212 41.7 213.3 39 214.6 41.7" />
+    </g>
+    <g
+       id="text155"
+       class="st4">
+      <g
+         id="text242"
+         class="st4">
+        <g
+           id="g37"
+           class="st4">
+          <g
+             id="g36"
+             class="st4">
+            <g
+               id="g35"
+               class="st4">
+              <g
+                 id="text34"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(240.9 185.9)"
+                   id="text18"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan18">Survivor</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g
+         id="text243"
+         class="st4">
+        <g
+           id="g40"
+           class="st4">
+          <g
+             id="g39"
+             class="st4">
+            <g
+               id="g38"
+               class="st4">
+              <g
+                 id="text37"
+                 class="st4">
+                <text
+                   class="st1"
+                   transform="translate(248.4 200.2)"
+                   id="text19"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan19">Merge</tspan></text>
+              </g>
             </g>
           </g>
         </g>
       </g>
     </g>
-  </g>
-  <path
-     id="rect1551"
-     class="st24"
-     d="M90.5,106.4h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <path
-     id="rect185"
-     class="st24"
-     d="M170.5,44.8h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <path
-     id="rect186"
-     class="st24"
-     d="M170.5,86.4h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <path
-     id="rect193"
-     class="st24"
-     d="M253.6,106.6h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <path
-     id="rect151"
-     class="st24"
-     d="M312.4,106.6h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5h0Z" />
-  <path
-     id="rect152"
-     class="st24"
-     d="M371.1,106.6h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <path
-     id="rect172"
-     class="st24"
-     d="M170.5,169h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <path
-     id="rect187"
-     class="st24"
-     d="M170.5,127h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <path
-     id="rect196"
-     class="st24"
-     d="M429.9,105.9h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <path
-     id="rect188"
-     class="st24"
-     d="M478.1,148.5h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <g
-     id="g193">
     <g
-       id="g192">
-      <rect
-         id="rect191"
-         class="st22"
-         x="525.5"
-         y="135.7"
-         width="38.1"
-         height="47.6" />
-      <rect
-         id="rect192"
-         class="st26"
-         x="523.1"
-         y="154.8"
-         width="42.9"
-         height="19" />
-    </g>
-    <g
-       id="g317"
+       id="text173-7"
        class="st4">
       <g
-         id="text317"
+         id="text247-9"
          class="st4">
         <g
-           id="g68"
+           id="g31-3"
            class="st4">
           <g
-             id="g67"
+             id="text31-8"
              class="st4">
             <g
-               id="text57"
+               id="g43"
                class="st4">
-              <text
-                 class="st6"
-                 transform="translate(538 167.8)"
-                 id="text66"><tspan
-                   x="0"
-                   y="0"
-                   id="tspan66">pdf</tspan></text>
+              <g
+                 id="text42"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(465.5 232.9)"
+                   id="text20"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan20">DrawSVs</tspan></text>
+              </g>
             </g>
           </g>
         </g>
       </g>
     </g>
-  </g>
-  <path
-     id="rect1961"
-     class="st24"
-     d="M478.1,64.2h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
-  <g
-     id="g148">
     <g
-       id="g147">
-      <rect
-         id="rect146"
-         class="st22"
-         x="525.5"
-         y="15.2"
-         width="38.1"
-         height="47.6" />
-      <rect
-         id="rect147"
-         class="st26"
-         x="523.1"
-         y="34.2"
-         width="42.9"
-         height="19" />
-    </g>
-    <g
-       id="text147"
+       id="text180"
        class="st4">
       <g
-         id="text319"
+         id="text251"
          class="st4">
         <g
-           id="g71"
+           id="g52"
            class="st4">
           <g
-             id="g70"
+             id="g51"
+             class="st4">
+            <g
+               id="text41"
+               class="st4">
+              <g
+                 id="text50"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(306.8 119)"
+                   id="text21"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan21">ReCall</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g
+         id="text252"
+         class="st4">
+        <g
+           id="g54"
+           class="st4">
+          <g
+             id="text36"
+             class="st4">
+            <g
+               id="g53"
+               class="st4">
+              <g
+                 id="text52"
+                 class="st4">
+                <text
+                   class="st1"
+                   transform="translate(307.9 133.4)"
+                   id="text22"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan22">Gridss</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="text184"
+       class="st4">
+      <g
+         id="text253"
+         class="st4">
+        <g
+           id="g56"
+           class="st4">
+          <g
+             id="g55"
+             class="st4">
+            <g
+               id="text44"
+               class="st4">
+              <g
+                 id="text54"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(360.1 185.9)"
+                   id="text35"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan23">Survivor</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g
+         id="text254"
+         class="st4">
+        <g
+           id="g58"
+           class="st4">
+          <g
+             id="g57"
+             class="st4">
+            <g
+               id="text46"
+               class="st4">
+              <g
+                 id="text56"
+                 class="st4">
+                <text
+                   class="st1"
+                   transform="translate(362.3 200.2)"
+                   id="text38"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan35">Filtering</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g259"
+       class="st4">
+      <g
+         id="text258"
+         class="st4">
+        <g
+           id="g61"
+           class="st4">
+          <g
+             id="g60"
+             class="st4">
+            <g
+               id="g59"
+               class="st4">
+              <g
+                 id="text58"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(455.1 85)"
+                   id="text39"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan38">iAnnotateSV</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g2571"
+       class="st4">
+      <g
+         id="text2561"
+         class="st4">
+        <g
+           id="g401"
+           class="st4">
+          <g
+             id="text401"
+             class="st4">
+            <g
+               id="text55"
+               class="st4">
+              <g
+                 id="text61"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(85 119)"
+                   id="text40"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan39">Picard</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g
+         id="text2571"
+         class="st4">
+        <g
+           id="g411"
+           class="st4">
+          <g
+             id="text411"
+             class="st4">
+            <g
+               id="g62"
+               class="st4">
+              <g
+                 id="text62"
+                 class="st4">
+                <text
+                   class="st1"
+                   transform="translate(83.5 133.4)"
+                   id="text43"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan40">Metrics</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="text1841"
+       class="st4">
+      <g
+         id="text2531"
+         class="st4">
+        <g
+           id="g371"
+           class="st4">
+          <g
+             id="text371"
+             class="st4">
+            <g
+               id="text60"
+               class="st4">
+              <g
+                 id="text63"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(418 119)"
+                   id="text45"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan43">Survivor</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g
+         id="text2541"
+         class="st4">
+        <g
+           id="g381"
+           class="st4">
+          <g
+             id="text381"
+             class="st4">
+            <g
+               id="g64"
+               class="st4">
+              <g
+                 id="text64"
+                 class="st4">
+                <text
+                   class="st1"
+                   transform="translate(430.9 133.4)"
+                   id="text47"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan45">Stats</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g171">
+      <g
+         id="g170">
+        <rect
+           id="rect167"
+           class="st12"
+           x="23.9"
+           y="128.4"
+           width="38.1"
+           height="47.6" />
+        <rect
+           id="rect168"
+           class="st13"
+           x="21.4"
+           y="147.5"
+           width="42.9"
+           height="19" />
+        <rect
+           id="rect169"
+           class="st12"
+           x="26.2"
+           y="130.8"
+           width="38.1"
+           height="47.6" />
+        <rect
+           id="rect170"
+           class="st14"
+           x="23.9"
+           y="149.8"
+           width="42.9"
+           height="19" />
+      </g>
+      <g
+         id="text170"
+         class="st4">
+        <g
+           id="text316"
+           class="st4">
+          <g
+             id="g66"
+             class="st4">
+            <g
+               id="g65"
+               class="st4">
+              <g
+                 id="text53"
+                 class="st4">
+                <g
+                   id="text65"
+                   class="st4">
+                  <text
+                     class="st6"
+                     transform="translate(33.7 162.9)"
+                     id="text48"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan47">bam</tspan></text>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       id="rect1551"
+       class="st15"
+       d="M103.1,160.9h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <path
+       id="rect193"
+       class="st15"
+       d="M266.2,160.9h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <path
+       id="rect151"
+       class="st15"
+       d="M324.9,160.9h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5h0Z" />
+    <path
+       id="rect152"
+       class="st15"
+       d="M383.7,160.9h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <g
+       id="text173"
+       class="st4">
+      <g
+         id="text247"
+         class="st4">
+        <g
+           id="g42"
+           class="st4">
+          <g
+             id="g41"
+             class="st4">
+            <g
+               id="g50"
+               class="st4">
+              <g
+                 id="g49"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(169.4 75.2)"
+                   id="text49"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan48">Delly</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="text174"
+       class="st4">
+      <g
+         id="text248"
+         class="st4">
+        <g
+           id="g45"
+           class="st4">
+          <g
+             id="g44"
+             class="st4">
+            <g
+               id="g67"
+               class="st4">
+              <g
+                 id="g63"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(166 116.8)"
+                   id="text51"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan50">Gridss</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="text175"
+       class="st4">
+      <g
+         id="text249"
+         class="st4">
+        <g
+           id="g47"
+           class="st4">
+          <g
+             id="g46"
              class="st4">
             <g
                id="g69"
                class="st4">
-              <text
-                 class="st6"
-                 transform="translate(538 47.3)"
-                 id="text68"><tspan
-                   x="0"
-                   y="0"
-                   id="tspan68">vcf</tspan></text>
+              <g
+                 id="g68"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(166.3 241.4)"
+                   id="text67"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan67">Svaba</tspan></text>
+              </g>
             </g>
           </g>
         </g>
       </g>
     </g>
-  </g>
-  <g
-     id="g1931">
     <g
-       id="g1921">
-      <rect
-         id="rect1911"
-         class="st22"
-         x="525.5"
-         y="74.5"
-         width="38.1"
-         height="47.6" />
-      <rect
-         id="rect1921"
-         class="st26"
-         x="523.1"
-         y="93.6"
-         width="42.9"
-         height="19" />
-    </g>
-    <g
-       id="g3171"
+       id="text176"
        class="st4">
       <g
-         id="text3171"
+         id="text250"
          class="st4">
         <g
-           id="g441"
+           id="g72"
            class="st4">
           <g
-             id="text441"
+             id="g71"
              class="st4">
             <g
-               id="text59"
+               id="g48"
                class="st4">
-              <text
-                 class="st6"
-                 transform="translate(538 106.6)"
-                 id="text71"><tspan
-                   x="0"
-                   y="0"
-                   id="tspan71">tsv</tspan></text>
+              <g
+                 id="g70"
+                 class="st4">
+                <text
+                   class="st8"
+                   transform="translate(165.8 199.9)"
+                   id="text69"><tspan
+                     x="0"
+                     y="0"
+                     id="tspan69">Manta</tspan></text>
+              </g>
             </g>
           </g>
         </g>
       </g>
     </g>
+    <path
+       id="rect185"
+       class="st15"
+       d="M183,99.4h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <path
+       id="rect186"
+       class="st15"
+       d="M183,140.6h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <path
+       id="rect172"
+       class="st15"
+       d="M183,222.4h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <path
+       id="rect187"
+       class="st15"
+       d="M183,181.2h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <path
+       id="rect196"
+       class="st15"
+       d="M442.4,160.9h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <path
+       id="rect188"
+       class="st15"
+       d="M490.7,203.1h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <g
+       id="g193">
+      <g
+         id="g192">
+        <rect
+           id="rect191"
+           class="st12"
+           x="538.1"
+           y="190.3"
+           width="38.1"
+           height="47.6" />
+        <rect
+           id="rect192"
+           class="st14"
+           x="535.6"
+           y="209.4"
+           width="42.9"
+           height="19" />
+      </g>
+      <g
+         id="g317"
+         class="st4">
+        <g
+           id="text317"
+           class="st4">
+          <g
+             id="g74"
+             class="st4">
+            <g
+               id="g73"
+               class="st4">
+              <g
+                 id="text57"
+                 class="st4">
+                <g
+                   id="text66"
+                   class="st4">
+                  <text
+                     class="st6"
+                     transform="translate(550.5 222.4)"
+                     id="text72"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan72">pdf</tspan></text>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       id="rect1961"
+       class="st15"
+       d="M490.7,118.8h0c4.1,0,7.5-3.4,7.5-7.5h0c0-4.1-3.4-7.5-7.5-7.5h0c-4.1,0-7.5,3.4-7.5,7.5h0c0,4.1,3.4,7.5,7.5,7.5Z" />
+    <g
+       id="g148">
+      <g
+         id="g147">
+        <rect
+           id="rect146"
+           class="st12"
+           x="538.1"
+           y="69.8"
+           width="38.1"
+           height="47.6" />
+        <rect
+           id="rect147"
+           class="st14"
+           x="535.6"
+           y="88.8"
+           width="42.9"
+           height="19" />
+      </g>
+      <g
+         id="text147"
+         class="st4">
+        <g
+           id="text319"
+           class="st4">
+          <g
+             id="g77"
+             class="st4">
+            <g
+               id="g76"
+               class="st4">
+              <g
+                 id="g75"
+                 class="st4">
+                <g
+                   id="text68"
+                   class="st4">
+                  <text
+                     class="st6"
+                     transform="translate(550.5 101.9)"
+                     id="text74"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan74">vcf</tspan></text>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g1931">
+      <g
+         id="g1921">
+        <rect
+           id="rect1911"
+           class="st12"
+           x="538.1"
+           y="129.6"
+           width="38.1"
+           height="47.6" />
+        <rect
+           id="rect1921"
+           class="st14"
+           x="535.6"
+           y="148.7"
+           width="42.9"
+           height="19" />
+      </g>
+      <g
+         id="g3171"
+         class="st4">
+        <g
+           id="text3171"
+           class="st4">
+          <g
+             id="g441"
+             class="st4">
+            <g
+               id="text441"
+               class="st4">
+              <g
+                 id="text59"
+                 class="st4">
+                <g
+                   id="text71"
+                   class="st4">
+                  <text
+                     class="st6"
+                     transform="translate(550.5 161.7)"
+                     id="text77"><tspan
+                       x="0"
+                       y="0"
+                       id="tspan77">tsv</tspan></text>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       class="st10"
+       d="M571.5,15.2l12.7-12.6,12.8,12.6c0,0-.3.4-.4.5-.7.8-1.6,1.6-2.3,2.5l-8.1-7.6v13.4h9.4v4.1h-9.3s0,0,0,0v2.9c0,.1.2.7.3.7h9.1v4.1h-9.4v2.7c0,0,.2.6.3.6h9s0,0,0,0v3.7s0,0,0,0h-9s-.3.3-.3.3v9.3h-4.1v-9.6h-9.1v-3.9h9.1v-3.3h-9.1v-4.1h9.1v-3.7h-9.1v-4.1h9.1v-13.4l-7.6,7.6c-.2,0-1.1-1-1.3-1.1l-1.6-1.7h0c0-.1,0-.1,0-.1h0Z"
+       id="path77" />
   </g>
+  <animateMotion
+     repeatCount="indefinite"
+     dur="6.006006s"
+     begin="0s"
+     xlink:href="#_R_G_L_3_G"
+     fill="freeze"
+     keyTimes="0;0.1833333;0.2222222;0.3055555;0.3444444;0.8611111;1"
+     path="M45.2 153.5 C45.2,153.5 141.13,153.45 141.13,153.45 C141.13,153.45 141.81,92.11 141.81,92.11 C141.81,92.11 224.18,92.24 224.18,92.24 C224.18,92.24 224,153.41 224,153.41 C224,153.41 490.76,153.29 490.76,153.29 C490.76,153.29 561.2,153.25 561.2,153.25 "
+     keyPoints="0;0.15;0.25;0.38;0.47;0.89;1"
+     keySplines="0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833"
+     calcMode="spline" />
+  <animateTransform
+     repeatCount="indefinite"
+     dur="6.006006s"
+     begin="0s"
+     xlink:href="#_R_G_L_3_G"
+     fill="freeze"
+     attributeName="transform"
+     from="-3.25 -3.25"
+     to="-3.25 -3.25"
+     type="translate"
+     additive="sum"
+     keyTimes="0;1"
+     values="-3.25 -3.25;-3.25 -3.25"
+     keySplines="0 0 1 1"
+     calcMode="spline" />
+  <animateMotion
+     repeatCount="indefinite"
+     dur="6.006006s"
+     begin="0s"
+     xlink:href="#_R_G_L_2_G"
+     fill="freeze"
+     keyTimes="0;0.1833333;0.2222222;0.3055555;0.3444444;0.8611111;1"
+     path="M45.2 153.5 C45.2,153.5 141.13,153.45 141.13,153.45 C141.13,153.45 141.81,214.9 141.81,214.9 C141.81,214.9 224.18,214.9 224.18,214.9 C224.18,214.9 224,153.41 224,153.41 C224,153.41 490.76,153.29 490.76,153.29 C490.76,153.29 561.2,153.25 561.2,153.25 "
+     keyPoints="0;0.15;0.25;0.38;0.47;0.89;1"
+     keySplines="0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833"
+     calcMode="spline" />
+  <animateTransform
+     repeatCount="indefinite"
+     dur="6.006006s"
+     begin="0s"
+     xlink:href="#_R_G_L_2_G"
+     fill="freeze"
+     attributeName="transform"
+     from="-3.25 -3.25"
+     to="-3.25 -3.25"
+     type="translate"
+     additive="sum"
+     keyTimes="0;1"
+     values="-3.25 -3.25;-3.25 -3.25"
+     keySplines="0 0 1 1"
+     calcMode="spline" />
+  <animateMotion
+     repeatCount="indefinite"
+     dur="6.006006s"
+     begin="0s"
+     xlink:href="#_R_G_L_1_G"
+     fill="freeze"
+     keyTimes="0;0.1833333;0.2222222;0.3055555;0.3444444;0.8611111;0.9166666;1"
+     path="M45.2 153.5 C45.2,153.5 141.13,153.45 141.13,153.45 C141.13,153.45 141.14,132.78 141.14,132.78 C141.14,132.78 224.18,132.57 224.18,132.57 C224.18,132.57 224,153.41 224,153.41 C224,153.41 490.76,153.29 490.76,153.29 C490.76,153.29 490.27,110.94 490.27,110.94 C490.27,110.94 561.2,110.92 561.2,110.92 "
+     keyPoints="0;0.16;0.19;0.33;0.37;0.81;0.88;1"
+     keySplines="0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833"
+     calcMode="spline" />
+  <animateTransform
+     repeatCount="indefinite"
+     dur="6.006006s"
+     begin="0s"
+     xlink:href="#_R_G_L_1_G"
+     fill="freeze"
+     attributeName="transform"
+     from="-3.25 -3.25"
+     to="-3.25 -3.25"
+     type="translate"
+     additive="sum"
+     keyTimes="0;1"
+     values="-3.25 -3.25;-3.25 -3.25"
+     keySplines="0 0 1 1"
+     calcMode="spline" />
+  <animateMotion
+     repeatCount="indefinite"
+     dur="6.006006s"
+     begin="0s"
+     xlink:href="#_R_G_L_0_G"
+     fill="freeze"
+     keyTimes="0;0.1833333;0.2222222;0.3055555;0.3444444;0.8611111;0.9166666;1"
+     path="M45.2 153.5 C45.2,153.5 141.13,153.45 141.13,153.45 C141.13,153.45 141.14,173.78 141.14,173.78 C141.14,173.78 224.18,173.57 224.18,173.57 C224.18,173.57 224,153.41 224,153.41 C224,153.41 490.76,153.29 490.76,153.29 C490.76,153.29 490.27,194.94 490.27,194.94 C490.27,194.94 561.2,194.58 561.2,194.58 "
+     keyPoints="0;0.16;0.19;0.33;0.37;0.81;0.88;1"
+     keySplines="0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833"
+     calcMode="spline" />
+  <animateTransform
+     repeatCount="indefinite"
+     dur="6.006006s"
+     begin="0s"
+     xlink:href="#_R_G_L_0_G"
+     fill="freeze"
+     attributeName="transform"
+     from="-3.25 -3.25"
+     to="-3.25 -3.25"
+     type="translate"
+     additive="sum"
+     keyTimes="0;1"
+     values="-3.25 -3.25;-3.25 -3.25"
+     keySplines="0 0 1 1"
+     calcMode="spline" />
+  <animate
+     attributeType="XML"
+     attributeName="opacity"
+     dur="6s"
+     from="0"
+     to="1"
+     xlink:href="#time_group" />
+  <g
+     id="_R_G" />
+  <g
+     id="time_group" />
 </svg>

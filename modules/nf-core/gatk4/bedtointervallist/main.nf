@@ -1,5 +1,5 @@
 process GATK4_BEDTOINTERVALLIST {
-    tag "$meta.id"
+    tag "$meta.patient"
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"
@@ -20,7 +20,7 @@ process GATK4_BEDTOINTERVALLIST {
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.patient}"
 
     def avail_mem = 3072
     if (!task.memory) {
@@ -44,7 +44,7 @@ process GATK4_BEDTOINTERVALLIST {
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.patient}"
     """
     touch ${prefix}.interval_list
 
