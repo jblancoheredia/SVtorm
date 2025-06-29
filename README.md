@@ -20,7 +20,7 @@
   <img alt="Metro" src="assets/SVtorm_metro_light.svg">
 </picture>
 
-**mskcc/svtorm** is a bioinformatics pipeline that calls structural variants from target sequenced data.
+**CTI/SVtorm** is a high-performance bioinformatics pipeline tailored to detect structural variants from targeted sequencing data. Optimized for ACCESSv2. SVtorm delivers sensitive and reliable SV calls from liquid biopsy samples. By integrating and harmonizing multiple cutting-edge callers, SVtorm generates clinically actionable results to support oncologists and inform precision treatment decisions, while also advancing translational research.
 
 ## Pipeline Steps
 
