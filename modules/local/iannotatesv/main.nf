@@ -56,7 +56,7 @@ process IANNOTATESV {
       print \"x_value: \" x_value, \"y_value: \" y_value, \"z_value: \" z_value;
       print \"Matches pattern? y_value: \" (y_value ~ pattern), \"z_value: \" (z_value ~ pattern);
 
-      if (x_value >= threshold || y_value ~ pattern || z_value ~ pattern) {
+      if (x_value > threshold || y_value ~ pattern || z_value ~ pattern) {
         print \"Line \" NR \" passed the filter.\";
         print \$0 > \"'\$output_file'\"
     } else {

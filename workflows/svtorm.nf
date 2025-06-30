@@ -67,7 +67,6 @@ workflow SVTORM {
     ch_samplesheet // channel: samplesheet read in from --input
 
     main:
-    ch_reports  = Channel.empty()
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
 
@@ -86,7 +85,7 @@ workflow SVTORM {
     //
     PICARD_COLLECTMULTIPLEMETRICS(ch_bam_with_pairedness, ch_fasta, ch_fai)
     ch_versions = ch_versions.mix(PICARD_COLLECTMULTIPLEMETRICS.out.versions)
-    ch_reports  = ch_reports.mix(PICARD_COLLECTMULTIPLEMETRICS.out.metrics.collect{it[1]}.ifEmpty([]))
+    ch_multiqc_files  = ch_multiqc_files.mix(PICARD_COLLECTMULTIPLEMETRICS.out.metrics.collect{it[1]}.ifEmpty([]))
 
     //
     // Pair tumour samples with normal samples by patient meta key if only tumour use backup normal
@@ -253,7 +252,7 @@ workflow SVTORM {
     //
     SURVIVOR_STATS(ch_filtered_vcf, -1, -1, -1)
     ch_versions = ch_versions.mix(SURVIVOR_STATS.out.versions)
-    ch_reports  = ch_reports.mix(SURVIVOR_STATS.out.stats.collect{it[1]}.ifEmpty([]))
+    ch_multiqc_files  = ch_multiqc_files.mix(SURVIVOR_STATS.out.stats.collect{it[1]}.ifEmpty([]))
 
     //
     // MODULE: Run iAnnotateSV 
