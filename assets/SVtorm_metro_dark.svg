@@ -58,7 +58,11 @@
         stroke: #d9dddc;
       }
 
-      .st12, .st15, .st6 {
+      .st6 {
+        fill: #000000;
+      }
+
+      .st12, .st15 {
         fill: #fff;
       }
 
