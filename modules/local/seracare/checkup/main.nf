@@ -35,18 +35,13 @@ process SERACARE_CHECKUP {
         ["515842"]="RET-NCOA4"
     )
     
-    report_file="${prefix}.checkup_report.txt"
+    report_file="${prefix}_SeraCareCheckUpReport.txt"
     
     echo "SeraCare Quality Control Report" > \$report_file
     echo "Generated: \$(date)" >> \$report_file
     echo "Input file: ${sv_file}" >> \$report_file
     echo "====================================================================================================" >> \$report_file
     echo "" >> \$report_file
-    
-    if [ -z "\$files" ]; then
-        echo "No matching files found." >> \$report_file
-        exit 1
-    fi
     
     all_passed=true
     for key in "\${!value_pairs[@]}"; do
