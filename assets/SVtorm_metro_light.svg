@@ -3,7 +3,7 @@
    version="1.1"
    viewBox="0 0 600 250"
    id="svg77"
-   sodipodi:docname="SVtorm_metro_light.svg"
+   sodipodi:docname="SVtorm_metro_light copy.svg"
    inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -170,6 +170,116 @@
          stop-color="#b3f0d6"
          id="stop12" />
     </linearGradient>
+    <linearGradient
+       id="linear-gradient-7"
+       x1="129.8"
+       y1="109.4"
+       x2="462.60001"
+       y2="109.4"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#429698"
+         id="stop1-9" />
+      <stop
+         offset="0"
+         stop-color="#43999b"
+         id="stop2-3" />
+      <stop
+         offset="0"
+         stop-color="#4faeb0"
+         id="stop3-8" />
+      <stop
+         offset="0"
+         stop-color="#58bfc1"
+         id="stop4-0" />
+      <stop
+         offset="0"
+         stop-color="#5ecbcd"
+         id="stop5-2" />
+      <stop
+         offset=".1"
+         stop-color="#62d2d4"
+         id="stop6-4" />
+      <stop
+         offset=".2"
+         stop-color="#63d4d6"
+         id="stop7-8" />
+      <stop
+         offset=".5"
+         stop-color="#89f6f0"
+         id="stop8-3" />
+      <stop
+         offset=".7"
+         stop-color="#a5f3df"
+         id="stop9-9" />
+      <stop
+         offset="1"
+         stop-color="#b3f0d6"
+         id="stop10-0" />
+    </linearGradient>
+    <linearGradient
+       id="linear-gradient-79"
+       x1="133.39999"
+       y1="124"
+       x2="466.60001"
+       y2="124"
+       gradientTransform="matrix(1,0,0,-1,0,249)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#429698"
+         id="stop1-3" />
+      <stop
+         offset=".4"
+         stop-color="#63d4d6"
+         id="stop2-8" />
+      <stop
+         offset=".7"
+         stop-color="#89f6f0"
+         id="stop3-0" />
+      <stop
+         offset=".9"
+         stop-color="#a5f3df"
+         id="stop4-2" />
+      <stop
+         offset="1"
+         stop-color="#b3f0d6"
+         id="stop5-4" />
+    </linearGradient>
+    <linearGradient
+       id="linear-gradient-2"
+       x1="133.39999"
+       y1="124"
+       x2="466.60001"
+       y2="124"
+       gradientTransform="matrix(1,0,0,-1,0,249)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#429698"
+         id="stop1-2" />
+      <stop
+         offset=".4"
+         stop-color="#63d4d6"
+         id="stop2-7" />
+      <stop
+         offset=".7"
+         stop-color="#89f6f0"
+         id="stop3-3" />
+      <stop
+         offset=".8"
+         stop-color="#8df5ed"
+         id="stop4-7" />
+      <stop
+         offset=".9"
+         stop-color="#9af4e5"
+         id="stop5-9" />
+      <stop
+         offset="1"
+         stop-color="#a5f3df"
+         id="stop6-0" />
+    </linearGradient>
   </defs>
   <g
      id="Paths">
@@ -202,6 +312,14 @@
          fill-rule="nonzero"
          d=" M3.25 6.25 C3.25,6.25 3.25,6.25 3.25,6.25 C4.89,6.25 6.25,4.89 6.25,3.25 C6.25,1.61 4.89,0.25 3.25,0.25 C1.61,0.25 0.25,1.61 0.25,3.25 C0.25,4.89 1.61,6.25 3.25,6.25z " />
     </g>
+    <line
+       class="st0"
+       x1="226.94612"
+       y1="153.40123"
+       x2="539.59155"
+       y2="153.40123"
+       id="line6"
+       style="fill:none;stroke:url(#linear-gradient-2);stroke-width:5.81199px;stroke-linejoin:round" />
     <g
        id="_R_G_L_2_G">
       <path
@@ -228,8 +346,8 @@
        bordercolor="#cccccc"
        borderopacity="1"
        inkscape:current-layer="Ball"
-       inkscape:cx="248.53927"
-       inkscape:cy="95.764184"
+       inkscape:cx="224.98105"
+       inkscape:cy="163.02292"
        inkscape:deskcolor="#d1d1d1"
        inkscape:pagecheckerboard="0"
        inkscape:pageopacity="1"
