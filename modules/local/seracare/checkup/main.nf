@@ -11,8 +11,8 @@ process SERACARE_CHECKUP {
     tuple val(meta), path(sv_file)
 
     output:
-    tuple val(meta), path("*.checkup_report.txt")  , emit: report
-    path "versions.yml"                            , emit: versions
+    tuple val(meta), path("*_SeraCareCheckUpReport.txt"), emit: report
+    path "versions.yml"                                 , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -76,8 +76,7 @@ process SERACARE_CHECKUP {
     stub:
     def prefix = task.ext.prefix ?: "${meta.patient}"
     """
-    touch ${prefix}.checkup_report.txt
-    touch versions.yml
+    touch ${prefix}_SeraCareCheckUpReport.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
