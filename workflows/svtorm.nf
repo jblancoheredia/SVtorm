@@ -16,7 +16,7 @@ include { paramsSummaryMap                                                      
 
 include { DELLY                                                                         } from '../modules/local/delly/main'
 include { SVABA                                                                         } from '../modules/local/svaba/main'
-include { FUSVIZ                                                                        } from '../modules/local/fusviz/main'
+include { DRAWSV                                                                        } from '../modules/local/drawsv/main'
 include { GRIDSS                                                                        } from '../modules/local/gridss/main'
 include { MULTIQC                                                                       } from '../modules/nf-core/multiqc/main'
 include { RECALL_SV                                                                     } from '../modules/local/recallsv/main'
@@ -263,11 +263,11 @@ workflow SVTORM {
     ch_annotated_ann = IANNOTATESV.out.ann
 
     //
-    // MODULE: Run FUSviz
+    // MODULE: Run DrawSV
     //
-    FUSVIZ(ch_bam_pairs, ch_annotated_ann, params.annotations, params.genome, params.cytobands, params.protein_domains)
-    ch_versions = ch_versions.mix(FUSVIZ.out.versions)
-    ch_fusviz_pdf = FUSVIZ.out.pdf
+    DRAWSV(ch_bam_pairs, ch_annotated_tsv, params.annotations, params.genome, params.cytobands, params.protein_domains)
+    ch_versions = ch_versions.mix(DRAWSV.out.versions)
+    ch_drawsv_pdf = DRAWSV.out.pdf
 
     //
     // Check-Up for SeraCare samples only
