@@ -30,14 +30,16 @@ process DRAWSV {
     cp "${workflow.projectDir}/bin/PRE_DRAWSVs.py" .
     cp "${workflow.projectDir}/bin/DrawSVs.R" .
 
-    python3 PRE_DRAWSVs.py \\
+    #python3 PRE_DRAWSVs.py \\
+    PreDrawSVs \\
         --sample ${prefix} \\
         --input ${tsv} \\
         --genome ${genome} \\
         --annotations ${gtf} \\
         ${args}
 
-    Rscript DrawSVs.R \\
+    #Rscript DrawSVs.R \\
+    Rscript /usr/local/bin/DrawSVs.R \\
         --SVs=${prefix}_DrawSVs.tsv \\
         --alignments=${bam} \\
         --annotation=${gtf}   \\

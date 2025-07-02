@@ -44,26 +44,69 @@
 
 > [!NOTE]
 > If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
+> [!NOTE]
+> The best practice is to create a dedicated conda environment to install nf-core and Nextflow.
 
-First, prepare a samplesheet with your input data that looks as follows:
+To run SVtorm follow these steps:
 
-`samplesheet.csv`:
+First, prepare the structure of the project, the ideal structure would be like follows:
+
+PROJECT/
+|
+|___ 01_data/
+|		|__ samples.csv
+|		|__ SAMPLE1_TUMOUR.bam
+|		|__ SAMPLE1_TUMOUR.bai
+|		|__ SAMPLE1_NORMAL.bam
+|		|__ SAMPLE1_NORMAL.bam
+|		|__ SAMPLE2_TUMOUR.bam
+|		|__ SAMPLE2_TUMOUR.bai
+|
+|___ 02_code/
+|		|__ run_SVtorm.sh
+|
+|___ 03_outs/
+|
+|___ 04_logs/
+|
+|___ 05_work/
+|
+|___ 06_cach/
+
+Note: Any other structure is also possible, just adjust the launching script accordingly.
+
+Second, prepare a samplesheet with your input data that looks as follows:
+
+`samples.csv`:
 
 ```csv
 patient,sample,bam,bai,tumour,matched
-PATIENT,SAMPLE,/path/to/normal/bam/file/SAMPLE_NORMAL.bam,/path/to/normal/bam/file/SAMPLE_NORMAL.bai,false,true
-PATIENT,SAMPLE,/path/to/tumour/bam/file/SAMPLE_TUMOUR.bam,/path/to/tumour/bam/file/SAMPLE_TUMOUR.bai,true,true
+PATIENT1,SAMPLE1,/path/to/normal/bam/file/SAMPLE1_NORMAL.bam,/path/to/normal/bam/file/SAMPLE1_NORMAL.bai,false,true
+PATIENT1,SAMPLE1,/path/to/tumour/bam/file/SAMPLE1_TUMOUR.bam,/path/to/tumour/bam/file/SAMPLE1_TUMOUR.bai,true,true
+PATIENT2,SAMPLE2,/path/to/tumour/bam/file/SAMPLE2_TUMOUR.bam,/path/to/tumour/bam/file/SAMPLE2_TUMOUR.bai,true,false
 ```
-Each row represents a sample BAM file, tumour and normal (somatic calling) is determined by boolean 'tumour' and boolean 'matched' when tumour-normal.
+Each row contains a sample BAM file and corresponding index file BAI, in the case of matched BAM available, will be determined by boolean 'matched' and the tumout quality by the  boolean 'tumour'. If not NORMAL is provided, a default putative NORMAL will be automatically used to accomplish the somatic callers needs.
 
-Now, you can run the pipeline using:
+Third, now you can run the pipeline using the assets/run_SVtorm.sh script as a template, such script is:
 
 ```bash
-nextflow run local/path/to/SVtorm/main \
-   -profile <juno/crater/iris> \
-   --input ../01_data/samples.csv \
-   --outdir ../03_outs/ \
-   --workdir ../05_work/ \
+#!/bin/bash
+
+source activate <conda env for nf-core>
+
+export NXF_LOG_FILE="../04_logs/nextflow.log"
+export NXF_CACHE_DIR="../06_cach/nextflow-cache"
+
+nextflow run \
+    /path/to/SVtorm/main.nf \
+    --input ../01_data/samples.csv \
+    --outdir ../03_outs/ \
+    --email <user_name>@mskcc.org \
+    -profile <crater/iris/juno> \
+    -work-dir ../05_work \
+    --seq_library Av2 \
+    --genome HG19VS \
+    -resume
 ```
 
 > [!WARNING]
@@ -82,6 +125,8 @@ We thank the following people for their extensive assistance in the development 
 - [Caryn Hale](halec@mskcc.org)
 - [Eve Byington](byingte@mskcc.org)
 - [Kanika Arora](AroraK@mskcc.org)
+- [Rose Brannon](brannona@mskcc.org)
+- [Satshil Rana](ranas@mskcc.org)
 - [Shivani Guturu](guturus1@mskcc.org)
 
 ## Contributions and Support

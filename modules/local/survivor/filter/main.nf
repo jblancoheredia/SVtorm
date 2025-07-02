@@ -51,7 +51,28 @@ process SURVIVOR_FILTER {
         ${account_for_sv_strands} \\
         ${estimate_distanced_by_sv_size} \\
         ${min_sv_size} \\
-        ${prefix}_SURVOR_SV_UNF.vcf || true
+        ${prefix}_SURVOR_SV_TMP.vcf || true
+
+    awk -v OFS='\\t' -v new_names=\"DELLY,GRIDSS,MANTA,RECALL,SVABA\" '
+    BEGIN {
+      split(new_names, names, \",\")
+    }
+    {
+      if (\$0 ~ /^##/) {
+        print
+      } else if (\$0 ~ /^#CHROM/) {
+        for (i = 1; i <= 9; i++) {
+          printf(\"%s%s\", \$i, OFS)
+        }
+        for (i = 1; i <= length(names); i++) {
+          printf(\"%s\", names[i])
+          if (i < length(names)) printf(\"%s\", OFS)
+        }
+        printf(\"\\n\")
+      } else {
+        print
+      }
+    }' ${prefix}_SURVOR_SV_TMP.vcf > ${prefix}_SURVOR_SV_UNF.vcf
 
     grep \"#\" ${prefix}_SURVOR_SV_UNF.vcf > ${prefix}_SURVOR_SV_FIL.vcf
 
