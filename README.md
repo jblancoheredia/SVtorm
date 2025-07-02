@@ -51,7 +51,7 @@ To run SVtorm follow these steps:
 
 First, prepare the structure of the project, the ideal structure would be like follows:
 
-<pre lang="md"> \`\`\` PROJECT/ | |___ 01_data/ | |__ samples.csv | |__ SAMPLE1_TUMOUR.bam | |__ SAMPLE1_TUMOUR.bai | |__ SAMPLE1_NORMAL.bam | |__ SAMPLE1_NORMAL.bam | |__ SAMPLE2_TUMOUR.bam | |__ SAMPLE2_TUMOUR.bai | |___ 02_code/ | |__ run_SVtorm.sh | |___ 03_outs/ | |___ 04_logs/ | |___ 05_work/ | |___ 06_cach/ \`\`\` </pre>
+<pre lang="md"> ``` PROJECT/ ├── 01_data/ │ ├── samples.csv │ ├── SAMPLE1_TUMOUR.bam │ ├── SAMPLE1_TUMOUR.bai │ ├── SAMPLE1_NORMAL.bam │ ├── SAMPLE1_NORMAL.bai │ ├── SAMPLE2_TUMOUR.bam │ └── SAMPLE2_TUMOUR.bai ├── 02_code/ │ └── run_SVtorm.sh ├── 03_outs/ ├── 04_logs/ ├── 05_work/ └── 06_cach/ ``` </pre>
 
 Note: Any other structure is also possible, just adjust the launching script accordingly.
 
