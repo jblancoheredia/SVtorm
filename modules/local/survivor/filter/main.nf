@@ -4,8 +4,8 @@ process SURVIVOR_FILTER {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/survivor_filter_svtorm:2.0':
-        'blancojmskcc/survivor_filter_svtorm:2.0' }"
+        'docker://blancojmskcc/survivor_filter_svtorm:6.3':
+        'blancojmskcc/survivor_filter_svtorm:6.3' }"
 
     input:
     tuple val(meta), 
@@ -84,8 +84,8 @@ process SURVIVOR_FILTER {
     
     SVRVOR2TSV \\
         --merged_vcf ${prefix}_SURVOR_SV_FIL.vcf \\
-        --original_vcf_list Original_VCFs_List.txt \\
-        --tsv ${prefix}_SURVOR_SV_FIL.tsv
+        --vcf_list Original_VCFs_List.txt \\
+        --output ${prefix}_SURVOR_SV_FIL.tsv
 
     VCF2iANN \\
         ${prefix}

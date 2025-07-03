@@ -241,7 +241,7 @@ workflow SVTORM {
     //
     // MODULE: Run Survivor to filter Unfiltered VCFs
     //
-    SURVIVOR_FILTER(ch_vcfs_merged, 10000, 3, 1, 1, 0, 50)
+    SURVIVOR_FILTER(ch_vcfs_merged, 1000, 3, 0, 0, 0, 1000)
     ch_versions = ch_versions.mix(SURVIVOR_FILTER.out.versions)
     ch_filtered_vcf = SURVIVOR_FILTER.out.filtered_vcf
     ch_filtered_tsv = SURVIVOR_FILTER.out.filtered_tsv

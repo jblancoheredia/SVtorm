@@ -4,8 +4,8 @@ process DRAWSV {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/drawsv:1.0.1':
-        'blancojmskcc/drawsv:1.0.1' }"
+        'docker://blancojmskcc/drawsv:1.0.2':
+        'blancojmskcc/drawsv:1.0.2' }"
 
     input:
     tuple val(meta) , path(tumour_bam), path(tumour_bai), path(normal_bam), path(normal_bai)
