@@ -81,7 +81,7 @@ PATIENT1,SAMPLE1,/path/to/normal/bam/file/SAMPLE1_NORMAL.bam,/path/to/normal/bam
 PATIENT1,SAMPLE1,/path/to/tumour/bam/file/SAMPLE1_TUMOUR.bam,/path/to/tumour/bam/file/SAMPLE1_TUMOUR.bai,true,true
 PATIENT2,SAMPLE2,/path/to/tumour/bam/file/SAMPLE2_TUMOUR.bam,/path/to/tumour/bam/file/SAMPLE2_TUMOUR.bai,true,false
 ```
-Each row corresponds to a sample BAM file and its associated index (BAI). The matched column indicates whether a matched normal is available (true/false), and the tumour column designates whether the sample is a tumor. If no normal is provided, a default putative normal will be automatically used to support somatic variant calling.
+Each row corresponds to a sample BAM file and its associated index (BAI). The matched column indicates whether a matched normal is available (true/false), and the tumour column designates whether the sample is a tumour. If no normal is provided, a default putative normal will be automatically used to support somatic variant calling.
 
 Third, now you can run the pipeline using the assets/run_SVtorm.sh script as a template, such script is:
 
