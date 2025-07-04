@@ -1,4 +1,4 @@
 patient,sample,bam,bai,tumour,matched
-PATIENT_ID_1,SAMPLE_ID_T1,/path/to/bam/files/SAMPLE_ID_T1.bam,/path/to/bam/files/SAMPLE_ID_T1.bai,1,1
-PATIENT_ID_1,SAMPLE_ID_N1,/path/to/bam/files/SAMPLE_ID_N1.bam,/path/to/bam/files/SAMPLE_ID_N1.bai,0,1
-PATIENT_ID_2,SAMPLE_ID_T2,/path/to/bam/files/SAMPLE_ID_T2.bam,/path/to/bam/files/SAMPLE_ID_T2.bai,1,0
+PATIENT_ID_1,SAMPLE_ID_T1,/path/to/bam/files/SAMPLE_ID_T1.bam,/path/to/bam/files/SAMPLE_ID_T1.bai,true,true
+PATIENT_ID_1,SAMPLE_ID_N1,/path/to/bam/files/SAMPLE_ID_N1.bam,/path/to/bam/files/SAMPLE_ID_N1.bai,false,true
+PATIENT_ID_2,SAMPLE_ID_T2,/path/to/bam/files/SAMPLE_ID_T2.bam,/path/to/bam/files/SAMPLE_ID_T2.bai,true,false
