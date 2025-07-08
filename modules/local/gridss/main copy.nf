@@ -26,7 +26,7 @@ process GRIDSS {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.patient}"
-    def VERSION = '2.13.2'
+    def VERSION = '2.13.2' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
     def bwa = bwa_index ? "cp -s ${bwa_index}/* ." : ""
     """
     samtools view -h -F 256 -o ${prefix}_N_filtered.bam ${normal_bam}
@@ -57,8 +57,6 @@ process GRIDSS {
         --threads ${task.cpus} \\
         --jvmheap ${task.memory.toGiga() - 1}g \\
         --otherjvmheap ${task.memory.toGiga() - 1}g \\
-        --maxcoverage 100000 \\
-        --picardoptions VALIDATION_STRINGENCY=LENIENT \\
         -b ${blocklist} \\
         ${prefix}_GRIDSS-N.bam \\
         ${prefix}_GRIDSS-T.bam

@@ -38,7 +38,9 @@ process SVABA {
         $args
 
     awk 'BEGIN {FS=OFS=\"\\\\t\"}  /^#/ {print}' ${prefix}.svaba.unfiltered.somatic.sv.vcf > ${prefix}.svaba.unfiltered.vcf
+
     awk 'BEGIN {FS=OFS=\"\\\\t\"}  \$1 ~ /^(1?[0-9]|2[0-2]|X|Y)\$/ {print}' ${prefix}.svaba.unfiltered.somatic.sv.vcf  >> ${prefix}.svaba.unfiltered.vcf
+    
     awk 'BEGIN {FS=OFS=\"\\\\t\"}  \$1 ~ /^(1?[0-9]|2[0-2]|X|Y)\$/ {print}' ${prefix}.svaba.unfiltered.germline.sv.vcf >> ${prefix}.svaba.unfiltered.vcf
 
     cat <<-END_VERSIONS > versions.yml
