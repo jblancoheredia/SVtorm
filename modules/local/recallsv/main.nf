@@ -52,7 +52,7 @@ process RECALL_SV {
     ${CollectGridssMetrics} \\
         INPUT=${prefix}_N_filtered.bam \\
         PROGRAM=RnaSeqMetrics \\
-        THRESHOLD_COVERAGE=5000 \\
+        THRESHOLD_COVERAGE=100000 \\
         PROGRAM=MeanQualityByCycle \\
         PROGRAM=CollectGcBiasMetrics \\
         PROGRAM=CollectInsertSizeMetrics \\
@@ -78,7 +78,7 @@ process RECALL_SV {
     ${CollectGridssMetrics} \\
         INPUT=${prefix}_T_filtered.bam \\
         PROGRAM=RnaSeqMetrics \\
-        THRESHOLD_COVERAGE=5000 \\
+        THRESHOLD_COVERAGE=100000 \\
         PROGRAM=MeanQualityByCycle \\
         PROGRAM=CollectGcBiasMetrics \\
         PROGRAM=CollectInsertSizeMetrics \\
