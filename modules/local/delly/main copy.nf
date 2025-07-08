@@ -57,11 +57,16 @@ process DELLY {
 
     bcftools convert -O v -o ${prefix}.delly.vcf ${prefix}.filtered.bcf
 
-    awk 'BEGIN {FS=OFS="\\t"}  /^#/ {print}' ${prefix}.delly.vcf > ${prefix}.delly.unfiltered.vcf
+    grep -v "^#" ${prefix}.delly.vcf | awk 'BEGIN {FS=OFS="\\t"}  \$1 ~ /^(1?[0-9]|2[0-2]|X|Y)\$/ {print}' > tmp.delly.unfiltered.vcf
 
-    awk 'BEGIN {FS=OFS="\\t"}  \$1 ~ /^(1?[0-9]|2[0-2]|X|Y)\$/ {print}' ${prefix}.delly.vcf >> ${prefix}.delly.unfiltered.vcf
+    grep "^#" ${prefix}.delly.vcf > ${prefix}.delly.unfiltered.vcf
+
+    awk 'BEGIN {FS=OFS="\\t"} /^#/ {print} (!/^#/ && \$7=="LowQual" && \$6 >= 250) 
+        { \$7="PASS"; print; next } (!/^#/) { print }' tmp.delly.unfiltered.vcf >> ${prefix}.delly.unfiltered.vcf
         
     bgzip ${prefix}.delly.vcf
+
+    rm tmp.delly.unfiltered.vcf
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -72,7 +77,6 @@ process DELLY {
     def prefix = task.ext.prefix ?: "${patient}"
     """
     touch ${prefix}.delly.vcf.gz
-    touch ${prefix}.delly.vcf.gz.tbi
     touch ${prefix}.delly.unfiltered.vcf
 
     cat <<-END_VERSIONS > versions.yml
