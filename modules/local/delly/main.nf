@@ -4,8 +4,8 @@ process DELLY {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/delly:1.3.1' :
-        'blancojmskcc/delly:1.3.1' }"
+        'docker://blancojmskcc/delly:1.2.6' :
+        'blancojmskcc/delly:1.2.6' }"
 
     input:
     tuple val(meta) , path(tumour_bam), path(tumour_bai), path(normal_bam), path(normal_bai)
