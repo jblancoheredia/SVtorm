@@ -48,7 +48,7 @@ process SERACARE_CHECKUP {
         value1=\$key
         value2=\${value_pairs[\$key]}
         event_name=\${event_names[\$key]}
-        count=\$(grep -E "\$value1.*\$value2|\$value2.*\$value1" "\$file" | wc -l)
+        count=\$(grep -E "\$value1.*\$value2|\$value2.*\$value1" "${sv_file}" | wc -l)
         if [ \$count -ge 2 ]; then
             result=2
             echo "\$event_name event found \$count times - PASS (2)" >> \$report_file
@@ -60,13 +60,15 @@ process SERACARE_CHECKUP {
             echo "\$event_name event found \$count times - FAIL (0)" >> \$report_file
             all_passed=false
         fi
+        echo "----------------------------------------------------------------------------------------------------" >> \$report_file
+        echo "" >> \$report_file
     done
     if \$all_passed; then
-        echo "All pairs passed in file \$file. Ready for finalizing and cleanup." >> \$report_file
+        echo "All pairs passed in file ${sv_file}. Ready for finalizing and cleanup." >> \$report_file
     else
-        echo "Some pairs did not pass in file \$file. Consider re-running the pipeline." >> \$report_file
+        echo "Some pairs did not pass in file ${sv_file}. Consider re-running the pipeline." >> \$report_file
     fi
-    echo "----------------------------------------------------------------------------------------------------"
+    
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
