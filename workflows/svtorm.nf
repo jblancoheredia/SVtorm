@@ -263,9 +263,24 @@ workflow SVTORM {
     ch_annotated_ann = IANNOTATESV.out.ann
 
     //
+    // Join annotated SVs with BAM pairs based on patient
+    //
+    ch_bam_pairs_by_patient = ch_bam_pairs.map {meta, bam_t, bai_t, bam_n, bai_n -> tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) }
+    ch_drawsv_input = ch_bam_pairs_by_patient
+        .join(ch_annotated_tsv)
+        .map { patient, meta_b, bam_t, bai_t, bam_n, bai_n, meta_t, tsv ->
+            tuple(
+                meta_b, 
+                bam_t, bai_t, 
+                bam_n, bai_n, 
+                tsv
+            )
+        }
+
+    //
     // MODULE: Run DrawSV
     //
-    DRAWSV(ch_bam_pairs, ch_annotated_tsv, params.annotations, params.genome, params.cytobands, params.drawsv_chr, params.protein_domains)
+    DRAWSV(ch_drawsv_input, params.annotations, params.genome, params.cytobands, params.drawsv_chr, params.protein_domains)
     ch_versions = ch_versions.mix(DRAWSV.out.versions)
     ch_drawsv_pdf = DRAWSV.out.pdf
 
