@@ -21,7 +21,6 @@ include { GRIDSS                                                                
 include { MULTIQC                                                                       } from '../modules/nf-core/multiqc/main'
 include { RECALL_SV                                                                     } from '../modules/local/recallsv/main'
 include { BAM_PAIRED                                                                    } from '../modules/local/bampaired/main'
-include { IGVREPORTS                                                                    } from '../modules/local/igvreports/main'
 include { IANNOTATESV                                                                   } from '../modules/local/iannotatesv/main'
 include { MANTA_SOMATIC                                                                 } from '../modules/local/manta/somatic/main'
 include { SURVIVOR_MERGE                                                                } from '../modules/local/survivor/merge/main'
@@ -262,12 +261,6 @@ workflow SVTORM {
     ch_versions = ch_versions.mix(IANNOTATESV.out.versions)
     ch_annotated_tsv = IANNOTATESV.out.tsv
     ch_annotated_ann = IANNOTATESV.out.ann
-
-    //
-    // MODULE: Run IGVreports
-    //
-    IGVREPORTS(ch_bam_pairs, ch_fasta, ch_fai, ch_annotated_tsv)
-    ch_versions = ch_versions.mix(IGVREPORTS.out.versions)
 
     //
     // MODULE: Run DrawSV
