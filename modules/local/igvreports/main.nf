@@ -25,20 +25,18 @@ process IGVREPORTS {
     def prefix = task.ext.prefix ?: "${meta.patient}"
     def fasta = fasta ? "--fasta ${fasta}" : ""
     def track_arg = tracks ? "--tracks ${tumour_bam}" : ""
-
     """
-    create_report $sites \
-    $args \
-    $fasta \
-    $track_arg \
-    --output ${prefix}_report.html
+    create_report \\
+        ${sites} \\
+        --fasta ${fasta} \\
+        --tracks ${tumour_bam} \\
+        --output ${prefix}_report.html
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         igvreports: \$(python -c "import igv_reports; print(igv_reports.__version__)")
     END_VERSIONS
     """
-
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.patient}"
