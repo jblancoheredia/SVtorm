@@ -8,8 +8,7 @@ process DRAWSV {
         'blancojmskcc/drawsv:6.0.5' }"
 
     input:
-    tuple val(meta) , path(tumour_bam), path(tumour_bai), path(normal_bam), path(normal_bai)
-    tuple val(meta2), path(tsv)
+    tuple val(meta) , path(tumour_bam), path(tumour_bai), path(normal_bam), path(normal_bai), path(tsv)
     path(gtf)
     val(genome)
     path(cytobands)
