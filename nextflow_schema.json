@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://raw.githubusercontent.com/jblancoheredia/svtorm/main/nextflow_schema.json",
     "title": "jblancoheredia/svtorm pipeline parameters",
-    "description": "SVtorm: Structural Variant for Target Panels Optimized by Recalling & Merging.",
+    "description": "SVtorm: Structural Variant for Targeted Panels Optimized by Recalling & Merging.",
     "type": "object",
     "$defs": {
         "input_output_options": {
@@ -375,21 +375,28 @@
                 "pon_directory": {
                     "type": "string",
                     "format": "directory-path",
-                    "description": "Similar to the exclude but with a different format",
+                    "description": "Panel Of Normals directory",
                     "fa_icon": "fas fa-ban",
                     "hidden": true
                 },
                 "intervals_bed_gunzip": {
                     "type": "string",
                     "format": "file-path",
-                    "description": "Similar to the exclude but with a different format",
+                    "description": "Intervals BED compressed file",
                     "fa_icon": "fas fa-ban",
                     "hidden": true
                 },
                 "intervals_bed_gunzip_index": {
                     "type": "string",
                     "format": "file-path",
-                    "description": "Similar to the exclude but with a different format",
+                    "description": "Intervals BED compressed file index",
+                    "fa_icon": "fas fa-ban",
+                    "hidden": true
+                },
+                "drawsv_chr": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Similar to the chromosomes but with a different format tailored for DrawSV module",
                     "fa_icon": "fas fa-ban",
                     "hidden": true
                 },
