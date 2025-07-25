@@ -266,8 +266,8 @@ workflow SVTORM {
     //
     // MODULE: Run IGVreports
     //
-//    IGVREPORTS(ch_bam_pairs, ch_fasta, ch_fai, ch_annotated_tsv)
-//    ch_versions = ch_versions.mix(IGVREPORTS.out.versions)
+    IGVREPORTS(ch_bam_pairs, ch_fasta, ch_fai, ch_annotated_tsv)
+    ch_versions = ch_versions.mix(IGVREPORTS.out.versions)
 
     //
     // MODULE: Run DrawSV

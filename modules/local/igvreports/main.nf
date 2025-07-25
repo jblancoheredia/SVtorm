@@ -23,8 +23,6 @@ process IGVREPORTS {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.patient}"
-    def fasta = fasta ? "--fasta ${fasta}" : ""
-    def track_arg = tracks ? "--tracks ${tumour_bam}" : ""
     """
     create_report \\
         ${sites} \\
