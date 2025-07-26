@@ -280,7 +280,7 @@ workflow SVTORM {
     //
     // MODULE: Run DrawSV
     //
-    DRAWSV(ch_drawsv_input, params.annotations, params.genome, params.cytobands, params.drawsv_chr, params.protein_domains)
+    DRAWSV(ch_drawsv_input, params.annotations, params.cytobands, params.drawsv_chr, params.protein_domains)
     ch_versions = ch_versions.mix(DRAWSV.out.versions)
     ch_drawsv_pdf = DRAWSV.out.pdf
 

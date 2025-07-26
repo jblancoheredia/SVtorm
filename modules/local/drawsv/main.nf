@@ -10,7 +10,6 @@ process DRAWSV {
     input:
     tuple val(meta) , path(tumour_bam), path(tumour_bai), path(normal_bam), path(normal_bai), path(tsv)
     path(gtf)
-    val(genome)
     path(cytobands)
     path(chromosomes)
     path(protein_domains)
