@@ -18,9 +18,8 @@ process DRAWSV {
     path(protein_domains)
 
     output:
-    tuple val(meta), path("*.pdf")      , emit: pdf
-    tuple val(meta), path("*_links.csv"), emit: links
-    path "versions.yml"                 , emit: versions
+    tuple val(meta), path("*.pdf"), emit: pdf
+    path "versions.yml"           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
