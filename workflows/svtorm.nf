@@ -265,8 +265,11 @@ workflow SVTORM {
     //
     // Join annotated SVs with BAM pairs based on patient
     //
+    ch_bam_pairs_by_patient = ch_bam_pairs.map {meta, bam_t, bai_t, bam_n, bai_n -> tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) }
     ch_drawsv_input = ch_bam_pairs_by_patient
-        .join(ch_annotated_tsv)
+        .join(ch_annotated_tsv
+        .map {meta, tsv -> tuple(meta.patient, meta, tsv)}
+        )
         .map { patient, meta_b, bam_t, bai_t, bam_n, bai_n, meta_t, tsv ->
             tuple(
                 meta_b, 
