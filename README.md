@@ -29,7 +29,7 @@
 5. Filtering Calls ([`SURVIVOR`](https://github.com/fritzsedlazeck/SURVIVOR))
 6. SVs Stats ([`SURVIVOR`](https://github.com/fritzsedlazeck/SURVIVOR))
 7. Annotate SVs ([`iAnnotateSV`](https://github.com/mskcc/iAnnotateSV))
-8. Draw SVs ([`DrawSV`](https://github.com/jblancoheredia/SVtorm/modules/local/DrawSV))
+8. Draw SVs ([`DrawSV`](https://github.com/jblancoheredia/SVtorm/tree/main/modules/local/drawsv))
 9. Check for expected SVs in Controls ([SeraCareCheckUp](https://github.com/jblancoheredia/SVtorm/modules/local/SeraCare/CheckUp))
 10. Present QC for raw reads ([`MultiQC`](http://multiqc.info/)) 
 
