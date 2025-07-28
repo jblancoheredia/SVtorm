@@ -13,7 +13,11 @@
   <img alt="Metro" src="assets/SVtorm_metro_light.svg">
 </picture>
 
-**CTI/SVtorm** is a high-performance bioinformatics pipeline tailored to detect Structural Variants from Targeted sequencing data Optimized by Recall and Merge. Concived for ACCESSv2 can be used for different panels. SVtorm delivers sensitive and reliable SV calls from liquid biopsy samples, by integrating and harmonizing multiple cutting-edge callers, SVtorm generates clinically actionable results to support oncologists and inform precision treatment decisions, while also advancing translational research.
+**CTI/SVtorm** is a high-performance bioinformatics pipeline tailored to detect Structural Variants from Targeted 
+      sequencing  data Optimized by Recall  and Merge.  Concived for ACCESSv2  can be used for  different panels. 
+      SVtorm  delivers sensitive and reliable SV calls from liquid biopsy samples, by integrating and harmonizing 
+      multiple  cutting-edge callers,  SVtorm generates clinically actionable results  to support oncologists and 
+      inform precision treatment decisions, while also advancing translational research.
 
 ## Pipeline Steps
 
