@@ -8,9 +8,7 @@ process IANNOTATESV {
         'blancojmskcc/iannotatesv:1.2.1' }"
 
     input:
-    tuple val(meta),  path(filtered_vcf), path(filtered_vcf_index)
-    tuple val(meta2), path(filtered_tsv)
-    tuple val(meta3), path(annote_input)
+    tuple val(meta),  path(filtered_vcf), path(filtered_vcf_index), path(filtered_tsv), path(annote_input)
 
     output:
     tuple val(meta), file("*_SOMTIC_SV_OUT.tsv"), emit: tsv
@@ -71,7 +69,6 @@ process IANNOTATESV {
         iannotatesv: "1.2.1"
     END_VERSIONS
     """
-
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.patient}"
