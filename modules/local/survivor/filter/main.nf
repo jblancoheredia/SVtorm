@@ -22,10 +22,11 @@ process SURVIVOR_FILTER {
     val(min_sv_size)
 
     output:
-    tuple val(meta), path("*_SURVOR_SV_FIL.sort.vcf.gz"), path("*_SURVOR_SV_FIL.sort.vcf.gz.tbi"), emit: filtered_vcf
-    tuple val(meta), path("*_SURVOR_SV_FIL.tsv")                                                 , emit: filtered_tsv
-    tuple val(meta), path("*_ANNOTE_SV_INN.tsv")                                                 , emit: annote_input
-    path "versions.yml"                                                                          , emit: versions
+    tuple val(meta), path("*_SURVOR_SV_FIL.sort.vcf.gz"), path("*_SURVOR_SV_FIL.sort.vcf.gz.tbi"), path("*_SURVOR_SV_FIL.tsv"), path("*_ANNOTE_SV_INN.tsv"), emit: filtered_all
+    tuple val(meta), path("*_SURVOR_SV_FIL.sort.vcf.gz"), path("*_SURVOR_SV_FIL.sort.vcf.gz.tbi")                                                          , emit: filtered_vcf
+    tuple val(meta), path("*_SURVOR_SV_FIL.tsv")                                                                                                           , emit: filtered_tsv
+    tuple val(meta), path("*_ANNOTE_SV_INN.tsv")                                                                                                           , emit: annote_input
+    path "versions.yml"                                                                                                                                    , emit: versions
 
     script:
     def prefix = task.ext.prefix ?: "${meta.patient}"
