@@ -243,9 +243,7 @@ workflow SVTORM {
     //
     SURVIVOR_FILTER(ch_vcfs_merged, 1000, 3, 0, 0, 0, 1000)
     ch_versions = ch_versions.mix(SURVIVOR_FILTER.out.versions)
-    ch_filtered_vcf = SURVIVOR_FILTER.out.filtered_vcf
-    ch_filtered_tsv = SURVIVOR_FILTER.out.filtered_tsv
-    ch_annote_input = SURVIVOR_FILTER.out.annote_input
+    ch_filtered_all = SURVIVOR_FILTER.out.filtered_all
 
     //
     // MODULE: Run Survivor Stats
@@ -257,7 +255,7 @@ workflow SVTORM {
     //
     // MODULE: Run iAnnotateSV 
     //
-    IANNOTATESV(ch_filtered_vcf, ch_filtered_tsv, ch_annote_input)
+    IANNOTATESV(ch_filtered_all)
     ch_versions = ch_versions.mix(IANNOTATESV.out.versions)
     ch_annotated_tsv = IANNOTATESV.out.tsv
     ch_annotated_ann = IANNOTATESV.out.ann
