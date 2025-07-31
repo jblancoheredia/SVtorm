@@ -124,7 +124,7 @@ process RECALL_SV {
         -o ${prefix}_high_confidence_somatic.vcf.gz \\
         -f ${prefix}_high_and_low_confidence_somatic.vcf.gz \\
         -p ${pon_dir} \\
-        --configdir /opt/gridss/ \\
+        -s /opt/gridss/ \\
         -n 1 \\
         -t 2
 
