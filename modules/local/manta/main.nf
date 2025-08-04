@@ -44,9 +44,9 @@ process MANTA {
         --runDir manta_tumor \\
         ${options_manta} \\
         $args
-
-    python manta/runWorkflow.py -m local -j ${task.cpus}
-
+    
+    python manta_tumor/runWorkflow.py -m local -j ${task.cpus}
+    
     mv manta_tumor/results/variants/candidateSmallIndels.vcf.gz \\
         ${prefix}.candidate_small_indels.vcf.gz
     mv manta_tumor/results/variants/candidateSmallIndels.vcf.gz.tbi \\
@@ -59,7 +59,7 @@ process MANTA {
         ${prefix}.tumor_sv.vcf.gz
     mv manta_tumor/results/variants/tumorSV.vcf.gz.tbi \\
         ${prefix}.tumor_sv.vcf.gz.tbi
-
+    
     configManta.py \\
         --tumorBam ${tumour_bam} \\
         --normalBam ${normal_bam} \\
@@ -68,14 +68,14 @@ process MANTA {
         --runDir manta_somatic \\
         ${options_manta} \\
         $args
-
-    python manta/runWorkflow.py -m local -j ${task.cpus}
-
+    
+    python manta_somatic/runWorkflow.py -m local -j ${task.cpus}
+    
     zgrep -v "#" manta_somatic/results/variants/candidateSmallIndels.vcf.gz \\
         >> ${prefix}.candidate_small_indels.vcf.gz
     mv manta_somatic/results/variants/candidateSmallIndels.vcf.gz.tbi \\
         ${prefix}.candidate_small_indels.vcf.gz.tbi
-    zgrep -v "#"  manta_somatic/results/variants/candidateSV.vcf.gz \\
+    zgrep -v "#" manta_somatic/results/variants/candidateSV.vcf.gz \\
         >> ${prefix}.candidate_sv.vcf.gz
     zgrep -v "#" ${prefix}.tumor_sv.vcf.gz \\
         >> ${prefix}.candidate_sv.vcf.gz
@@ -95,11 +95,10 @@ process MANTA {
         ${prefix}.svCandidateGenerationStats.tsv
     mv manta_somatic/results/stats/svLocusGraphStats.tsv \\
         ${prefix}.svLocusGraphStats.tsv
-
+    
     cp ${prefix}.candidate_sv.vcf.gz ${prefix}.manta.unfiltered.vcf.gz
-
     gunzip ${prefix}.manta.unfiltered.vcf.gz
-
+    
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         manta: \$( configManta.py --version )
