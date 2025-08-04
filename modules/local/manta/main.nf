@@ -41,23 +41,23 @@ process MANTA {
         --tumorBam ${tumour_bam} \\
         --reference ${fasta} \\
         ${config_option} \\
-        --runDir manta \\
+        --runDir manta_tumor \\
         ${options_manta} \\
         $args
 
     python manta/runWorkflow.py -m local -j ${task.cpus}
 
-    mv manta/results/variants/candidateSmallIndels.vcf.gz \\
+    mv manta_tumor/results/variants/candidateSmallIndels.vcf.gz \\
         ${prefix}.candidate_small_indels.vcf.gz
-    mv manta/results/variants/candidateSmallIndels.vcf.gz.tbi \\
+    mv manta_tumor/results/variants/candidateSmallIndels.vcf.gz.tbi \\
         ${prefix}.candidate_small_indels.vcf.gz.tbi
-    mv manta/results/variants/candidateSV.vcf.gz \\
+    mv manta_tumor/results/variants/candidateSV.vcf.gz \\
         ${prefix}.candidate_sv.vcf.gz
-    mv manta/results/variants/candidateSV.vcf.gz.tbi \\
+    mv manta_tumor/results/variants/candidateSV.vcf.gz.tbi \\
         ${prefix}.candidate_sv.vcf.gz.tbi
-    mv manta/results/variants/tumorSV.vcf.gz \\
+    mv manta_tumor/results/variants/tumorSV.vcf.gz \\
         ${prefix}.tumor_sv.vcf.gz
-    mv manta/results/variants/tumorSV.vcf.gz.tbi \\
+    mv manta_tumor/results/variants/tumorSV.vcf.gz.tbi \\
         ${prefix}.tumor_sv.vcf.gz.tbi
 
     configManta.py \\
@@ -65,35 +65,35 @@ process MANTA {
         --normalBam ${normal_bam} \\
         --reference ${fasta} \\
         ${config_option} \\
-        --runDir manta \\
+        --runDir manta_somatic \\
         ${options_manta} \\
         $args
 
     python manta/runWorkflow.py -m local -j ${task.cpus}
 
-    zgrep -v "#" manta/results/variants/candidateSmallIndels.vcf.gz \\
+    zgrep -v "#" manta_somatic/results/variants/candidateSmallIndels.vcf.gz \\
         >> ${prefix}.candidate_small_indels.vcf.gz
-    mv manta/results/variants/candidateSmallIndels.vcf.gz.tbi \\
+    mv manta_somatic/results/variants/candidateSmallIndels.vcf.gz.tbi \\
         ${prefix}.candidate_small_indels.vcf.gz.tbi
-    zgrep -v "#"  manta/results/variants/candidateSV.vcf.gz \\
+    zgrep -v "#"  manta_somatic/results/variants/candidateSV.vcf.gz \\
         >> ${prefix}.candidate_sv.vcf.gz
     zgrep -v "#" ${prefix}.tumor_sv.vcf.gz \\
         >> ${prefix}.candidate_sv.vcf.gz
-    mv manta/results/variants/candidateSV.vcf.gz.tbi \\
+    mv manta_somatic/results/variants/candidateSV.vcf.gz.tbi \\
         ${prefix}.candidate_sv.vcf.gz.tbi
-    mv manta/results/variants/diploidSV.vcf.gz \\
+    mv manta_somatic/results/variants/diploidSV.vcf.gz \\
         ${prefix}.diploid_sv.vcf.gz
-    mv manta/results/variants/diploidSV.vcf.gz.tbi \\
+    mv manta_somatic/results/variants/diploidSV.vcf.gz.tbi \\
         ${prefix}.diploid_sv.vcf.gz.tbi
-    mv manta/results/variants/somaticSV.vcf.gz \\
+    mv manta_somatic/results/variants/somaticSV.vcf.gz \\
         ${prefix}.somatic_sv.vcf.gz
-    mv manta/results/variants/somaticSV.vcf.gz.tbi \\
+    mv manta_somatic/results/variants/somaticSV.vcf.gz.tbi \\
         ${prefix}.somatic_sv.vcf.gz.tbi
-    mv manta/results/stats/alignmentStatsSummary.txt \\
+    mv manta_somatic/results/stats/alignmentStatsSummary.txt \\
         ${prefix}.alignmentStatsSummary.tsv
-    mv manta/results/stats/svCandidateGenerationStats.tsv \\
+    mv manta_somatic/results/stats/svCandidateGenerationStats.tsv \\
         ${prefix}.svCandidateGenerationStats.tsv
-    mv manta/results/stats/svLocusGraphStats.tsv \\
+    mv manta_somatic/results/stats/svLocusGraphStats.tsv \\
         ${prefix}.svLocusGraphStats.tsv
 
     cp ${prefix}.candidate_sv.vcf.gz ${prefix}.manta.unfiltered.vcf.gz
