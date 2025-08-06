@@ -36,6 +36,8 @@ process RECALL_SV {
     def VERSION = '2.13.2' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
     def bwa = bwa_index ? "cp -s ${bwa_index}/* ." : ""
     """
+    source activate gridss
+    
     samtools view -h -F 256 -o ${prefix}_N_filtered.bam ${normal_bam}
     samtools index ${prefix}_N_filtered.bam
 
