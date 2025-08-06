@@ -71,13 +71,13 @@ process MANTA {
     
     python manta_somatic/runWorkflow.py -m local -j ${task.cpus}
     
-    zgrep -v "#" manta_somatic/results/variants/candidateSmallIndels.vcf.gz \\
+    zcat manta_somatic/results/variants/candidateSmallIndels.vcf.gz | grep -v "#" \\
         >> ${prefix}.candidate_small_indels.vcf.gz
     mv manta_somatic/results/variants/candidateSmallIndels.vcf.gz.tbi \\
         ${prefix}.candidate_small_indels.vcf.gz.tbi
-    zgrep -v "#" manta_somatic/results/variants/candidateSV.vcf.gz \\
+    zcat manta_somatic/results/variants/candidateSV.vcf.gz | grep -v "#" \\
         >> ${prefix}.candidate_sv.vcf.gz
-    zgrep -v "#" ${prefix}.tumor_sv.vcf.gz \\
+    zcat ${prefix}.tumor_sv.vcf.gz | grep -v "#" \\
         >> ${prefix}.candidate_sv.vcf.gz
     mv manta_somatic/results/variants/candidateSV.vcf.gz.tbi \\
         ${prefix}.candidate_sv.vcf.gz.tbi
