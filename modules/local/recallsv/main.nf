@@ -24,8 +24,8 @@ process RECALL_SV {
     path(pon_dir)
 
     output:
-    tuple val(meta), path("*.unfiltered.vcf"),   emit: vcf
-    path "versions.yml"                      ,   emit: versions
+    tuple val(meta), path("*.recall.all_calls_avk.vcf"), emit: vcf
+    path "versions.yml"                                , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -142,7 +142,7 @@ process RECALL_SV {
     def prefix = task.ext.prefix ?: "${meta.patient}"
     def VERSION = '2.13.2' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
     """
-    touch ${prefix}.recall.unfiltered.vcf
+    touch ${prefix}.recall.all_calls_avk.vcf
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
