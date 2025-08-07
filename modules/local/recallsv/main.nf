@@ -119,20 +119,6 @@ process RECALL_SV {
         --kraken2db ${kraken2db} \\
         ${prefix}_all_calls.vcf
 
-    gridss_somatic_filter \\
-        -i ${prefix}.recall.all_calls_avk.vcf \\
-        --ref BSgenome.Hsapiens.UCSC.hg38 \\
-        -o ${prefix}_high_confidence_somatic.vcf.gz \\
-        -f ${prefix}_high_and_low_confidence_somatic.vcf.gz \\
-        -p ${pon_dir} \\
-        -n 1 \\
-        -t 2
-
-    mv ${prefix}_high_and_low_confidence_somatic.vcf.bgz ${prefix}_high_and_low_confidence_somatic.vcf.gz
-    gunzip ${prefix}_high_and_low_confidence_somatic.vcf.gz
-    grep "^#" ${prefix}_high_and_low_confidence_somatic.vcf >> ${prefix}_RECALL_SV_UNF.vcf
-    grep -v "^#" ${prefix}_high_and_low_confidence_somatic.vcf | grep "PASS" >> ${prefix}.recall.unfiltered.vcf
-
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         gridss: ${VERSION}
