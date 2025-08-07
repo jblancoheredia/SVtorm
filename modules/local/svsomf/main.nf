@@ -23,7 +23,6 @@ process SVSOMF {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.patient}"
-    def bam = "${tumour_bam}"
     """
     SVsomF \\
         --pondir ${pon_dir} \\
