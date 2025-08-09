@@ -4,8 +4,8 @@ process SVSOMF {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/svsomf:1.4.0':
-        'blancojmskcc/svsomf:1.4.0' }"
+        'docker://blancojmskcc/svsomf:1.5.0':
+        'blancojmskcc/svsomf:1.5.0' }"
 
     input:
     tuple val(meta) , path(vcf)
@@ -28,15 +28,13 @@ process SVSOMF {
         --pondir ${pon_dir} \\
         --ref ${fasta} \\
         --input ${vcf} \\
-        --output ${prefix}.recall.filtered.vcf \\
-        --fulloutput ${prefix}.recall.unfiltered.vcf \\
-        --plotdir . \\
+        --output ${prefix}.recall.unfiltered.vcf \\
         --normalordinal 1 \\
         --tumourordinal 2
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        svsomf: "1.4.0"
+        svsomf: "1.5.0"
     END_VERSIONS
     """
     stub:
@@ -46,7 +44,7 @@ process SVSOMF {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        drawsv: "6.0.6"
+        svsomf: "1.5.0"
     END_VERSIONS
     """
 }
