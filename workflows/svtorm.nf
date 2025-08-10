@@ -270,11 +270,19 @@ workflow SVTORM {
     ch_annotated_ann = IANNOTATESV.out.ann
 
     //
+    // Filter TSV files that contain at least one SV
+    //
+    ch_annotated_tsv_with_svs = ch_annotated_tsv
+        .filter { meta, tsv ->
+            tsv.readLines().size() > 1  // Assuming header + at least one SV row
+        }
+
+    //
     // Join annotated SVs with BAM pairs based on patient
     //
     ch_bam_pairs_by_patient = ch_bam_pairs.map {meta, bam_t, bai_t, bam_n, bai_n -> tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) }
     ch_drawsv_input = ch_bam_pairs_by_patient
-        .join(ch_annotated_tsv
+        .join(ch_annotated_tsv_with_svs
         .map {meta, tsv -> tuple(meta.patient, meta, tsv)}
         )
         .map { patient, meta_b, bam_t, bai_t, bam_n, bai_n, meta_t, tsv ->
