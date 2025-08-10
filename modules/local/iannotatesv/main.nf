@@ -11,6 +11,10 @@ process IANNOTATESV {
     tuple val(meta),  path(filtered_vcf), path(filtered_vcf_index), path(filtered_tsv), path(annote_input)
 
     output:
+    tuple val(meta), file("*_Annotated.txt")    , emit: txt
+    tuple val(meta), file("*_Annotated.json")   , emit: json
+    tuple val(meta), file("*_Annotated.xlsx")   , emit: xlsx
+    tuple val(meta), file("*_functional.txt")   , emit: ftxt
     tuple val(meta), file("*_SOMTIC_SV_OUT.tsv"), emit: tsv
     tuple val(meta), file("*_SOMTIC_SV_ANN.tsv"), emit: ann
     path "versions.yml"                         , emit: versions
@@ -74,6 +78,11 @@ process IANNOTATESV {
     def prefix = task.ext.prefix ?: "${meta.patient}"
     """
     touch ${prefix}_SOMTIC_SV_OUT.tsv
+    touch ${prefix}_SOMTIC_SV_ANN.tsv
+    touch ${prefix}_Annotated.txt
+    touch ${prefix}_Annotated.json
+    touch ${prefix}_Annotated.xlsx
+    touch ${prefix}_functional.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
