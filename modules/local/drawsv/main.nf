@@ -4,8 +4,8 @@ process DRAWSV {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/drawsv:6.0.6':
-        'blancojmskcc/drawsv:6.0.6' }"
+        'docker://blancojmskcc/svtorm_drawsv:6.0.6':
+        'blancojmskcc/svtorm_drawsv:6.0.6' }"
 
     input:
     tuple val(meta), 
@@ -29,7 +29,7 @@ process DRAWSV {
     def prefix = task.ext.prefix ?: "${meta.patient}"
     def bam = "${tumour_bam}"
     """
-    DrawSVs \\
+    DrawSV \\
         --SVs ${tsv} \\
         --alignments ${bam} \\
         --annotation ${gtf}   \\
