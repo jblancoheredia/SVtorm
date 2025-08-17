@@ -41,23 +41,23 @@ process MANTA {
         --tumorBam ${tumour_bam} \\
         --reference ${fasta} \\
         ${config_option} \\
-        --runDir manta_tumor \\
+        --runDir manta_tumour \\
         ${options_manta} \\
         $args
     
-    python manta_tumor/runWorkflow.py -m local -j ${task.cpus}
+    python manta_tumour/runWorkflow.py -m local -j ${task.cpus}
     
-    mv manta_tumor/results/variants/candidateSmallIndels.vcf.gz \\
+    mv manta_tumour/results/variants/candidateSmallIndels.vcf.gz \\
         ${prefix}.candidate_small_indels.vcf.gz
-    mv manta_tumor/results/variants/candidateSmallIndels.vcf.gz.tbi \\
+    mv manta_tumour/results/variants/candidateSmallIndels.vcf.gz.tbi \\
         ${prefix}.candidate_small_indels.vcf.gz.tbi
-    mv manta_tumor/results/variants/candidateSV.vcf.gz \\
+    mv manta_tumour/results/variants/candidateSV.vcf.gz \\
         ${prefix}.candidate_sv.vcf.gz
-    mv manta_tumor/results/variants/candidateSV.vcf.gz.tbi \\
+    mv manta_tumour/results/variants/candidateSV.vcf.gz.tbi \\
         ${prefix}.candidate_sv.vcf.gz.tbi
-    mv manta_tumor/results/variants/tumorSV.vcf.gz \\
+    mv manta_tumour/results/variants/tumorSV.vcf.gz \\
         ${prefix}.tumor_sv.vcf.gz
-    mv manta_tumor/results/variants/tumorSV.vcf.gz.tbi \\
+    mv manta_tumour/results/variants/tumorSV.vcf.gz.tbi \\
         ${prefix}.tumor_sv.vcf.gz.tbi
     
     configManta.py \\
