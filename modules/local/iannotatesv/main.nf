@@ -49,7 +49,7 @@ process IANNOTATESV {
     allow_pattern=\$(IFS=\"|\"; echo \"\${allow_list[*]}\")
 
     awk -v x_col=\"\$supp_col\" -v y_col=\"\$gene1col\" -v z_col=\"\$gene2col\" -v threshold=\"\$int_threshold\" -v pattern=\"\$allow_pattern\" '
-    {FS=\"\\\\t\"}{
+    {FS=\"\\t\"}{
       x_value = \$x_col;
       y_value = \$y_col;
       z_value = \$z_col;
