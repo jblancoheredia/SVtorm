@@ -39,8 +39,8 @@ process IANNOTATESV {
     output_file=\"${prefix}_SOMTIC_SV_OUT.tsv\"
 
     supp_col=17
-    gene1col=26
-    gene2col=30
+    gene1col=29
+    gene2col=32
 
     int_threshold=3
 
