@@ -40,7 +40,7 @@ process IANNOTATESV {
 
     supp_col=17
     gene1col=26
-    gene2col=29
+    gene2col=30
 
     int_threshold=3
 
