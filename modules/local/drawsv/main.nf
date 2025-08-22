@@ -29,6 +29,8 @@ process DRAWSV {
     def prefix = task.ext.prefix ?: "${meta.patient}"
     def bam = "${tumour_bam}"
     """
+    touch ${prefix}_DrawSVs.pdf
+    
     DrawSV \\
         --SVs ${tsv} \\
         --alignments ${bam} \\
