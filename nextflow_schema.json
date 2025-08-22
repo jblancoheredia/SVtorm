@@ -351,6 +351,13 @@
                     "fa_icon": "fas fa-ban",
                     "hidden": true
                 },
+                "allowlist_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "BED with the intervals of the allowlist of genes for SVs",
+                    "fa_icon": "fas fa-book",
+                    "help_text": "Default BED with the intervals of the allowlist of genes for SVs location in the current local machine"
+                },
                 "known_sites": {
                     "type": "string",
                     "format": "file-path",
