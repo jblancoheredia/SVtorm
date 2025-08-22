@@ -20,6 +20,7 @@ process SURVIVOR_FILTER {
     val(account_for_sv_strands)
     val(estimate_distanced_by_sv_size)
     val(min_sv_size)
+    path(allowlist_bed)
 
     output:
     tuple val(meta), path("*_SURVOR_SV_FIL.sort.vcf.gz"), path("*_SURVOR_SV_FIL.sort.vcf.gz.tbi"), path("*_SURVOR_SV_FIL.tsv"), path("*_ANNOTE_SV_INN.tsv"), emit: filtered_all
@@ -75,6 +76,8 @@ process SURVIVOR_FILTER {
       }
     }' ${prefix}_SURVOR_SV_TMP.vcf > ${prefix}_SURVOR_SV_UNF.vcf
 
+    bedtools intersect -a ${prefix}_SURVOR_SV_UNF.vcf -b ${allowlist_bed} -wa | grep -v \"#\" > ${prefix}_allowlist_svs.vcf || touch ${prefix}_allowlist_svs.vcf
+
     grep \"#\" ${prefix}_SURVOR_SV_UNF.vcf > ${prefix}_SURVOR_SV_FIL.vcf
 
     awk 'BEGIN {FS=OFS=\"\\t\"} \$8 ~ /CHR2=(1?[0-9]|2[0-2])([^0-9]|\$)/ {print}' ${prefix}_SURVOR_SV_UNF.vcf >> ${prefix}_SURVOR_SV_FIL.vcf || true
@@ -82,6 +85,10 @@ process SURVIVOR_FILTER {
     grep -v \"#\" ${prefix}_SURVOR_SV_UNF.vcf | grep \"CHR2=X\" >> ${prefix}_SURVOR_SV_FIL.vcf || true
 
     grep -v \"#\" ${prefix}_SURVOR_SV_UNF.vcf | grep \"CHR2=Y\" >> ${prefix}_SURVOR_SV_FIL.vcf || true
+
+    if [ -s ${prefix}_allowlist_svs.vcf ]; then
+        grep -v -f <(grep -v \"#\" ${prefix}_SURVOR_SV_FIL.vcf | cut -f1-8) ${prefix}_allowlist_svs.vcf >> ${prefix}_SURVOR_SV_FIL.vcf || true
+    fi
     
     SVRVOR2TSV \\
         --merged_vcf ${prefix}_SURVOR_SV_FIL.vcf \\
