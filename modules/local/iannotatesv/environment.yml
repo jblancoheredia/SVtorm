@@ -1,7 +1,9 @@
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json
+name: iannotatesv
 channels:
   - conda-forge
   - bioconda
 dependencies:
-  - "YOUR-TOOL-HERE"
+  - python=2.7
+  - pandas
+  - openpyxl
+  - xlsxwriter

@@ -1,69 +1,69 @@
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "iannotatesv"
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: Annotate structural variants using iAnnotateSV
 keywords:
-  - sort
-  - example
+  - annotation
+  - structural variants
   - genomics
 tools:
   - "iannotatesv":
-      ## TODO nf-core: Add a description and other details for the software below
-      description: ""
-      homepage: ""
-      documentation: ""
-      tool_dev_url: ""
-      doi: ""
-      licence: 
-      identifier: 
-
-## TODO nf-core: Add a description of all of the variables used as input
+      description: Tool for annotation and visualization of structural variants
+      homepage: https://github.com/rhshah/iAnnotateSV
+      documentation: https://github.com/rhshah/iAnnotateSV
+      tool_dev_url: https://github.com/rhshah/iAnnotateSV
+      licence: ["Apache License 2.0"]
 input:
-  # Only when we have meta
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing sample information
-          e.g. `[ id:'sample1', single_end:false ]`
-  
-  ## TODO nf-core: Delete / customise this example input
-    - bam:
-        type: file
-        description: Sorted BAM/CRAM/SAM file
-        pattern: "*.{bam,cram,sam}"
-        ontologies:
-          - edam: "http://edamontology.org/format_25722"
-          - edam: "http://edamontology.org/format_2573"
-          - edam: "http://edamontology.org/format_3462"
-          
-
-## TODO nf-core: Add a description of all of the variables used as output
+  - meta:
+      type: map
+      description: Groovy Map containing sample information
+  - filtered_vcf:
+      type: file
+      description: Filtered VCF file
+      pattern: "*.vcf"
+  - filtered_vcf_index:
+      type: file
+      description: Index file for the filtered VCF
+      pattern: "*.tbi"
+  - filtered_tsv:
+      type: file
+      description: Filtered TSV file
+      pattern: "*.tsv"
+  - annote_input:
+      type: file
+      description: Input file for annotation
 output:
-  - bam:
-  #Only when we have meta
-    - meta:
-        type: map
-        description: |
-          Groovy Map containing sample information
-          e.g. `[ id:'sample1', single_end:false ]`
-  ## TODO nf-core: Delete / customise this example output
-    - "*.bam":
-        type: file
-        description: Sorted BAM/CRAM/SAM file
-        pattern: "*.{bam,cram,sam}"
-        ontologies:
-          - edam: "http://edamontology.org/format_25722"
-          - edam: "http://edamontology.org/format_2573"
-          - edam: "http://edamontology.org/format_3462"
-          
+  - meta:
+      type: map
+      description: Groovy Map containing sample information
+  - txt:
+      type: file
+      description: Annotated text file
+      pattern: "*_Annotated.txt"
+  - json:
+      type: file
+      description: Annotated JSON file
+      pattern: "*_Annotated.json"
+  - xlsx:
+      type: file
+      description: Annotated Excel file
+      pattern: "*_Annotated.xlsx"
+  - ftxt:
+      type: file
+      description: Functional annotation text file
+      pattern: "*_functional.txt"
+  - tsv:
+      type: file
+      description: Somatic SV output TSV file
+      pattern: "*_SOMTIC_SV_OUT.tsv"
+  - ann:
+      type: file
+      description: Somatic SV annotation TSV file
+      pattern: "*_SOMTIC_SV_ANN.tsv"
   - versions:
-    - "versions.yml":
-        type: file
-        description: File containing software versions
-        pattern: "versions.yml"
-
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
 authors:
-  - "@jblancoheredia"
+  - "@rhshah"
 maintainers:
+  - "amoahk1@mskcc.org"
   - "@jblancoheredia"

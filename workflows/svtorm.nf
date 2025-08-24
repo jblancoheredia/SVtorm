@@ -264,7 +264,7 @@ workflow SVTORM {
     //
     // MODULE: Run iAnnotateSV 
     //
-    IANNOTATESV(ch_filtered_all)
+    IANNOTATESV(ch_filtered_all, params.genome)
     ch_versions = ch_versions.mix(IANNOTATESV.out.versions)
     ch_annotated_tsv = IANNOTATESV.out.tsv
     ch_annotated_ann = IANNOTATESV.out.ann
