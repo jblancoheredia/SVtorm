@@ -16,17 +16,10 @@ process MANTA {
     path(config)
 
     output:
-    tuple val(meta), path("*.candidate_small_indels.vcf.gz")     , emit: candidate_small_indels_vcf
-    tuple val(meta), path("*.candidate_small_indels.vcf.gz.tbi") , emit: candidate_small_indels_vcf_tbi
-    tuple val(meta), path("*.candidate_sv.vcf.gz")               , emit: candidate_sv_vcf
-    tuple val(meta), path("*.candidate_sv.vcf.gz.tbi")           , emit: candidate_sv_vcf_tbi
-    tuple val(meta), path("*.diploid_sv.vcf.gz")                 , emit: diploid_sv_vcf
-    tuple val(meta), path("*.diploid_sv.vcf.gz.tbi")             , emit: diploid_sv_vcf_tbi
-    tuple val(meta), path("*.somatic_sv.vcf.gz")                 , emit: somatic_sv_vcf
-    tuple val(meta), path("*.somatic_sv.vcf.gz.tbi")             , emit: somatic_sv_vcf_tbi
-    tuple val(meta), path("*.manta.unfiltered.vcf")              , emit: vcf
-    tuple val(meta), path("*.tsv")                               , emit: metrics
-    path "versions.yml"                                          , emit: versions
+    tuple val(meta), path("*.tsv",  optional: true), emit: metrics_tsv
+    tuple val(meta), path("*.txt",  optional: true), emit: metrics_txt
+    tuple val(meta), path("*.manta.unfiltered.vcf"), emit: vcf
+    path "versions.yml"                            , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -34,69 +27,35 @@ process MANTA {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.patient}"
-    def options_manta = target_bed ? "--callRegions $target_bed" : ""
+    def options_manta = target_bed ? "--callRegions ${target_bed}" : ""
     def config_option = config ? "--config ${config}" : ""
     """
     configManta.py \\
         --tumorBam ${tumour_bam} \\
         --reference ${fasta} \\
-        ${config_option} \\
         --runDir manta_tumour \\
-        ${options_manta} \\
-        $args
-    
+        ${options_manta}    
     python manta_tumour/runWorkflow.py -m local -j ${task.cpus}
-    
-    mv manta_tumour/results/variants/candidateSmallIndels.vcf.gz \\
-        ${prefix}.candidate_small_indels.vcf.gz
-    mv manta_tumour/results/variants/candidateSmallIndels.vcf.gz.tbi \\
-        ${prefix}.candidate_small_indels.vcf.gz.tbi
-    mv manta_tumour/results/variants/candidateSV.vcf.gz \\
-        ${prefix}.candidate_sv.vcf.gz
-    mv manta_tumour/results/variants/candidateSV.vcf.gz.tbi \\
-        ${prefix}.candidate_sv.vcf.gz.tbi
-    mv manta_tumour/results/variants/tumorSV.vcf.gz \\
-        ${prefix}.tumor_sv.vcf.gz
-    mv manta_tumour/results/variants/tumorSV.vcf.gz.tbi \\
-        ${prefix}.tumor_sv.vcf.gz.tbi
+
+    mv manta_tumour/results/stats/svCandidateGenerationStats.tsv ${prefix}.manta_tumour.svCandidateGenerationStats.tsv
+    mv manta_tumour/results/stats/alignmentStatsSummary.txt ${prefix}.manta_tumour.alignmentStatsSummary.txt
+    mv manta_tumour/results/stats/svLocusGraphStats.tsv ${prefix}.manta_tumour.svLocusGraphStats.tsv
+    mv manta_tumour/results/variants/candidateSV.vcf.gz.tbi ${prefix}.manta.unfiltered.vcf.gz.tbi
+    mv manta_tumour/results/variants/candidateSV.vcf.gz ${prefix}.manta.unfiltered.vcf.gz
     
     configManta.py \\
         --tumorBam ${tumour_bam} \\
         --normalBam ${normal_bam} \\
         --reference ${fasta} \\
-        ${config_option} \\
         --runDir manta_somatic \\
-        ${options_manta} \\
-        $args
-    
+        ${options_manta}
     python manta_somatic/runWorkflow.py -m local -j ${task.cpus}
     
-    zcat manta_somatic/results/variants/candidateSmallIndels.vcf.gz | grep -v "#" \\
-        >> ${prefix}.candidate_small_indels.vcf.gz
-    mv manta_somatic/results/variants/candidateSmallIndels.vcf.gz.tbi \\
-        ${prefix}.candidate_small_indels.vcf.gz.tbi
     zcat manta_somatic/results/variants/candidateSV.vcf.gz | grep -v "#" \\
-        >> ${prefix}.candidate_sv.vcf.gz
+        >> ${prefix}.manta.unfiltered.vcf.gz
     zcat ${prefix}.tumor_sv.vcf.gz | grep -v "#" \\
-        >> ${prefix}.candidate_sv.vcf.gz
-    mv manta_somatic/results/variants/candidateSV.vcf.gz.tbi \\
-        ${prefix}.candidate_sv.vcf.gz.tbi
-    mv manta_somatic/results/variants/diploidSV.vcf.gz \\
-        ${prefix}.diploid_sv.vcf.gz
-    mv manta_somatic/results/variants/diploidSV.vcf.gz.tbi \\
-        ${prefix}.diploid_sv.vcf.gz.tbi
-    mv manta_somatic/results/variants/somaticSV.vcf.gz \\
-        ${prefix}.somatic_sv.vcf.gz
-    mv manta_somatic/results/variants/somaticSV.vcf.gz.tbi \\
-        ${prefix}.somatic_sv.vcf.gz.tbi
-    mv manta_somatic/results/stats/alignmentStatsSummary.txt \\
-        ${prefix}.alignmentStatsSummary.tsv
-    mv manta_somatic/results/stats/svCandidateGenerationStats.tsv \\
-        ${prefix}.svCandidateGenerationStats.tsv
-    mv manta_somatic/results/stats/svLocusGraphStats.tsv \\
-        ${prefix}.svLocusGraphStats.tsv
+        >> ${prefix}.manta.unfiltered.vcf.gz
     
-    cp ${prefix}.candidate_sv.vcf.gz ${prefix}.manta.unfiltered.vcf.gz
     gunzip ${prefix}.manta.unfiltered.vcf.gz
     
     cat <<-END_VERSIONS > versions.yml
@@ -107,14 +66,7 @@ process MANTA {
     stub:
     def prefix = task.ext.prefix ?: "${meta.patient}"
     """
-    echo "" | gzip > ${prefix}.candidate_small_indels.vcf.gz
-    touch ${prefix}.candidate_small_indels.vcf.gz.tbi
-    echo "" | gzip > ${prefix}.candidate_sv.vcf.gz
-    touch ${prefix}.candidate_sv.vcf.gz.tbi
-    echo "" | gzip > ${prefix}.diploid_sv.vcf.gz
-    touch ${prefix}.diploid_sv.vcf.gz.tbi
-    echo "" | gzip > ${prefix}.somatic_sv.vcf.gz
-    touch ${prefix}.somatic_sv.vcf.gz.tbi
+    touch ${prefix}.manta.unfiltered.vcf
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
