@@ -34,7 +34,7 @@ process DELLY {
     normal_name=\$(samtools view -H ${normal_bam} | grep '^@RG' | sed -n 's/.*SM:\\([^[:space:]]*\\).*/\\1/p' | head -n1)
     tumour_name=\$(samtools view -H ${tumour_bam} | grep '^@RG' | sed -n 's/.*SM:\\([^[:space:]]*\\).*/\\1/p' | head -n1)
 
-    echo -e "\${tumour_name}\\ttumor\\n\${normal_name}\\tcontrol" > sample_file.tsv
+    echo -e "\${tumour_name}\\ttumor\\n\"\${normal_name}\"\\tcontrol" > sample_file.tsv
 
     delly \\
         call \\
