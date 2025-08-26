@@ -41,20 +41,20 @@ process GRIDSS {
 
     gridss_extract_overlapping_fragments \\
         --targetbed ${bed} \\
-        -t ${task.cpus} \\
+        -t 8 \\
         -o ${prefix}_GRIDSS-N.bam \\
         ${prefix}_N_filtered.bam
 
     gridss_extract_overlapping_fragments \\
         --targetbed ${bed} \\
-        -t ${task.cpus} \\
+        -t 8 \\
         -o ${prefix}_GRIDSS-T.bam \\
         ${prefix}_T_filtered.bam
 
     gridss \\
         --output ${prefix}.vcf.gz \\
         --reference ${fasta} \\
-        --threads ${task.cpus} \\
+        --threads 8 \\
         --jvmheap ${task.memory.toGiga() - 1}g \\
         --otherjvmheap ${task.memory.toGiga() - 1}g \\
         --maxcoverage 100000 \\
@@ -64,7 +64,7 @@ process GRIDSS {
         ${prefix}_GRIDSS-T.bam
 
     gridss_annotate_vcf_kraken2 \\
-        -t ${task.cpus} \\
+        -t 8 \\
         -o ${prefix}_AVK.vcf \\
         --kraken2db ${kraken2db} \\
         ${prefix}.vcf.gz
