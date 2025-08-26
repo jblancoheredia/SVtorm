@@ -152,8 +152,6 @@ workflow SVTORM {
     MANTA(ch_bam_pairs, ch_targets_bed, ch_targets_bed_tbi, ch_fasta, ch_fai, [])
     ch_versions = ch_versions.mix(MANTA.out.versions)
     ch_manta_vcf = MANTA.out.vcf
-    ch_manta_candidate_small_indels_vcf = MANTA.out.candidate_small_indels_vcf
-    ch_manta_candidate_small_indels_vcf_tbi = MANTA.out.candidate_small_indels_vcf_tbi
     ch_manta_vcf = ch_manta_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
 
     //
