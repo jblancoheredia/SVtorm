@@ -4,8 +4,8 @@ process DRAWSV {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/svtorm_drawsv:6.0.6':
-        'blancojmskcc/svtorm_drawsv:6.0.6' }"
+        'docker://blancojmskcc/svtorm_drawsv:6.2.0':
+        'blancojmskcc/svtorm_drawsv:6.2.0' }"
 
     input:
     tuple val(meta), 
@@ -29,7 +29,7 @@ process DRAWSV {
     def prefix = task.ext.prefix ?: "${meta.patient}"
     def bam = "${tumour_bam}"
     """
-    touch ${prefix}_DrawSVs.pdf
+    touch ${prefix}_DrawSV.pdf
     
     DrawSV \\
         --SVs ${tsv} \\
@@ -37,22 +37,22 @@ process DRAWSV {
         --annotation ${gtf}   \\
         --cytobands ${cytobands} \\
         --chromosomes ${chromosomes} \\
-        --output ${prefix}_DrawSVs.pdf \\
+        --output ${prefix}_DrawSV.pdf \\
         --proteinDomains=${protein_domains}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        drawsv: "6.0.6"
+        drawsv: "6.2.0"
     END_VERSIONS
     """
     stub:
     def prefix = task.ext.prefix ?: "${meta.patient}"
     """
-    touch ${prefix}_DrawSVs.pdf
+    touch ${prefix}_DrawSV.pdf
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        drawsv: "6.0.6"
+        drawsv: "6.2.0"
     END_VERSIONS
     """
 }
