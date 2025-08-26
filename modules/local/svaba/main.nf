@@ -28,6 +28,8 @@ process SVABA {
     def prefix    = task.ext.prefix ?: "${meta.patient}"
     def bwa_index = bwa ? "cp -s ${bwa}/* ."         : ""
     """
+    rm ${fasta} ${fai}
+    
     ${bwa_index}
 
     svaba run \\
