@@ -1,0 +1,130 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "recall_sv"
+description: Detect structural variants using GRIDSS with tumor/normal paired samples
+keywords:
+  - structural variants
+  - somatic
+  - tumor
+  - normal
+  - gridss
+  - vcf
+tools:
+  - "gridss":
+      description: "GRIDSS is a module software suite containing tools useful for the detection of genomic rearrangements"
+      homepage: "https://github.com/PapenfussLab/gridss"
+      documentation: "https://github.com/PapenfussLab/gridss/wiki"
+      tool_dev_url: "https://github.com/PapenfussLab/gridss"
+      doi: "10.1186/s13059-021-02423-x"
+      licence: "['GPL v3']"
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', patient:'patient1' ]`
+  - meta0:
+      type: map
+      description: |
+        Groovy Map containing tumor BAM metadata
+  - tumour_bam:
+      type: file
+      description: Tumor BAM file
+      pattern: "*.bam"
+  - tumour_bai:
+      type: file
+      description: Tumor BAM index file
+      pattern: "*.bai"
+  - meta1:
+      type: map
+      description: |
+        Groovy Map containing normal BAM metadata
+  - normal_bam:
+      type: file
+      description: Normal BAM file
+      pattern: "*.bam"
+  - normal_bai:
+      type: file
+      description: Normal BAM index file
+      pattern: "*.bai"
+  - meta2:
+      type: map
+      description: |
+        Groovy Map containing interval list metadata
+  - interval_list:
+      type: file
+      description: Interval list file for targeted regions
+      pattern: "*.interval_list"
+  - meta3:
+      type: map
+      description: |
+        Groovy Map containing reference FASTA metadata
+  - fasta:
+      type: file
+      description: Reference genome FASTA file
+      pattern: "*.{fa,fasta}"
+  - meta4:
+      type: map
+      description: |
+        Groovy Map containing reference FASTA index metadata
+  - fasta_fai:
+      type: file
+      description: Reference genome FASTA index file
+      pattern: "*.fai"
+  - meta5:
+      type: map
+      description: |
+        Groovy Map containing known sites metadata
+  - known_sites:
+      type: file
+      description: Known sites VCF file (e.g., dbSNP)
+      pattern: "*.vcf.gz"
+  - meta6:
+      type: map
+      description: |
+        Groovy Map containing known sites index metadata
+  - known_sites_tbi:
+      type: file
+      description: Known sites VCF index file
+      pattern: "*.tbi"
+  - refflat:
+      type: file
+      description: RefFlat gene annotation file
+      pattern: "*.refFlat"
+  - bed:
+      type: file
+      description: BED file defining target regions
+      pattern: "*.bed"
+  - blocklist:
+      type: file
+      description: Blocklist file for filtering problematic regions
+      pattern: "*.bed"
+  - bwa_index:
+      type: directory
+      description: BWA index directory (optional)
+  - kraken2db:
+      type: directory
+      description: Kraken2 database directory for annotation
+  - pon_dir:
+      type: directory
+      description: Panel of normals directory
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', patient:'patient1' ]`
+  - vcf:
+      type: file
+      description: Annotated VCF file containing structural variant calls
+      pattern: "*.recall.all_calls_avk.vcf"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@jblancoheredia"
+maintainers:
+  - "@jblancoheredia"
