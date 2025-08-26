@@ -24,13 +24,16 @@ process SVABA {
     task.ext.when == null || task.ext.when
 
     script:
-    def args   = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.patient}"
+    def args      = task.ext.args ?: ''
+    def prefix    = task.ext.prefix ?: "${meta.patient}"
+    def bwa_index = bwa ? "cp -s ${bwa}/* ."         : ""
     """
+    ${bwa_index}
+
     svaba run \\
         -t ${tumour_bam} \\
         -n ${normal_bam} \\
-        -G bwamem2/${fasta} \\
+        --reference-genome ${fasta} \\
         -a ${prefix} \\
         -D ${dbsnp} \\
         -k ${bed} \\
