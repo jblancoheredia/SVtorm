@@ -50,10 +50,10 @@ process MANTA {
         ${options_manta}
     python manta_somatic/runWorkflow.py -m local -j ${task.cpus}
     
-    zcat manta_somatic/results/variants/candidateSV.vcf.gz | grep -v "#" \\
-        >> ${prefix}.manta.unfiltered.vcf
-    zcat ${prefix}.tumor_sv.vcf.gz | grep -v "#" \\
-        >> ${prefix}.manta.unfiltered.vcf
+    zcat manta_somatic/results/variants/candidateSV.vcf.gz | grep -v "#" >> ${prefix}.manta.unfiltered.vcf || true
+    zcat manta_somatic/results/variants/diploidSV.vcf.gz  | grep -v "#" >> ${prefix}.manta.unfiltered.vcf || true
+    zcat manta_somatic/results/variants/somaticSV.vcf.gz | grep -v "#" >> ${prefix}.manta.unfiltered.vcf || true
+    zcat manta_tumour/results/variants/tumorSV.vcf.gz   | grep -v "#" >> ${prefix}.manta.unfiltered.vcf || true
        
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
