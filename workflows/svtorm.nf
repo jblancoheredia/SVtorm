@@ -28,7 +28,7 @@ include { SURVIVOR_MERGE                                                        
 include { SURVIVOR_STATS                                                                } from '../modules/local/survivor/stats/main'
 include { SURVIVOR_FILTER                                                               } from '../modules/local/survivor/filter/main'
 include { SERACARE_CHECKUP                                                              } from '../modules/local/seracare/checkup/main'
-include { GATK4_BEDTOINTERVALLIST                                                       } from '../modules/nf-core/gatk4/bedtointervallist/main'
+include { GATK4_BEDTOINTERVALLIST                                                       } from '../modules/local/gatk4/bedtointervallist/main'
 include { PICARD_COLLECTMULTIPLEMETRICS                                                 } from '../modules/nf-core/picard/collectmultiplemetrics/main'
 
 /*
