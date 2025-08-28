@@ -34,9 +34,10 @@ process IANNOTATESV {
     iAnnotateSV \\
         -i ${annote_input} \\
         -ofp ${prefix} \\
-        -r  ${ref} \\
-        -d 3000 \\
-        -o . \\
+        -r  ${ref}  \\
+        -d  3000 \\
+        -o .  \\
+        -v \\
         ${args}
 
     paste ${filtered_tsv} ${prefix}_Annotated.txt > ${prefix}_SOMTIC_SV_ANN.tsv
