@@ -29,6 +29,8 @@ process IANNOTATESV {
     def ref = (refVersion == "GRCh37" || refVersion == "HG19VS") ? "hg19" : 
               (refVersion == "GRCh38") ? "hg38" : "" 
     """
+    sed -i 's/ /\\t/g' ${annote_input}
+
     iAnnotateSV \\
         -i ${annote_input} \\
         -ofp ${prefix} \\
