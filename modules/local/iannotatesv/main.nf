@@ -30,6 +30,10 @@ process IANNOTATESV {
               (refVersion == "GRCh38") ? "hg38" : "" 
     """
 
+    sed -i 's/ /\\t/g' ${annote_input}
+
+    tr ' ' '\\t' < ${annote_input} > temp.tsv && mv temp.tsv ${annote_input}
+    
     iAnnotateSV \\
         -i ${annote_input} \\
         -ofp ${prefix} \\
