@@ -226,28 +226,29 @@ workflow SVTORM {
     ch_recall_vcf = ch_recall_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
 
     //
-    // Combine the vcf by patient
+    // Combine the vcf by meta key patient
     //
-    ch_vcfs_merged = ch_delly_vcf
-        .join(ch_gridss_vcf)
-        .join(ch_manta_vcf)
-        .join(ch_recall_vcf)
-        .join(ch_svaba_vcf)
+    ch_survivor_filter_input = ch_delly_vcf
+        .map { meta, vcf -> [meta.patient, meta, vcf] }
+        .join(ch_gridss_vcf.map { meta, vcf -> [meta.patient, meta, vcf] })
+        .join(ch_manta_vcf.map  { meta, vcf -> [meta.patient, meta, vcf] })
+        .join(ch_recall_vcf.map { meta, vcf -> [meta.patient, meta, vcf] })
+        .join(ch_svaba_vcf.map  { meta, vcf -> [meta.patient, meta, vcf] })
         .map { patient, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_recall, recall_vcf, meta_svaba, svaba_vcf ->
             tuple(
-                meta_delly, 
-                meta_delly , delly_vcf,
-                meta_gridss, gridss_vcf,
-                meta_manta , manta_vcf,
-                meta_recall, recall_vcf,
-                meta_svaba , svaba_vcf
+                meta_delly,                 //
+                meta_delly,     delly_vcf,  //
+                meta_gridss,    gridss_vcf, //
+                meta_manta,     manta_vcf,  //
+                meta_recall,    recall_vcf, //
+                meta_svaba,     svaba_vcf
             )
         }
 
     //
     // MODULE: Run Survivor to filter Unfiltered VCFs
     //
-    SURVIVOR_FILTER(ch_vcfs_merged, 1000, 3, 0, 0, 0, 1000, params.allowlist_bed)
+    SURVIVOR_FILTER(ch_survivor_filter_input, 10000, 3, 0, 0, 0, 500, params.allowlist_bed)
     ch_versions = ch_versions.mix(SURVIVOR_FILTER.out.versions)
     ch_filtered_all = SURVIVOR_FILTER.out.filtered_all
     ch_filtered_vcf = SURVIVOR_FILTER.out.filtered_vcf
@@ -304,7 +305,7 @@ workflow SVTORM {
     //
     ch_seracare_sample = ch_annotated_tsv
         .filter { meta, file -> 
-            meta.id.contains("SeraCare") 
+            meta.id.contains("SeraCare") || meta.id.contains("SRCR")
         }
 
     //
