@@ -169,9 +169,13 @@ workflow SVTORM {
         .join(ch_gridss_vcf)
         .join(ch_manta_vcf)
         .join(ch_svaba_vcf)
-        .map { patient, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_svaba, svaba_vcf ->
+        .map { patient, delly, gridss, manta, svaba ->
+            def meta_delly   = delly[0];  def delly_vcf   = delly[1]
+            def meta_gridss  = gridss[0]; def gridss_vcf  = gridss[1]
+            def meta_manta   = manta[0];  def manta_vcf   = manta[1]
+            def meta_svaba   = svaba[0];  def svaba_vcf   = svaba[1]
             tuple(
-                meta_delly, 
+                meta_delly,
                 meta_delly,  delly_vcf,
                 meta_gridss, gridss_vcf,
                 meta_manta,  manta_vcf,
@@ -201,11 +205,16 @@ workflow SVTORM {
     ch_bam_pairs_by_patient = ch_bam_pairs.map {meta, bam_t, bai_t, bam_n, bai_n -> tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) }
     ch_recall_input = ch_bam_pairs_by_patient
         .join(ch_merged_int_list)
-        .map { patient, meta_b, bam_t, bai_t, bam_n, bai_n, meta_i, interval_list ->
+        .map { patient, pair, ivals ->
+            def meta_b = pair[0]
+            def bam_t  = pair[1]; def bai_t = pair[2]
+            def bam_n  = pair[3]; def bai_n = pair[4]
+            def meta_i = ivals[0]
+            def interval_list = ivals[1]
             tuple(
-                meta_b, 
-                meta_b, bam_t, bai_t, 
-                meta_b, bam_n, bai_n, 
+                meta_b,
+                meta_b, bam_t, bai_t,
+                meta_b, bam_n, bai_n,
                 meta_i, interval_list
             )
         }
@@ -231,17 +240,21 @@ workflow SVTORM {
     ch_survivor_filter_input = ch_delly_vcf
         .map { meta, vcf -> [meta.patient, meta, vcf] }
         .join(ch_gridss_vcf.map { meta, vcf -> [meta.patient, meta, vcf] })
-        .join(ch_manta_vcf.map  { meta, vcf -> [meta.patient, meta, vcf] })
+        .join(ch_manta_vcf .map { meta, vcf -> [meta.patient, meta, vcf] })
         .join(ch_recall_vcf.map { meta, vcf -> [meta.patient, meta, vcf] })
-        .join(ch_svaba_vcf.map  { meta, vcf -> [meta.patient, meta, vcf] })
-        .map { patient, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_recall, recall_vcf, meta_svaba, svaba_vcf ->
+        .join(ch_svaba_vcf .map { meta, vcf -> [meta.patient, meta, vcf] })
+        .map { patient, delly, gridss, manta, recall, svaba ->
+            def meta_delly   = delly[0];   def delly_vcf   = delly[1]
+            def meta_gridss  = gridss[0];  def gridss_vcf  = gridss[1]
+            def meta_manta   = manta[0];   def manta_vcf   = manta[1]
+            def meta_recall  = recall[0];  def recall_vcf  = recall[1]
+            def meta_svaba   = svaba[0];   def svaba_vcf   = svaba[1]
             tuple(
-                meta_delly,
-                meta_delly,     delly_vcf,
-                meta_gridss,    gridss_vcf,
-                meta_manta,     manta_vcf,
-                meta_recall,    recall_vcf,
-                meta_svaba,     svaba_vcf
+                meta_delly,    meta_delly,  delly_vcf,
+                meta_gridss,   gridss_vcf,
+                meta_manta,    manta_vcf,
+                meta_recall,   recall_vcf,
+                meta_svaba,    svaba_vcf
             )
         }
 
@@ -279,16 +292,17 @@ workflow SVTORM {
     //
     // Join annotated SVs with BAM pairs based on patient
     //
-    ch_bam_pairs_by_patient = ch_bam_pairs.map {meta, bam_t, bai_t, bam_n, bai_n -> tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) }
     ch_drawsv_input = ch_bam_pairs_by_patient
-        .join(ch_annotated_tsv_with_svs
-        .map {meta, tsv -> tuple(meta.patient, meta, tsv)}
-        )
-        .map { patient, meta_b, bam_t, bai_t, bam_n, bai_n, meta_t, tsv ->
+        .join(ch_annotated_tsv_with_svs.map { meta, tsv -> tuple(meta.patient, meta, tsv) })
+        .map { patient, pair, ann ->
+            def meta_b = pair[0]
+            def bam_t  = pair[1]; def bai_t = pair[2]
+            def bam_n  = pair[3]; def bai_n = pair[4]
+            def meta_t = ann[0];  def tsv   = ann[1]
             tuple(
-                meta_b, 
-                meta_b, bam_t, bai_t, 
-                meta_b, bam_n, bai_n, 
+                meta_b,
+                meta_b, bam_t, bai_t,
+                meta_b, bam_n, bai_n,
                 meta_t, tsv
             )
         }
