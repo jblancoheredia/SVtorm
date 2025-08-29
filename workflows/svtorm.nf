@@ -236,11 +236,11 @@ workflow SVTORM {
         .join(ch_svaba_vcf.map  { meta, vcf -> [meta.patient, meta, vcf] })
         .map { patient, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_recall, recall_vcf, meta_svaba, svaba_vcf ->
             tuple(
-                meta_delly,                 //
-                meta_delly,     delly_vcf,  //
-                meta_gridss,    gridss_vcf, //
-                meta_manta,     manta_vcf,  //
-                meta_recall,    recall_vcf, //
+                meta_delly,
+                meta_delly,     delly_vcf,
+                meta_gridss,    gridss_vcf,
+                meta_manta,     manta_vcf,
+                meta_recall,    recall_vcf,
                 meta_svaba,     svaba_vcf
             )
         }
