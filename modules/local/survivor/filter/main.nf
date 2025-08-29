@@ -4,8 +4,8 @@ process SURVIVOR_FILTER {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/survivor_filter_svtorm:6.3':
-        'blancojmskcc/survivor_filter_svtorm:6.3' }"
+        'docker://blancojmskcc/survivor_filter_svtorm:2.0':
+        'blancojmskcc/survivor_filter_svtorm:2.0' }"
 
     input:
     tuple val(meta), 
@@ -114,9 +114,9 @@ process SURVIVOR_FILTER {
     stub:
     def prefix = task.ext.prefix ?: "${meta.patient}"
     """
+    touch ${prefix}_ANNOTE_SV_INN.tsv
     touch ${prefix}_SURVOR_SV_FIL.vcf.gz
     touch ${prefix}_SURVOR_SV_FIL.vcf.gz.tbi
-    touch ${prefix}_ANNOTE_SV_INN.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
