@@ -182,7 +182,7 @@ workflow SVTORM {
     //
     // MODULE: Run Survivor to merge Unfiltered VCFs
     //
-    SURVIVOR_MERGE(ch_vcf_merged, params.chromosomes, 1000, 2, 0, 0, 0, 1000)
+    SURVIVOR_MERGE(ch_vcf_merged, params.chromosomes, 1000, 2, 0, 0, 0, 250)
     ch_versions = ch_versions.mix(SURVIVOR_MERGE.out.versions)
     ch_merged_bed = SURVIVOR_MERGE.out.bed
     ch_merged_vcf = SURVIVOR_MERGE.out.vcf
@@ -247,7 +247,7 @@ workflow SVTORM {
     //
     // MODULE: Run Survivor to filter Unfiltered VCFs
     //
-    SURVIVOR_FILTER(ch_survivor_filter_input, 1000, 2, 1, 1, 0, 50, params.allowlist_bed)
+    SURVIVOR_FILTER(ch_survivor_filter_input, 1000, 3, 1, 1, 0, 50, params.allowlist_bed)
     ch_versions = ch_versions.mix(SURVIVOR_FILTER.out.versions)
     ch_filtered_all = SURVIVOR_FILTER.out.filtered_all
     ch_filtered_vcf = SURVIVOR_FILTER.out.filtered_vcf
