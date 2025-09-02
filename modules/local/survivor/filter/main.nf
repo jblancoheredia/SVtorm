@@ -115,6 +115,7 @@ process SURVIVOR_FILTER {
     def prefix = task.ext.prefix ?: "${meta.patient}"
     """
     touch ${prefix}_ANNOTE_SV_INN.tsv
+    touch ${prefix}_SURVOR_SV_FIL.tsv
     touch ${prefix}_SURVOR_SV_FIL.vcf.gz
     touch ${prefix}_SURVOR_SV_FIL.vcf.gz.tbi
 
