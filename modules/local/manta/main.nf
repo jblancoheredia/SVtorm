@@ -64,6 +64,8 @@ process MANTA {
     def prefix = task.ext.prefix ?: "${meta.patient}"
     """
     touch ${prefix}.manta.unfiltered.vcf
+    touch ${prefix}.manta_tumour.svLocusGraphStats.tsv
+    touch ${prefix}.manta_tumour.alignmentStatsSummary.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
