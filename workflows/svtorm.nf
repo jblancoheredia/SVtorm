@@ -247,7 +247,7 @@ workflow SVTORM {
     //
     // MODULE: Run Survivor to filter Unfiltered VCFs
     //
-    SURVIVOR_FILTER(ch_survivor_filter_input, 1000, 4, 1, 1, 0, 250, params.allowlist_bed)
+    SURVIVOR_FILTER(ch_survivor_filter_input, 1000, 3, 1, 1, 0, 250, params.allowlist_bed)
     ch_versions = ch_versions.mix(SURVIVOR_FILTER.out.versions)
     ch_filtered_all = SURVIVOR_FILTER.out.filtered_all
     ch_filtered_vcf = SURVIVOR_FILTER.out.filtered_vcf
