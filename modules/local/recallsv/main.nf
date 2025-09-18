@@ -49,6 +49,8 @@ process RECALL_SV {
 
     ${bwa}
 
+    grep -v "@" ${interval_list} > ${prefix}.interval_list.bed
+
     mkdir ${prefix}-N.bam.gridss.working
 
     CollectGridssMetrics \\
@@ -69,7 +71,7 @@ process RECALL_SV {
         DB_SNP=${known_sites}
 
     gridss_extract_overlapping_fragments \\
-        --targetbed ${bed} \\
+        --targetbed ${prefix}.interval_list.bed \\
         -t ${task_cpus} \\
         -o ${prefix}-N.bam \\
         ${prefix}_N_filtered.bam
@@ -95,7 +97,7 @@ process RECALL_SV {
         DB_SNP=${known_sites}
 
     gridss_extract_overlapping_fragments \\
-        --targetbed ${bed} \\
+        --targetbed ${prefix}.interval_list.bed \\
         -t ${task_cpus} \\
         -o ${prefix}-T.bam \\
         ${prefix}_T_filtered.bam
