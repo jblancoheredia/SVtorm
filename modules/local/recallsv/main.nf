@@ -32,17 +32,18 @@ process RECALL_SV {
 
     script:
     def args = task.ext.args ?: ''
+    def task_cpus = task.cpus <= 8 ? task.cpus : 8
     def prefix = task.ext.prefix ?: "${meta.patient}"
     def VERSION = '2.13.2' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
     def bwa = bwa_index ? "cp -s ${bwa_index}/* ." : ""
     """
     source activate gridss
 
-    samtools view -@ ${task.cpus} -h -F 256 -o ${prefix}_N_filtered.bam ${normal_bam}
-    samtools index -@ ${task.cpus} ${prefix}_N_filtered.bam
+    samtools view -@ ${task_cpus} -h -F 256 -o ${prefix}_N_filtered.bam ${normal_bam}
+    samtools index -@ ${task_cpus} ${prefix}_N_filtered.bam
 
-    samtools view -@ ${task.cpus} -h -F 256 -o ${prefix}_T_filtered.bam ${tumour_bam}
-    samtools index -@ ${task.cpus} ${prefix}_T_filtered.bam
+    samtools view -@ ${task_cpus} -h -F 256 -o ${prefix}_T_filtered.bam ${tumour_bam}
+    samtools index -@ ${task_cpus} ${prefix}_T_filtered.bam
 
     rm ${fasta} ${fasta_fai}
 
@@ -52,7 +53,6 @@ process RECALL_SV {
 
     CollectGridssMetrics \\
         INPUT=${prefix}_N_filtered.bam \\
-        PROGRAM=RnaSeqMetrics \\
         THRESHOLD_COVERAGE=100000 \\
         PROGRAM=MeanQualityByCycle \\
         PROGRAM=CollectGcBiasMetrics \\
@@ -70,7 +70,7 @@ process RECALL_SV {
 
     gridss_extract_overlapping_fragments \\
         --targetbed ${bed} \\
-        -t ${task.cpus} \\
+        -t ${task_cpus} \\
         -o ${prefix}-N.bam \\
         ${prefix}_N_filtered.bam
 
@@ -78,7 +78,6 @@ process RECALL_SV {
 
     CollectGridssMetrics \\
         INPUT=${prefix}_T_filtered.bam \\
-        PROGRAM=RnaSeqMetrics \\
         THRESHOLD_COVERAGE=100000 \\
         PROGRAM=MeanQualityByCycle \\
         PROGRAM=CollectGcBiasMetrics \\
@@ -97,12 +96,12 @@ process RECALL_SV {
 
     gridss_extract_overlapping_fragments \\
         --targetbed ${bed} \\
-        -t ${task.cpus} \\
+        -t ${task_cpus} \\
         -o ${prefix}-T.bam \\
         ${prefix}_T_filtered.bam
 
     gridss \\
-        --threads ${task.cpus} \\
+        --threads ${task_cpus} \\
         --labels "NORMAL",${prefix} \\
         --jvmheap ${task.memory.toGiga() - 1}g \\
         --otherjvmheap ${task.memory.toGiga() - 1}g \\
@@ -114,7 +113,7 @@ process RECALL_SV {
         ${prefix}-T.bam
 
     gridss_annotate_vcf_kraken2 \\
-        -t ${task.cpus} \\
+        -t ${task_cpus} \\
         -o ${prefix}.recall.all_calls_avk.vcf \\
         --kraken2db ${kraken2db} \\
         ${prefix}_all_calls.vcf
