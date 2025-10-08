@@ -79,7 +79,7 @@ process GRIDSS {
     """
     stub:
     def prefix = task.ext.prefix ?: "${meta.patient}"
-    def VERSION = '2.13.2' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
+    def VERSION = '2.13.2'
     """
     touch ${prefix}.gridss.unfiltered.vcf
 
