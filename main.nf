@@ -1,47 +1,52 @@
 #!/usr/bin/env nextflow
+nextflow.enable.dsl = 2
+
 /*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    jblancoheredia/svtorm
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/jblancoheredia/svtorm
-----------------------------------------------------------------------------------------
+****************************************************************************************************************************
+                         SVtorm: is a comprehensive Structural Variant Nextflow borne pipeline,
+                         heavily tailored for cfDNA-seq target data, specifically MSK-ACCESSv2.
+                         Designed to  be highly  flexible, running on a wide range of computing 
+                         environments, from a personal laptop, to  a computing cluster or cloud 
+                         computing environments.  Note:  Built following the nf-core standards.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                  Github : https://github.com/jblancoheredia/svtorm
+                                                Author : blancoj@mskcc.org
+****************************************************************************************************************************
 */
 
 /*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    IMPORT FUNCTIONS / MODULES / SUBWORKFLOWS / WORKFLOWS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                               IMPORT WORKFLOW & SUBWORKFLOWS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { SVTORM  } from './workflows/svtorm'
-include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_svtorm_pipeline'
-include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_svtorm_pipeline'
-include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_svtorm_pipeline'
+include { SVTORM                    } from './workflows/svtorm'
+include { getGenomeAttribute        } from './subworkflows/local/utils_nfcore_svtorm_pipeline'
+include { PIPELINE_COMPLETION       } from './subworkflows/local/utils_nfcore_svtorm_pipeline'
+include { PIPELINE_INITIALISATION   } from './subworkflows/local/utils_nfcore_svtorm_pipeline'
 
 /*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    GENOME PARAMETER VALUES
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                   GENOME PARAMETER VALUES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-// TODO nf-core: Remove this line if you don't need a FASTA file
-//   This is an example of how to use getGenomeAttribute() to fetch parameters
-//   from igenomes.config using `--genome`
-params.fasta = getGenomeAttribute('fasta')
+params.fasta                        = getGenomeAttribute('fasta')
+params.refs_dir                     = getGenomeAttribute('refs_dir')
 
 /*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    NAMED WORKFLOWS FOR PIPELINE
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                NAMED WORKFLOWS FOR PIPELINE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow JBLANCOHEREDIA_SVTORM {
+workflow CTI_SVTORM {
 
     take:
-    samplesheet // channel: samplesheet read in from --input
+    samplesheet
 
     main:
 
@@ -52,12 +57,12 @@ workflow JBLANCOHEREDIA_SVTORM {
         samplesheet
     )
     emit:
-    multiqc_report = SVTORM.out.multiqc_report // channel: /path/to/multiqc_report.html
+    multiqc_report = SVTORM.out.multiqc_report
 }
 /*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    RUN MAIN WORKFLOW
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                      RUN MAIN WORKFLOW
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
 workflow {
@@ -67,18 +72,18 @@ workflow {
     // SUBWORKFLOW: Run initialisation tasks
     //
     PIPELINE_INITIALISATION (
-        params.version,
         params.validate_params,
         params.monochrome_logs,
-        args,
+        params.version,
         params.outdir,
-        params.input
+        params.input,
+        args
     )
 
     //
     // WORKFLOW: Run main workflow
     //
-    JBLANCOHEREDIA_SVTORM (
+    CTI_SVTORM (
         PIPELINE_INITIALISATION.out.samplesheet
     )
     //
@@ -86,17 +91,17 @@ workflow {
     //
     PIPELINE_COMPLETION (
         params.email,
-        params.email_on_fail,
-        params.plaintext_email,
         params.outdir,
-        params.monochrome_logs,
         params.hook_url,
-        JBLANCOHEREDIA_SVTORM.out.multiqc_report
+        params.email_on_fail,
+        params.monochrome_logs,
+        params.plaintext_email,
+        CTI_SVTORM.out.multiqc_report
     )
 }
 
 /*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    THE END
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                           THE END
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
