@@ -34,7 +34,7 @@ process RECALL_SV {
     def args = task.ext.args ?: ''
     def task_cpus = task.cpus <= 8 ? task.cpus : 8
     def prefix = task.ext.prefix ?: "${meta.patient}"
-    def VERSION = '2.13.2' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
+    def VERSION = '2.13.2'
     def bwa = bwa_index ? "cp -s ${bwa_index}/* ." : ""
     """
     source activate gridss
@@ -127,7 +127,7 @@ process RECALL_SV {
     """
     stub:
     def prefix = task.ext.prefix ?: "${meta.patient}"
-    def VERSION = '2.13.2' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
+    def VERSION = '2.13.2'
     """
     touch ${prefix}.recall.all_calls_avk.vcf
 
