@@ -29,37 +29,37 @@ process GRIDSS {
     def VERSION = '2.13.2'
     def bwa = bwa_index ? "cp -s ${bwa_index}/* ." : ""
     """
-    samtools view -h -F 256 -o ${prefix}_N_filtered.bam ${normal_bam}
-    samtools index ${prefix}_N_filtered.bam
+    samtools view -@ ${task.cpus} -h -F 256 -o ${prefix}_N_filtered.bam ${normal_bam}
+    samtools index -@ ${task.cpus} ${prefix}_N_filtered.bam
 
-    samtools view -h -F 256 -o ${prefix}_T_filtered.bam ${tumour_bam}
-    samtools index ${prefix}_T_filtered.bam
+    samtools view -@ ${task.cpus} -h -F 256 -o ${prefix}_T_filtered.bam ${tumour_bam}
+    samtools index -@ ${task.cpus} ${prefix}_T_filtered.bam
 
     rm ${fasta} ${fasta_fai}
 
     ${bwa}
 
     gridss_extract_overlapping_fragments \\
-        --targetbed ${bed} \\
         -t 8 \\
+        --targetbed ${bed} \\
         -o ${prefix}_GRIDSS-N.bam \\
         ${prefix}_N_filtered.bam
 
     gridss_extract_overlapping_fragments \\
-        --targetbed ${bed} \\
         -t 8 \\
+        --targetbed ${bed} \\
         -o ${prefix}_GRIDSS-T.bam \\
         ${prefix}_T_filtered.bam
 
     gridss \\
-        --output ${prefix}.vcf.gz \\
-        --reference ${fasta} \\
         --threads 8 \\
-        --jvmheap ${task.memory.toGiga() - 1}g \\
-        --otherjvmheap ${task.memory.toGiga() - 1}g \\
-        --maxcoverage 100000 \\
-        --picardoptions VALIDATION_STRINGENCY=LENIENT \\
         -b ${blocklist} \\
+        --maxcoverage 100000 \\
+        --reference ${fasta}   \\
+        --output ${prefix}.vcf.gz \\
+        --jvmheap ${task.memory.toGiga() - 1}g  \\
+        --otherjvmheap ${task.memory.toGiga() - 1}g \\
+        --picardoptions VALIDATION_STRINGENCY=LENIENT  \\
         ${prefix}_GRIDSS-N.bam \\
         ${prefix}_GRIDSS-T.bam
 
