@@ -12,16 +12,16 @@ process RECALL_SV {
           val(meta0), path(tumour_bam), path(tumour_bai),
           val(meta1), path(normal_bam), path(normal_bai),
           val(meta2), path(interval_list)
-    tuple val(meta3), path(fasta)
-    tuple val(meta4), path(fasta_fai)
-    tuple val(meta5), path(known_sites)
-    tuple val(meta6), path(known_sites_tbi)
-    path(refflat)
-    path(bed)
+    tuple val(meta3), path(knownsites_i)
+    tuple val(meta4), path(known_sites)
+    tuple val(meta5), path(fasta_fai)
+    tuple val(meta6), path(fasta)
     path(blocklist)
     path(bwa_index)
     path(kraken2db)
     path(pon_dir)
+    path(refflat)
+    path(bed)
 
     output:
     tuple val(meta), path("*.recall.all_calls_avk.vcf"), emit: vcf
@@ -32,7 +32,6 @@ process RECALL_SV {
 
     script:
     def args = task.ext.args ?: ''
-    def task_cpus = task.cpus <= 8 ? task.cpus : 8
     def prefix = task.ext.prefix ?: "${meta.patient}"
     def VERSION = '2.13.2'
     def bwa = bwa_index ? "cp -s ${bwa_index}/* ." : ""
@@ -53,71 +52,70 @@ process RECALL_SV {
 
     mkdir ${prefix}-N.bam.gridss.working
 
-    CollectGridssMetrics \\
-        INPUT=${prefix}_N_filtered.bam \\
+    CollectGridssMetrics  \\
+        REF_FLAT=${refflat} \\
+        DB_SNP=${known_sites} \\
         THRESHOLD_COVERAGE=100000 \\
-        PROGRAM=MeanQualityByCycle \\
-        PROGRAM=CollectGcBiasMetrics \\
+        INTERVALS=${interval_list} \\
+        PROGRAM=MeanQualityByCycle  \\
+        REFERENCE_SEQUENCE=${fasta}  \\
+        PROGRAM=CollectGcBiasMetrics  \\
+        INPUT=${prefix}_N_filtered.bam \\
         PROGRAM=CollectInsertSizeMetrics \\
         PROGRAM=QualityScoreDistribution  \\
         PROGRAM=CollectQualityYieldMetrics \\
         PROGRAM=CollectBaseDistributionByCycle \\
         PROGRAM=CollectAlignmentSummaryMetrics  \\
         PROGRAM=CollectSequencingArtifactMetrics \\
-        OUTPUT=${prefix}-N.bam.gridss.working/${prefix}-N.bam \\
-        INTERVALS=${interval_list} \\
-        REF_FLAT=${refflat} \\
-        REFERENCE_SEQUENCE=${fasta} \\
-        DB_SNP=${known_sites}
+        OUTPUT=${prefix}-N.bam.gridss.working/${prefix}-N.bam
 
     gridss_extract_overlapping_fragments \\
-        --targetbed ${prefix}.interval_list.bed \\
-        -t ${task_cpus} \\
+        -t 8 \\
         -o ${prefix}-N.bam \\
+        --targetbed ${prefix}.interval_list.bed \\
         ${prefix}_N_filtered.bam
 
     mkdir ${prefix}-T.bam.gridss.working
 
-    CollectGridssMetrics \\
-        INPUT=${prefix}_T_filtered.bam \\
+    CollectGridssMetrics  \\
+        REF_FLAT=${refflat} \\
+        DB_SNP=${known_sites} \\
         THRESHOLD_COVERAGE=100000 \\
-        PROGRAM=MeanQualityByCycle \\
-        PROGRAM=CollectGcBiasMetrics \\
+        INTERVALS=${interval_list} \\
+        PROGRAM=MeanQualityByCycle  \\
+        REFERENCE_SEQUENCE=${fasta}  \\
+        PROGRAM=CollectGcBiasMetrics  \\
+        INPUT=${prefix}_T_filtered.bam \\
         PROGRAM=CollectInsertSizeMetrics \\
         PROGRAM=QualityScoreDistribution  \\
         PROGRAM=CollectQualityYieldMetrics \\
         PROGRAM=CollectBaseDistributionByCycle \\
         PROGRAM=CollectAlignmentSummaryMetrics  \\
         PROGRAM=CollectSequencingArtifactMetrics \\
-        OUTPUT=${prefix}-T.bam.gridss.working/${prefix}-T.bam \\
-        INTERVALS=${interval_list} \\
-        VALIDATION_STRINGENCY=LENIENT \\
-        REF_FLAT=${refflat} \\
-        REFERENCE_SEQUENCE=${fasta} \\
-        DB_SNP=${known_sites}
+        OUTPUT=${prefix}-T.bam.gridss.working/${prefix}-N.bam
 
     gridss_extract_overlapping_fragments \\
-        --targetbed ${prefix}.interval_list.bed \\
-        -t ${task_cpus} \\
+        -t 8 \\
         -o ${prefix}-T.bam \\
+        --targetbed ${prefix}.interval_list.bed \\
         ${prefix}_T_filtered.bam
 
     gridss \\
-        --threads ${task_cpus} \\
+        --threads 8 \\
+        -b ${blocklist} \\
+        --reference ${fasta} \\
         --labels "NORMAL",${prefix} \\
+        --output ${prefix}_all_calls.vcf \\
         --jvmheap ${task.memory.toGiga() - 1}g \\
         --otherjvmheap ${task.memory.toGiga() - 1}g \\
-        --output ${prefix}_all_calls.vcf \\
-        --reference ${fasta} \\
-        --picardoptions VALIDATION_STRINGENCY=LENIENT \\
-        -b ${blocklist} \\
+        --picardoptions VALIDATION_STRINGENCY=LENIENT  \\
         ${prefix}-N.bam \\
         ${prefix}-T.bam
 
     gridss_annotate_vcf_kraken2 \\
-        -t ${task_cpus} \\
-        -o ${prefix}.recall.all_calls_avk.vcf \\
+        -t 8 \\
         --kraken2db ${kraken2db} \\
+        -o ${prefix}.recall.all_calls_avk.vcf \\
         ${prefix}_all_calls.vcf
 
     cat <<-END_VERSIONS > versions.yml
