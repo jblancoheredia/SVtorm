@@ -40,22 +40,22 @@ process GRIDSS {
     ${bwa}
 
     gridss_extract_overlapping_fragments \\
-        -t 8 \\
+        -t ${task.cpus} \\
         --targetbed ${bed} \\
         -o ${prefix}_GRIDSS-N.bam \\
         ${prefix}_N_filtered.bam
 
     gridss_extract_overlapping_fragments \\
-        -t 8 \\
+        -t ${task.cpus} \\
         --targetbed ${bed} \\
         -o ${prefix}_GRIDSS-T.bam \\
         ${prefix}_T_filtered.bam
 
     gridss \\
-        --threads 8 \\
         -b ${blocklist} \\
         --maxcoverage 100000 \\
-        --reference ${fasta}   \\
+        --reference ${fasta}  \\
+        --threads ${task.cpus} \\
         --output ${prefix}.vcf.gz \\
         --jvmheap ${task.memory.toGiga() - 1}g  \\
         --otherjvmheap ${task.memory.toGiga() - 1}g \\
