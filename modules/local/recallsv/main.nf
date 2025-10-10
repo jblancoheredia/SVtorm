@@ -36,13 +36,11 @@ process RECALL_SV {
     def VERSION = '2.13.2'
     def bwa = bwa_index ? "cp -s ${bwa_index}/* ." : ""
     """
-    source activate gridss
+    samtools view -@ ${task.cpus} -h -F 256 -o ${prefix}_N_filtered.bam ${normal_bam}
+    samtools index -@ ${task.cpus} ${prefix}_N_filtered.bam
 
-    samtools view -@ ${task_cpus} -h -F 256 -o ${prefix}_N_filtered.bam ${normal_bam}
-    samtools index -@ ${task_cpus} ${prefix}_N_filtered.bam
-
-    samtools view -@ ${task_cpus} -h -F 256 -o ${prefix}_T_filtered.bam ${tumour_bam}
-    samtools index -@ ${task_cpus} ${prefix}_T_filtered.bam
+    samtools view -@ ${task.cpus} -h -F 256 -o ${prefix}_T_filtered.bam ${tumour_bam}
+    samtools index -@ ${task.cpus} ${prefix}_T_filtered.bam
 
     rm ${fasta} ${fasta_fai}
 
