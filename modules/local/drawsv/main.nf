@@ -4,8 +4,8 @@ process DRAWSV {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://blancojmskcc/svtorm_drawsv:7.1.3':
-        'blancojmskcc/svtorm_drawsv:7.1.3' }"
+        'docker://blancojmskcc/svtorm_drawsv:7.1.4':
+        'blancojmskcc/svtorm_drawsv:7.1.4' }"
 
     input:
     tuple val(meta), 
@@ -42,7 +42,7 @@ process DRAWSV {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        drawsv: "7.1.3"
+        drawsv: "7.1.4"
     END_VERSIONS
     """
     stub:
@@ -52,7 +52,7 @@ process DRAWSV {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        drawsv: "7.1.3"
+        drawsv: "7.1.4"
     END_VERSIONS
     """
 }
