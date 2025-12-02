@@ -1,0 +1,51 @@
+name: "svtorm_crossv"
+description: Cross-checking the presence of SVs from previous time points in the final pipeline output TSV file; if absent, searches intermediate VCFs (unfiltered) from all callers.
+keywords:
+  - structural-variants
+  - quality control
+  - validation
+tools:
+  - "python":
+      homepage: https://www.python.org
+      licence: PSF
+  - "crossv":
+      description: MSKCC propietary script
+      licence: MIT
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - final_tsv: 
+      type: file
+      description: Final filtered & annotated SV table (TSV)
+      pattern: "*.tsv"
+  - sv_bed: 
+      type: file
+      description: BED file with SV loci of interest (1-based or 0-based, see param)
+      pattern: "*.bed"
+  - unfiltered_vcfs: The unfiltered VCFs one per caller
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - summary_tsv: 
+      type: file
+      description: Summary with per-query evidence
+      pattern: "*.tsv"
+      Summary with per-query evidence
+  - summary_json: 
+      type: file
+      description: JSON with detailed per-caller evidence
+      pattern: "*.json"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@jblancoheredia"
+maintainers:
+  - "@jblancoheredia"
