@@ -33,6 +33,14 @@
                 "pattern": "^\\S+\\.bai$",
                 "errorMessage": "BAI file cannot contain spaces and must have extension '.bai'"
             },
+            "bed": {
+                "type": "string",
+                "meta": ["prior"],
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.bed$",
+                "errorMessage": "Prior-Calls BED file must be a .bed path without spaces"
+            },
             "tumour": {
                 "type": "boolean",
                 "meta": ["tumour"],
