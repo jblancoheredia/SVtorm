@@ -17,6 +17,7 @@ include { paramsSummaryMap                                                      
 include { DELLY                                                                         } from '../modules/local/delly/main'
 include { MANTA                                                                         } from '../modules/local/manta/main'
 include { SVABA                                                                         } from '../modules/local/svaba/main'
+include { CROSSV                                                                        } from '../modules/local/crossv/main'
 include { DRAWSV                                                                        } from '../modules/local/drawsv/main'
 include { GRIDSS                                                                        } from '../modules/local/gridss/main'
 include { SVSOMF                                                                        } from '../modules/local/svsomf/main'
@@ -79,6 +80,32 @@ workflow SVTORM {
         meta["single_end"] = single_end.text.trim().toBoolean()
         [meta, bam, bai]
     }
+
+    //
+    // Extract bed files (prior) from samplesheet for CROSSV
+    //
+    ch_bed_files = ch_samplesheet
+        .map { meta, files ->
+            def bed_path = meta.containsKey('prior') ? meta.prior : null
+            if (bed_path) {
+                try {
+                    def bed_file = file(bed_path.toString())
+                    if (!bed_file.exists()) {
+                        log.warn "WARNING: Bed file does not exist: ${bed_path}"
+                    }
+                    [meta.patient, bed_file]
+                } catch (Exception e) {
+                    log.warn "WARNING: Could not create file object from bed path: ${bed_path} - ${e.message}"
+                    [meta.patient, null]
+                }
+            } else {
+                log.warn "WARNING: No 'prior' field found in metadata for patient ${meta.patient}, sample ${meta.id}"
+                [meta.patient, null]
+            }
+        }
+        .filter { patient, bed_file -> bed_file != null }
+        .unique()
+        .set { ch_bed_files_checked }
 
     //
     // MODULE: Run Picard Collect Multiple Metrics
@@ -212,7 +239,7 @@ workflow SVTORM {
     //
     // MODULE: Run Gridds in ReCall mode
     //
-    RECALL_SV(ch_recall_input, ch_known_sites_tbi, ch_known_sites, ch_fai, ch_fasta, params.blocklist_bed, params.bwa, params.kraken2db, params.pon_directory, params.refflat, params.intervals)
+    RECALL_SV(ch_recall_input, ch_fasta, ch_fai, ch_known_sites, ch_known_sites_tbi, params.blocklist_bed, params.bwa, params.kraken2db, params.pon_directory, params.refflat, params.intervals)
     ch_versions = ch_versions.mix(RECALL_SV.out.versions)
     ch_prefilter_vcf = RECALL_SV.out.vcf
 
@@ -225,7 +252,7 @@ workflow SVTORM {
     ch_recall_vcf = ch_recall_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
 
     //
-    // Combine the vcf by meta key patient
+    // MODULE: Run Survivor to filter Unfiltered VCFs
     //
     ch_survivor_filter_input = ch_delly_vcf
         .join(ch_gridss_vcf)
@@ -242,14 +269,11 @@ workflow SVTORM {
                 meta_svaba , svaba_vcf
             )
         }
-
-    //
-    // MODULE: Run Survivor to filter Unfiltered VCFs
-    //
     SURVIVOR_FILTER(ch_survivor_filter_input, 1000, 3, 1, 1, 0, 250, params.allowlist_bed)
     ch_versions = ch_versions.mix(SURVIVOR_FILTER.out.versions)
     ch_filtered_all = SURVIVOR_FILTER.out.filtered_all
     ch_filtered_vcf = SURVIVOR_FILTER.out.filtered_vcf
+    ch_filtered_tsv = SURVIVOR_FILTER.out.filtered_tsv
 
     //
     // MODULE: Run Survivor Stats
@@ -259,29 +283,69 @@ workflow SVTORM {
     ch_multiqc_files  = ch_multiqc_files.mix(SURVIVOR_STATS.out.stats.collect{it[1]}.ifEmpty([]))
 
     //
+    // MODULE: Run CrosSV
+    //
+    ch_bam_pairs_for_crossv = ch_bam_pairs
+        .map { meta, bam_t, bai_t, bam_n, bai_n -> 
+            tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) 
+        }
+    ch_filtered_tsv_for_crossv = ch_filtered_tsv
+        .map { meta, tsv -> tuple(meta.patient, meta, tsv) }
+    ch_crossv_input = ch_bam_pairs_for_crossv
+        .join(ch_delly_vcf)
+        .join(ch_gridss_vcf)
+        .join(ch_manta_vcf)
+        .join(ch_recall_vcf)
+        .join(ch_svaba_vcf)
+        .join(ch_filtered_tsv_for_crossv)
+        .join(ch_bed_files_checked)
+        .map { patient, meta_bam, bam_t, bai_t, bam_n, bai_n, 
+               meta_delly, delly_vcf, meta_gridss, gridss_vcf, 
+               meta_manta, manta_vcf, meta_recall, recall_vcf, 
+               meta_svaba, svaba_vcf, meta_tsv, tsv, bed_file -> 
+               [meta_bam, bam_t, bai_t, bam_n, bai_n, 
+                delly_vcf, gridss_vcf, manta_vcf, recall_vcf, svaba_vcf, tsv, bed_file]
+        }
+    CROSSV(ch_crossv_input)
+    ch_versions = ch_versions.mix(CROSSV.out.versions)
+    ch_crossv_tsv = CROSSV.out.tsv
+    ch_crossv_annote = CROSSV.out.annote
+    ch_crossv_bam_bai = CROSSV.out.bam.join(CROSSV.out.bai)
+
+    //
     // MODULE: Run iAnnotateSV 
     //
-    IANNOTATESV(ch_filtered_all, params.genome)
+    ch_crossv_tsv_mapped = ch_crossv_tsv
+        .map { meta, tsv -> tuple(meta.patient, meta, tsv) }
+    ch_crossv_annote_mapped = ch_crossv_annote
+        .map { meta, annote -> tuple(meta.patient, meta, annote) }
+    ch_annotate_input_tsv = ch_crossv_tsv_mapped
+        .ifEmpty { ch_filtered_tsv_for_crossv }
+    ch_annotate_input_annote = ch_crossv_annote_mapped
+        .ifEmpty { ch_filtered_all.map { meta, vcf, vcf_tbi, tsv, annote_input -> tuple(meta.patient, meta, annote_input) } }
+    ch_annotate_input = ch_filtered_all
+        .map { meta, vcf, vcf_tbi, tsv, annote_input -> tuple(meta.patient, meta, vcf, vcf_tbi, annote_input) }
+        .join(ch_annotate_input_tsv)
+        .join(ch_annotate_input_annote)
+        .map { patient, meta_f, vcf, vcf_tbi, annote_input_old, meta_t, tsv, meta_a, annote_input ->
+            tuple(meta_f, vcf, vcf_tbi, tsv, annote_input)
+        }
+    IANNOTATESV(ch_annotate_input, params.genome)
     ch_versions = ch_versions.mix(IANNOTATESV.out.versions)
     ch_annotated_tsv = IANNOTATESV.out.tsv
     ch_annotated_ann = IANNOTATESV.out.ann
-
-    //
-    // Filter TSV files that contain at least one SV
-    //
     ch_annotated_tsv_with_svs = ch_annotated_tsv
         .filter { meta, tsv ->
-            tsv.readLines().size() > 1  // Assuming header + at least one SV row
+            tsv.readLines().size() > 1
         }
+        .map { meta, tsv -> tuple(meta.patient, meta, tsv) }
 
     //
-    // Join annotated SVs with BAM pairs based on patient
+    // MODULE: Run DrawSV
     //
     ch_bam_pairs_by_patient = ch_bam_pairs.map {meta, bam_t, bai_t, bam_n, bai_n -> tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) }
     ch_drawsv_input = ch_bam_pairs_by_patient
-        .join(ch_annotated_tsv_with_svs
-        .map {meta, tsv -> tuple(meta.patient, meta, tsv)}
-        )
+        .join(ch_annotated_tsv_with_svs)
         .map { patient, meta_b, bam_t, bai_t, bam_n, bai_n, meta_t, tsv ->
             tuple(
                 meta_b, 
@@ -290,30 +354,22 @@ workflow SVTORM {
                 meta_t, tsv
             )
         }
-
-    //
-    // MODULE: Run DrawSV
-    //
     DRAWSV(ch_drawsv_input, params.annotations, params.cytobands, params.drawsv_chr, params.protein_domains)
     ch_versions = ch_versions.mix(DRAWSV.out.versions)
     ch_drawsv_pdf = DRAWSV.out.pdf
 
-    //
-    // Check-Up for SeraCare samples only
+     //
+    // MODULE: Run SeraCare Check-Up
     //
     ch_seracare_sample = ch_annotated_tsv
         .filter { meta, file -> 
             meta.id.contains("SeraCare") || meta.id.contains("SRCR")
         }
-
-    //
-    // MODULE: Run SeraCare Check-Up
-    //
     SERACARE_CHECKUP(ch_seracare_sample)
     ch_versions = ch_versions.mix(SERACARE_CHECKUP.out.versions)
 
     //
-    // Collate and save software versions
+    // MODULE: MultiQC
     //
     softwareVersionsToYAML(ch_versions)
         .collectFile(
@@ -322,10 +378,6 @@ workflow SVTORM {
             sort: true,
             newLine: true
         ).set { ch_collated_versions }
-
-    //
-    // MODULE: MultiQC
-    //
     ch_multiqc_config        = Channel.fromPath(
         "$projectDir/assets/multiqc_config.yml", checkIfExists: true)
     ch_multiqc_custom_config = params.multiqc_config ?
@@ -334,7 +386,6 @@ workflow SVTORM {
     ch_multiqc_logo          = params.multiqc_logo ?
         Channel.fromPath(params.multiqc_logo, checkIfExists: true) :
         Channel.empty()
-
     summary_params      = paramsSummaryMap(
         workflow, parameters_schema: "nextflow_schema.json")
     ch_workflow_summary = Channel.value(paramsSummaryMultiqc(summary_params))
@@ -345,7 +396,6 @@ workflow SVTORM {
         file("$projectDir/assets/methods_description_template.yml", checkIfExists: true)
     ch_methods_description                = Channel.value(
         methodsDescriptionText(ch_multiqc_custom_methods_description))
-
     ch_multiqc_files = ch_multiqc_files.mix(ch_collated_versions)
     ch_multiqc_files = ch_multiqc_files.mix(
         ch_methods_description.collectFile(
@@ -353,7 +403,6 @@ workflow SVTORM {
             sort: true
         )
     )
-
     MULTIQC (
         ch_multiqc_files.collect(),
         ch_multiqc_config.toList(),
