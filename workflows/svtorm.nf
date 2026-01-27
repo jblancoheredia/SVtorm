@@ -155,6 +155,7 @@ workflow SVTORM {
             }
         }
         .set { ch_bam_pairs }
+    ch_bam_pairs_by_patient = ch_bam_pairs.map {meta, bam_t, bai_t, bam_n, bai_n -> tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) }
 
     //
     // MODULE: Run Delly Call
@@ -176,6 +177,8 @@ workflow SVTORM {
     // MODULE: Run Manta in Somatic Mode
     //
     MANTA(ch_bam_pairs, ch_targets_bed, ch_targets_bed_tbi, ch_fasta, ch_fai, [])
+    ch_multiqc_files  = ch_multiqc_files.mix(MANTA.out.metrics_tsv.collect{it[1]}.ifEmpty([]))
+    ch_multiqc_files  = ch_multiqc_files.mix(MANTA.out.metrics_txt.collect{it[1]}.ifEmpty([]))
     ch_versions = ch_versions.mix(MANTA.out.versions)
     ch_manta_vcf = MANTA.out.vcf
     ch_manta_vcf = ch_manta_vcf.map { meta, vcf -> tuple(meta.patient, meta, vcf) }
@@ -193,15 +196,15 @@ workflow SVTORM {
     //
     ch_vcf_merged = ch_delly_vcf
         .join(ch_gridss_vcf)
-        .join(ch_manta_vcf)
-        .join(ch_svaba_vcf)
+        .join(ch_manta_vcf )
+        .join(ch_svaba_vcf )
         .map { patient, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_svaba, svaba_vcf ->
             tuple(
-                meta_delly, 
-                meta_delly,  delly_vcf,
+                meta_delly , 
+                meta_delly , delly_vcf ,
                 meta_gridss, gridss_vcf,
-                meta_manta,  manta_vcf,
-                meta_svaba,  svaba_vcf
+                meta_manta , manta_vcf ,
+                meta_svaba , svaba_vcf
             )
         }
     
@@ -224,7 +227,6 @@ workflow SVTORM {
     //
     // Join interval lists with BAM pairs based on patient
     //
-    ch_bam_pairs_by_patient = ch_bam_pairs.map {meta, bam_t, bai_t, bam_n, bai_n -> tuple(meta.patient, meta, bam_t, bai_t, bam_n, bai_n) }
     ch_recall_input = ch_bam_pairs_by_patient
         .join(ch_merged_int_list)
         .map { patient, meta_b, bam_t, bai_t, bam_n, bai_n, meta_i, interval_list ->
@@ -256,15 +258,15 @@ workflow SVTORM {
     //
     ch_survivor_filter_input = ch_delly_vcf
         .join(ch_gridss_vcf)
-        .join(ch_manta_vcf)
+        .join(ch_manta_vcf )
         .join(ch_recall_vcf)
-        .join(ch_svaba_vcf)
+        .join(ch_svaba_vcf )
         .map { patient, meta_delly, delly_vcf, meta_gridss, gridss_vcf, meta_manta, manta_vcf, meta_recall, recall_vcf, meta_svaba, svaba_vcf ->
             tuple(
-                meta_delly, 
-                meta_delly , delly_vcf,
+                meta_delly , 
+                meta_delly , delly_vcf ,
                 meta_gridss, gridss_vcf,
-                meta_manta , manta_vcf,
+                meta_manta , manta_vcf ,
                 meta_recall, recall_vcf,
                 meta_svaba , svaba_vcf
             )
